@@ -60,15 +60,15 @@ def car_racing():
     car1.rect.y = SCREENHEIGHT - 250
 
     car2 = Car(YELLOW, 60, 80, random.randint(50,100))
-    car2.rect.x = 1200
+    car2.rect.x = 1300
     car2.rect.y = SCREENHEIGHT - 200
 
     car3 = Car(CYAN, 60, 80, random.randint(50,100))
-    car3.rect.x = 1100
+    car3.rect.x = 1400
     car3.rect.y = SCREENHEIGHT - 100
 
     car4 = Car(BLUE, 60, 80, random.randint(50,100))
-    car4.rect.x = 1250
+    car4.rect.x = 1500
     car4.rect.y = SCREENHEIGHT - 100
 
 
@@ -116,10 +116,11 @@ def car_racing():
             #Game Logic
             for car in all_coming_cars:
                 car.moveLeft(speed)
-                if car.rect.x > SCREENWIDTH:
-                    car.changeSpeed(random.randint(50,100))
+                if car.rect.right < 0:  # Change the check to rect.right to reset when off-screen
+                    car.changeSpeed(random.randint(90, 100))
                     car.repaint(random.choice(colorList))
-                    car.rect.x = 1200
+                    car.rect.x = SCREENWIDTH + random.randint(200, 400) + car.width  # Reappear from a random X position off-screen
+                    car.rect.y = random.randint(600, 700)  # Random Y position
 
                 # Check if there is a car collision
                 car_collision_list = pygame.sprite.spritecollide(playerCar, all_coming_cars, False)
