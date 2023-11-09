@@ -14,12 +14,34 @@ def car_racing():
     CYAN = (0, 255, 255)
     BLUE = (100, 100, 255)
 
+    bg = pygame.image.load("pixelatnight.jpg").convert()
+
+    def pause():
+        loop = 1
+        corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
+        pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
+        spacebartext = corbelfont.render("Press Spacebar to continue", True, (100,25,225)) 
+        screen.blit(pausetext, [200,200]) 
+        screen.blit(spacebartext,[200,250]) 
+        while loop:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    loop = 0
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        loop = 0
+                    if event.key == pygame.K_SPACE:
+                        screen.fill((0, 0, 0))
+                        loop = 0
+            pygame.display.update()
+            clock.tick(60)
     speed = 1
+
     colorList = (RED, GREEN, PURPLE, YELLOW, CYAN, BLUE)
 
 
-    SCREENWIDTH=800
-    SCREENHEIGHT=600
+    SCREENWIDTH=1000
+    SCREENHEIGHT=820
 
     size = (SCREENWIDTH, SCREENHEIGHT)
     screen = pygame.display.set_mode(size)
@@ -30,24 +52,24 @@ def car_racing():
 
 
     playerCar = Car(RED, 60, 80, 70)
-    playerCar.rect.x = 160
-    playerCar.rect.y = SCREENHEIGHT - 100
+    playerCar.rect.x = 200
+    playerCar.rect.y = SCREENHEIGHT - 200
 
     car1 = Car(PURPLE, 60, 80, random.randint(50,100))
-    car1.rect.x = 60
-    car1.rect.y = -100
+    car1.rect.x = 1000
+    car1.rect.y = SCREENHEIGHT - 250
 
     car2 = Car(YELLOW, 60, 80, random.randint(50,100))
-    car2.rect.x = 160
-    car2.rect.y = -600
+    car2.rect.x = 1200
+    car2.rect.y = SCREENHEIGHT - 200
 
     car3 = Car(CYAN, 60, 80, random.randint(50,100))
-    car3.rect.x = 260
-    car3.rect.y = -300
+    car3.rect.x = 1100
+    car3.rect.y = SCREENHEIGHT - 100
 
     car4 = Car(BLUE, 60, 80, random.randint(50,100))
-    car4.rect.x = 360
-    car4.rect.y = -900
+    car4.rect.x = 1250
+    car4.rect.y = SCREENHEIGHT - 100
 
 
     # Add the car to the list of objects
@@ -88,14 +110,16 @@ def car_racing():
                 playerCar.moveForward(5)
             if keys[pygame.K_p]:
                 playerCar.repaint(GREEN)
+            if keys[pygame.K_ESCAPE]:
+                pause()
             
             #Game Logic
             for car in all_coming_cars:
-                car.moveForward(speed)
-                if car.rect.y > SCREENHEIGHT:
+                car.moveLeft(speed)
+                if car.rect.x > SCREENWIDTH:
                     car.changeSpeed(random.randint(50,100))
                     car.repaint(random.choice(colorList))
-                    car.rect.y = -200
+                    car.rect.x = 1200
 
                 # Check if there is a car collision
                 car_collision_list = pygame.sprite.spritecollide(playerCar, all_coming_cars, False)
@@ -106,27 +130,29 @@ def car_racing():
 
             all_sprites_list.update()
 
-            #Drawing on Screen
-            screen.fill(GREEN)
-            #Draw The Road
-            pygame.draw.rect(screen, GREY, [40,0, 400,SCREENHEIGHT])
-            #draw Bounds on the left of the road to avoid escaping
-            boundary_left = pygame.draw.rect(screen, RED, [40,0,2,SCREENHEIGHT], 1)
-            #draw Bounds on the right of the road to avoid escaping
-            boundary_right = pygame.draw.rect(screen, RED, [440,0,2,SCREENHEIGHT], 1)
-            #Draw Line painting on the road
-            pygame.draw.line(screen, WHITE, [140,0],[140,SCREENHEIGHT],5)
-            #Draw Line painting on the road
-            pygame.draw.line(screen, WHITE, [240,0],[240,SCREENHEIGHT],5)
-            #Draw Line painting on the road
-            pygame.draw.line(screen, WHITE, [340,0],[340,SCREENHEIGHT],5)
+            # #Drawing on Screen
+            # screen.fill(GREEN)
+            # #Draw The Road
+            # pygame.draw.rect(screen, GREY, [40,0, 400,SCREENHEIGHT])
+            # #draw Bounds on the left of the road to avoid escaping
+            # boundary_left = pygame.draw.rect(screen, RED, [40,0,2,SCREENHEIGHT], 1)
+            # #draw Bounds on the right of the road to avoid escaping
+            # boundary_right = pygame.draw.rect(screen, RED, [440,0,2,SCREENHEIGHT], 1)
+            # #Draw Line painting on the road
+            # pygame.draw.line(screen, WHITE, [140,0],[140,SCREENHEIGHT],5)
+            # #Draw Line painting on the road
+            # pygame.draw.line(screen, WHITE, [240,0],[240,SCREENHEIGHT],5)
+            # #Draw Line painting on the road
+            # pygame.draw.line(screen, WHITE, [340,0],[340,SCREENHEIGHT],5)
             
 
-            #detects collision to the left
-            if playerCar.rect.x <= boundary_left.x or playerCar.rect.x >= boundary_right.x:
-                # print("Collision Detected")
-                carryOn = False
+            # #detects collision to the left
+            # if playerCar.rect.x <= boundary_left.x or playerCar.rect.x >= boundary_right.x:
+            #     # print("Collision Detected")
+            #     carryOn = False
             #Now let's draw all the sprites in one go. (For now we only have 1 sprite!)
+
+            screen.blit(bg, (0,0))
             all_sprites_list.draw(screen)
  
             #Refresh Screen

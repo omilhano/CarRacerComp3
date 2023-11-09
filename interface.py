@@ -7,7 +7,7 @@ from game import car_racing
 def interface():
     # initiating pygames
     pygame.init()
-    # creating the screen 720x720 pixels
+    #initialize at 720x720
     res = (720, 720)
     screen = pygame.display.set_mode(res)
     #change name ? placeholder
