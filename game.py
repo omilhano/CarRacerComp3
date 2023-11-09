@@ -78,16 +78,17 @@ def car_racing():
                          playerCar.moveRight(10)
 
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_LEFT]:
+            if keys[pygame.K_a]:
                 playerCar.moveLeft(5)
-            if keys[pygame.K_RIGHT]:
+            if keys[pygame.K_d]:
                 playerCar.moveRight(5)
-            if keys[pygame.K_UP]:
-                speed += 0.05
-            if keys[pygame.K_DOWN]:
-                speed -= 0.05
-
-
+            if keys[pygame.K_w]:
+                playerCar.moveBackward(5)
+            if keys[pygame.K_s]:
+                playerCar.moveForward(5)
+            if keys[pygame.K_p]:
+                playerCar.repaint(GREEN)
+            
             #Game Logic
             for car in all_coming_cars:
                 car.moveForward(speed)
