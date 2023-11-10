@@ -39,11 +39,11 @@ class Car(pygame.sprite.Sprite):
     def objectSpeed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def moveForward(self, speed):
-        self.rect.y += self.speed * speed / 20
+    def moveForward(self, pixels):
+        self.rect.y += pixels
 
-    def moveBackward(self, speed):
-        self.rect.y -= self.speed * speed / 20
+    def moveBackward(self, pixels):
+        self.rect.y -= pixels
 
     def changeSpeed(self, speed):
         self.speed = speed
