@@ -92,7 +92,8 @@ def car_racing():
     #Allowing the user to close the window...
     carryOn = True
     clock=pygame.time.Clock()
-
+    pygame.mixer.music.stop()
+    
     while carryOn:
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
