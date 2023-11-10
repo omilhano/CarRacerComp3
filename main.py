@@ -1,5 +1,6 @@
 # from interface import *
-from interface import *
+# from interface import *
+from interface2 import *
 
 def main():
     interface()

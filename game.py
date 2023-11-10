@@ -37,6 +37,8 @@ def car_racing():
             clock.tick(60)
     speed = 1
 
+    
+
     colorList = (RED, GREEN, PURPLE, YELLOW, CYAN, BLUE)
 
 
@@ -115,12 +117,24 @@ def car_racing():
             
             #Game Logic
             for car in all_coming_cars:
-                car.moveLeft(speed)
-                if car.rect.right < 0:  # Change the check to rect.right to reset when off-screen
-                    car.changeSpeed(random.randint(90, 100))
+                car.objectSpeed(speed)
+                if car.rect.right < 0:  
+                    car.changeSpeed(random.randint(100,200))
                     car.repaint(random.choice(colorList))
-                    car.rect.x = SCREENWIDTH + random.randint(200, 400) + car.width  # Reappear from a random X position off-screen
-                    car.rect.y = random.randint(600, 700)  # Random Y position
+                    car.rect.x = SCREENWIDTH + car.width  
+                    car.rect.y = random.randint(600, 700)  
+
+                    collision = False
+                    for existing_car in all_coming_cars:
+                        if existing_car.rect.colliderect(pygame.Rect(car.rect.x, car.rect.y, car.width, car.height)):
+                            collision = True
+                            break
+        
+                    if not collision:
+                        car.changeSpeed(random.randint(100,200))
+                        car.repaint(random.choice(colorList))
+                        car.rect.x = car.rect.x = SCREENWIDTH + 3* car.width
+                        car.rect.y = car.rect.y = random.randint(600, 700)
 
                 # Check if there is a car collision
                 car_collision_list = pygame.sprite.spritecollide(playerCar, all_coming_cars, False)

@@ -35,6 +35,9 @@ class Car(pygame.sprite.Sprite):
 
     def moveLeft(self, pixels):
         self.rect.x -= pixels
+    
+    def objectSpeed(self, speed):
+        self.rect.x -= self.speed * speed / 20
 
     def moveForward(self, speed):
         self.rect.y += self.speed * speed / 20
@@ -52,3 +55,5 @@ class Car(pygame.sprite.Sprite):
         else:
             self.color = RED
         pygame.draw.rect(self.image, self.color, [0, 0, self.width, self.height])
+
+    
