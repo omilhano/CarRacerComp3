@@ -17,8 +17,7 @@ def interface():
     #initialize at certain res
     res = (1280,618)
     screen = pygame.display.set_mode((res))
-    #change name ? placeholder
-    pygame.display.set_caption("Car Racer")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface loop
     keys = pygame.key.get_pressed()
     while True:
@@ -32,7 +31,7 @@ def interface():
                 if ev.key == pygame.K_RETURN:
                     menu()
         # setting the background as image
-        bg = pygame.image.load("maxresdefault.jpg")
+        bg = pygame.image.load("images/menu.png")
         # startmenu = pygame.image.load("pressthis.png").convert_alpha()
         #INSIDE OF THE GAME LOOP
         screen.blit(bg,(0,0))
