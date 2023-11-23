@@ -26,7 +26,7 @@ def car_racing():
         while loop:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    loop = False
+                    quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         loop = False

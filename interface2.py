@@ -14,6 +14,9 @@ mixer.music.play()
 # Creating a function that creates the GUI
 def interface():
     pygame.init()
+    #setting game icon
+    icon = pygame.image.load('images/icon.png') 
+    pygame.display.set_icon(icon)
     #initialize at certain res
     res = (1280,618)
     screen = pygame.display.set_mode((res))
