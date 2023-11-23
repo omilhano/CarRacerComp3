@@ -68,16 +68,11 @@ def menu():
         #setting bakcground
         bg = pygame.image.load("images/menuimg.png")
         screen.blit(bg,(0,0))
-        # print the buttons text and the box(color changing)
         # game 1 text
         mouse = pygame.mouse.get_pos()
-        # when the mouse is on the box it changes color
-        if 100 <= mouse[0] <= 230 and 240 <= mouse[1] <= 300:
-            pygame.draw.rect(screen, green, [90, 240, 140, 100])
-        else:
-            pygame.draw.rect(screen, color_dark, [90, 240, 140, 100])
-        screen.blit(game1_text, (90, 240))
-        # SAME FOR ALL THE OTHER BUTTONS
+        #teste zona start game
+        pygame.draw.rect(screen, color_dark, [96, 139, 348, 157],2,3)
+
         #teste zona continue game
         pygame.draw.rect(screen, color_dark, [785, 135, 350, 157],2,3)
         
