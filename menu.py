@@ -1,7 +1,13 @@
 import pygame
 import sys
 from game import car_racing
+from setting import setting
 
+#TODO Start game button
+#TODO Continue game button
+#TODO Credits buttons
+#TODO Exit button
+#TODO Settings button another screen
 
 # Creating a function that creates the GUI
 def menu():
@@ -56,6 +62,9 @@ def menu():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 90 <= mouse[0] <= 230 and 240 <= mouse[1] <= 300:
                     car_racing()
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                if 450 <= mouse[0] <= 450 + 140 and 240 <= mouse[1] <= 240 + 60:
+                    setting()
         # setting the background color as black
         screen.fill(black)
         # print the buttons text and the box(color changing)
@@ -74,6 +83,8 @@ def menu():
         else:
             pygame.draw.rect(screen, color_dark, [450, 240, 140, 60])
         screen.blit(game2_text, (450, 240))
+        
+
         # game 3 text
         if 90 <= mouse[0] <= 90 + 140 and 4 * 120 <= mouse[1] <= 4 * 120 + 60:
             pygame.draw.rect(screen, green, [90, 4 * 120, 140, 60])

@@ -2,6 +2,13 @@ import pygame, random
 #Let's import the Car Class
 from car import Car
 
+#TODO avoid enemy collision on spawn 
+#solved by list with x position of the car, if x is the same then spawn them again 
+
+#TODO add health to car 
+#TODO add timer
+#TODO add score
+
 def car_racing():
     pygame.init()
 
@@ -28,8 +35,6 @@ def car_racing():
                 if event.type == pygame.QUIT:
                     quit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        loop = False
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
                         loop = False
@@ -133,10 +138,10 @@ def car_racing():
                     if not collision:
                         car.changeSpeed(random.randint(100,200))
                         car.repaint(random.choice(colorList))
-                        car.rect.x = car.rect.x = SCREENWIDTH + 3* car.width
-                        car.rect.y = car.rect.y = random.randint(600, 700)
+                        car.rect.x = SCREENWIDTH + 3* car.width
+                        car.rect.y = random.randint(600, 700)
 
-                # Check if there is a car collision
+                # Check if there is a car collision (player enemy)
                 car_collision_list = pygame.sprite.spritecollide(playerCar, all_coming_cars, False)
                 for car in car_collision_list:
                     print("Car crash!")
@@ -144,27 +149,7 @@ def car_racing():
                     carryOn = False
 
             all_sprites_list.update()
-
-            # #Drawing on Screen
-            # screen.fill(GREEN)
-            # #Draw The Road
-            # pygame.draw.rect(screen, GREY, [40,0, 400,SCREENHEIGHT])
-            # #draw Bounds on the left of the road to avoid escaping
-            # boundary_left = pygame.draw.rect(screen, RED, [40,0,2,SCREENHEIGHT], 1)
-            # #draw Bounds on the right of the road to avoid escaping
-            # boundary_right = pygame.draw.rect(screen, RED, [440,0,2,SCREENHEIGHT], 1)
-            # #Draw Line painting on the road
-            # pygame.draw.line(screen, WHITE, [140,0],[140,SCREENHEIGHT],5)
-            # #Draw Line painting on the road
-            # pygame.draw.line(screen, WHITE, [240,0],[240,SCREENHEIGHT],5)
-            # #Draw Line painting on the road
-            # pygame.draw.line(screen, WHITE, [340,0],[340,SCREENHEIGHT],5)
             
-
-            # #detects collision to the left
-            # if playerCar.rect.x <= boundary_left.x or playerCar.rect.x >= boundary_right.x:
-            #     # print("Collision Detected")
-            #     carryOn = False
             #Now let's draw all the sprites in one go. (For now we only have 1 sprite!)
 
             screen.blit(bg, (0,0))

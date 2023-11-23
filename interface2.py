@@ -18,7 +18,7 @@ def interface():
     icon = pygame.image.load('images/icon.png') 
     pygame.display.set_icon(icon)
     #initialize at certain res
-    res = (1280,618)
+    res = (1282,800)
     screen = pygame.display.set_mode((res))
     pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface loop
@@ -34,7 +34,7 @@ def interface():
                 if ev.key == pygame.K_RETURN:
                     menu()
         # setting the background as image
-        bg = pygame.image.load("images/menu.png")
+        bg = pygame.image.load("images/titlemenu.png")
         # startmenu = pygame.image.load("pressthis.png").convert_alpha()
         #INSIDE OF THE GAME LOOP
         screen.blit(bg,(0,0))
