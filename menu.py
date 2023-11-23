@@ -13,8 +13,8 @@ from setting import setting
 def menu():
     # initiating pygames
     pygame.init()
-    #initialize at 720x720
-    res = (720, 720)
+    #initialize at 1282x800
+    res = (1282, 800)
     screen = pygame.display.set_mode(res)
     #change name ? placeholder
     pygame.display.set_caption("Car Racer")
@@ -65,8 +65,9 @@ def menu():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 450 <= mouse[0] <= 450 + 140 and 240 <= mouse[1] <= 240 + 60:
                     setting()
-        # setting the background color as black
-        screen.fill(black)
+        #setting bakcground
+        bg = pygame.image.load("images/menuimg.png")
+        screen.blit(bg,(0,0))
         # print the buttons text and the box(color changing)
         # game 1 text
         mouse = pygame.mouse.get_pos()
@@ -77,35 +78,16 @@ def menu():
             pygame.draw.rect(screen, color_dark, [90, 240, 140, 100])
         screen.blit(game1_text, (90, 240))
         # SAME FOR ALL THE OTHER BUTTONS
-        # game 2 text
-        if 450 <= mouse[0] <= 450 + 140 and 240 <= mouse[1] <= 240 + 60:
-            pygame.draw.rect(screen, green, [450, 240, 140, 60])
-        else:
-            pygame.draw.rect(screen, color_dark, [450, 240, 140, 60])
-        screen.blit(game2_text, (450, 240))
+        #teste zona continue game
+        pygame.draw.rect(screen, color_dark, [785, 135, 350, 157],2,3)
         
+        #teste zona de settings
+        pygame.draw.rect(screen, color_dark, [96, 4 * 111, 350, 157 ],2,3)
+        # teste zona rectangulo creditos
+        pygame.draw.rect(screen, color_dark, [785, 4 * 110, 350, 157], 2,3)
 
-        # game 3 text
-        if 90 <= mouse[0] <= 90 + 140 and 4 * 120 <= mouse[1] <= 4 * 120 + 60:
-            pygame.draw.rect(screen, green, [90, 4 * 120, 140, 60])
-        else:
-            pygame.draw.rect(screen, color_dark, [90, 4 * 120, 140, 60])
-        screen.blit(game3_text, (90, 4 * 120))
-        # credits text
-        if 450 <= mouse[0] <= 450 + 140 and 4 * 120 <= mouse[1] <= 4 * 120 + 60:
-            pygame.draw.rect(screen, yellow, [450, 4 * 120, 140, 60])
-        else:
-            pygame.draw.rect(screen, color_dark, [450, 4 * 120, 140, 60])
-        screen.blit(credits_text, (450, 4 * 120))
-        # quit text
-        if 300 <= mouse[0] <= 300 + 140 and 5 * 120 <= mouse[1] <= 5 * 120 + 60:
-            pygame.draw.rect(screen, red, [300, 5 * 120, 140, 60])
-        else:
-            pygame.draw.rect(screen, color_dark, [300, 5 * 120, 140, 60])
-        screen.blit(quit_text, (300, 5 * 120))
-        # TITLE TEXT
-        # pygame.draw.rect(screen, color_dark, [52, 0, 612, 100])
-        screen.blit(title_text, (55, 0))
+        #teste zona rectangulo quit
+        pygame.draw.rect(screen, color_dark,(475, 5 * 119, 260, 120),2, 3)
         # PYGAME BUILT IN FUCTION that updates the screen at every oteration of the loop
         pygame.display.update()
 

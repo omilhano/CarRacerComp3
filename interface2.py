@@ -1,5 +1,4 @@
 import pygame
-import sys
 from game import car_racing
 from pygame.locals import *
 from pygame import mixer
@@ -32,6 +31,10 @@ def interface():
             elif ev.type == pygame.KEYDOWN:
             # Check if ENTER/Return is KEYDOWN
                 if ev.key == pygame.K_RETURN:
+                    mixer.music.load("enginerev.mp3")
+                    mixer.music.set_volume(0.7)
+                    mixer.music.play()
+                    pygame.time.delay(1000)
                     menu()
         # setting the background as image
         bg = pygame.image.load("images/titlemenu.png")
