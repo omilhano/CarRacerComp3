@@ -50,21 +50,25 @@ def menu():
                 pygame.quit()
             # press on quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                print(width)
-                print(height)
-                if 350 <= mouse[0] <= 450 and 600<= mouse[1] <= 660:
+                if 475 <= mouse[0] <= 735 and 595<= mouse[1] <= 712:
                     pygame.quit()
             # press the credits button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 450 <= mouse[0] <= 590 and 480 <= mouse[1] <= 540:
+                if 785 <= mouse[0] <= 1130 and 440 <= mouse[1] <= 595:
                     credits_()
-            # pressing the pong button
+            # pressing the play button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 90 <= mouse[0] <= 230 and 240 <= mouse[1] <= 300:
+                if 100 <= mouse[0] <= 445 and 140 <= mouse[1] <= 295:
                     car_racing()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 450 <= mouse[0] <= 450 + 140 and 240 <= mouse[1] <= 240 + 60:
+                if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
+                    pass 
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:
                     setting()
+            #test position of the mouse
+            # if ev.type == pygame.MOUSEBUTTONDOWN:
+            #     print(pygame.mouse.get_pos())
         #setting bakcground
         bg = pygame.image.load("images/menuimg.png")
         screen.blit(bg,(0,0))
