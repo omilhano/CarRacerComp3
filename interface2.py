@@ -1,8 +1,7 @@
 import pygame
-from game import car_racing
 from pygame.locals import *
 from pygame import mixer
-from menu import menu
+from mainmenu import menu
 
 
 #starting music
@@ -21,7 +20,6 @@ def interface():
     screen = pygame.display.set_mode((res))
     pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface loop
-    keys = pygame.key.get_pressed()
     while True:
         # getting the input of the user
         for ev in pygame.event.get():
