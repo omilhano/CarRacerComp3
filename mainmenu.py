@@ -8,8 +8,6 @@ from credits import credits_
 def menu():
     # initiating pygames
     pygame.init()
-    #making cursor invisible
-    pygame.mouse.set_visible(False) 
     #custom cursor image
     custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
     #initialize at 1282x800

@@ -12,14 +12,16 @@ mixer.music.play()
 # Creating a function that creates the GUI
 def interface():
     pygame.init()
+    #making cursor invisible
+    pygame.mouse.set_visible(False) 
     #setting game icon
     icon = pygame.image.load('images/icon.png') 
     pygame.display.set_icon(icon)
-    # custom cursor image
-    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
     #initialize at certain res
     res = (1282,800)
     screen = pygame.display.set_mode((res))
+    # custom cursor image
+    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
     pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface loop
     while True:

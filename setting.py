@@ -20,10 +20,15 @@ def setting():
             # press on exit button
             if ev.type == pygame.QUIT:
                 pygame.quit()
-            # press on quit button
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                print(pygame.mouse.get_pos())
+            # if ev.type == pygame.MOUSEBUTTONDOWN:
+            #     if mouse[0] == 290 and mouse[1] == 530:
+            #         print("Bullzeye") 
         # setting the background color as black
         bg = pygame.image.load("images/settings.jpg").convert_alpha()
         screen.blit(bg, (0,0))
         screen.blit( custom_cursor, mouse)
+
         # PYGAME BUILT IN FUCTION that updates the screen at every oteration of the loop
         pygame.display.update()
