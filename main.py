@@ -1,4 +1,4 @@
-from interface2 import *
+from titlemenu import *
 
 def main():
     interface()

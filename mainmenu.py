@@ -2,11 +2,7 @@ import pygame
 from game import car_racing
 from setting import setting
 from credits import credits_
-
-#TODO Start game button
 #TODO Continue game button
-#TODO Settings button another screen
-
 
 # Creating a function that creates the GUI
 def menu():
