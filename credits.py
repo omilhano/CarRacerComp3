@@ -20,10 +20,11 @@ def credits_():
             if ev.type == pygame.QUIT:
                 pygame.quit()
             # press on menu button to go back
-
-                    
-                    
-            # menu()
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                print(pygame.mouse.get_pos())
+                if 995 <= mouse[0] <= 1230 and 630<= mouse[1] <= 775:    
+                  menu()  
+            
         bg = pygame.image.load("images/credits.png").convert_alpha()
         screen.blit(bg,(0,0))
         screen.blit(credit_text_alex, (0,0))

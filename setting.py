@@ -1,16 +1,24 @@
 #TODO volume up and down
 #TODO volume mute
 import pygame
+from pygame import  mixer
 
+#starting music
+# mixer.init()
+# mixer.music.load("soundtrackmenu.mp3")
+# mixer.music.set_volume(0.7)
+# mixer.music.play()
 # Creating a function that creates the GUI
 def setting():
-    
+    from mainmenu import menu
     # initiating pygames
     pygame.init()
     custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
     #initialize at 720x720
     res = (974, 974)
     screen = pygame.display.set_mode(res)
+    #starting volume
+    volume = 0.7
     pygame.display.set_caption("Settings")
     # interface 
     while True:
@@ -21,10 +29,16 @@ def setting():
             if ev.type == pygame.QUIT:
                 pygame.quit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                print(pygame.mouse.get_pos())
-            # if ev.type == pygame.MOUSEBUTTONDOWN:
-            #     if mouse[0] == 290 and mouse[1] == 530:
-            #         print("Bullzeye") 
+                if 275 <= mouse[0] <= 310 and 515<= mouse[1] <= 550:
+                    # deafen music
+                    # pygame.mixer.music.stop()
+                    pass
+                if 595 <= mouse[0] <= 642 and 515<= mouse[1] <= 545:
+                    menu()
+                if 270 <= mouse[0] <= 290 and 428<= mouse[1] <= 433:
+                    volume -= 0.1
+                if 620 <= mouse[0] <= 642 and 420<= mouse[1] <= 445:
+                    volume += 0.1
         # setting the background color as black
         bg = pygame.image.load("images/settings.jpg").convert_alpha()
         screen.blit(bg, (0,0))
