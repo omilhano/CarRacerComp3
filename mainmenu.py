@@ -1,10 +1,12 @@
 import pygame
+from pygame import mixer
 from game import car_racing
 from setting import setting
 from credits import credits_
+from sounds import *
 #TODO Continue game button
-
 # Creating a function that creates the GUI
+
 def menu():
     # initiating pygames
     pygame.init()
@@ -15,8 +17,13 @@ def menu():
     screen = pygame.display.set_mode(res)
     #name
     pygame.display.set_caption("Car Racer")
-    # interface loop
-    pygame.mixer.music.stop()
+    #music control
+    # pygame.mixer.music.stop()
+    # mixer.music.unload()
+    # mixer.music.load("musicbackground.mp3")
+    # mixer.music.set_volume(volume)
+    # mixer.music.play()
+    
     clock=pygame.time.Clock()
    
     while True: 
