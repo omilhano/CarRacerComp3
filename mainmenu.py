@@ -8,6 +8,9 @@ from sounds import *
 # Creating a function that creates the GUI
 
 def menu():
+    global first_time #TODO this is a brute way to force it but doesnt work, we will need a config file to fix this
+    if first_time:
+        startingUp()
     # initiating pygames
     pygame.init()
     #custom cursor image

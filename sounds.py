@@ -1,7 +1,10 @@
 from pygame import mixer
 import pygame
 volume = 0.6
+first_time = True
 def startingUp():
+    global first_time
+    first_time = False
     global volume
     pygame.init()
     pygame.mixer.music.stop()
