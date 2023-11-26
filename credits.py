@@ -11,6 +11,7 @@ def credits_():
     credit_text_alex = arialfont.render('Alexandre Francisco 20221512', True, TEXTCOLOR)
     credit_text_eli = arialfont.render('Eli Godinho, 20221781', True, TEXTCOLOR)
     while True:
+        mouse = pygame.mouse.get_pos()
         #solves circular import
         from mainmenu import menu
         mouse = pygame.mouse.get_pos()
@@ -22,8 +23,8 @@ def credits_():
 
                     
                     
-            menu()
-        bg = pygame.image.load("images/menu.png").convert_alpha()
+            # menu()
+        bg = pygame.image.load("images/credits.png").convert_alpha()
         screen.blit(bg,(0,0))
         screen.blit(credit_text_alex, (0,0))
         screen.blit(credit_text_eli,(0,50))
