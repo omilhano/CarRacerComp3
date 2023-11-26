@@ -9,40 +9,25 @@ from setting import setting
 #TODO Exit button
 #TODO Settings button another screen
 
+
 # Creating a function that creates the GUI
 def menu():
     # initiating pygames
     pygame.init()
+    #making cursor invisible
+    pygame.mouse.set_visible(False) 
+    #custom cursor image
+    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
     #initialize at 1282x800
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    #change name ? placeholder
+    #name
     pygame.display.set_caption("Car Racer")
-    # creatinbg some colors (RGB scale)
-    white = (255, 255, 255)
-    yellow = (255, 255, 0)
-    red = (255, 0, 0)
-    green = (0, 255, 0)
-    blue = (0, 0, 255)
-    color_light = (170, 170, 170)
-    color_dark = (100, 100, 100)
-    black = (0, 0, 0)
-    # saving the screen sizes
-    width = screen.get_width()
-    height = screen.get_height()
-    # creating some textlabels
-    corbelfont = pygame.font.SysFont('Corbel', 50)
-    comicsansfont = pygame.font.SysFont("oswald", 50)
-    game1_text = comicsansfont.render('Start The Game', True, blue)
-    game2_text = corbelfont.render('Game2', True, blue)
-    game3_text = corbelfont.render('Game3', True, blue)
-    credits_text = corbelfont.render('credits', True, blue)
-    quit_text = corbelfont.render('  quit', True, blue)
-
-    title_text = comicsansfont.render('Computation III - Project', True, yellow)
     # interface loop
     pygame.mixer.music.stop()
-    while True:
+   
+    while True: 
+        mouse = pygame.mouse.get_pos()
         # getting the input of the user
         for ev in pygame.event.get():
             # press on exit button
@@ -60,35 +45,25 @@ def menu():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 100 <= mouse[0] <= 445 and 140 <= mouse[1] <= 295:
                     car_racing()
+            #pressing the continue game button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
                     pass 
+            #pressing the settings button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:
                     setting()
+
             #test position of the mouse
             # if ev.type == pygame.MOUSEBUTTONDOWN:
             #     print(pygame.mouse.get_pos())
         #setting bakcground
         bg = pygame.image.load("images/menuimg.png")
         screen.blit(bg,(0,0))
-        # game 1 text
-        mouse = pygame.mouse.get_pos()
-        #teste zona start game
-        pygame.draw.rect(screen, color_dark, [96, 139, 348, 157],2,3)
-
-        #teste zona continue game
-        pygame.draw.rect(screen, color_dark, [785, 135, 350, 157],2,3)
-        
-        #teste zona de settings
-        pygame.draw.rect(screen, color_dark, [96, 4 * 111, 350, 157 ],2,3)
-        # teste zona rectangulo creditos
-        pygame.draw.rect(screen, color_dark, [785, 4 * 110, 350, 157], 2,3)
-
-        #teste zona rectangulo quit
-        pygame.draw.rect(screen, color_dark,(475, 5 * 119, 260, 120),2, 3)
+        #making image appear in cursor place
+        screen.blit( custom_cursor, mouse ) 
         # PYGAME BUILT IN FUCTION that updates the screen at every oteration of the loop
-        pygame.display.update()
+        pygame.display.flip()
 
 
 def credits_():
