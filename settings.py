@@ -1,5 +1,6 @@
 # TODO volume up and down
 # TODO volume mute
+# TODO CONFIG FILE
 import pygame
 from pygame import mixer
 from sounds import *
@@ -7,6 +8,7 @@ from sounds import *
 
 # Creating a function that creates the GUI
 def settings():
+
     from mainmenu import menu
     # initiating pygame
     pygame.init()

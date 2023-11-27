@@ -1,3 +1,4 @@
+#TODO CONFIG FILE
 import pygame
 
 def credits_():
