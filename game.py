@@ -1,13 +1,13 @@
 import pygame, random
-#Let's import the Car Class
-from car import Car
+# Let's import the Car Class
+from car_test import Car
 
-#TODO avoid enemy collision on spawn 
-#solved by list with x position of the car, if x is the same then spawn them again 
+# TODO avoid enemy collision on spawn
+# solved by list with x position of the car, if x is the same then spawn them again
 
-#TODO add health to car 
-#TODO add timer
-#TODO add score
+# TODO add health to car
+# TODO add timer
+# TODO add score
 
 def car_racing():
     pygame.init()
@@ -21,7 +21,7 @@ def car_racing():
     CYAN = (0, 255, 255)
     BLUE = (100, 100, 255)
 
-    bg = pygame.image.load("pixelatnight.jpg").convert()
+    bg = pygame.image.load("images/level1bg.jpg").convert()
 
     def pause():
         loop = True
@@ -47,8 +47,8 @@ def car_racing():
     colorList = (RED, GREEN, PURPLE, YELLOW, CYAN, BLUE)
 
 
-    SCREENWIDTH=1000
-    SCREENHEIGHT=820
+    SCREENWIDTH=1282
+    SCREENHEIGHT=800
 
     size = (SCREENWIDTH, SCREENHEIGHT)
     screen = pygame.display.set_mode(size)
@@ -58,40 +58,40 @@ def car_racing():
     all_sprites_list = pygame.sprite.Group()
 
 
-    playerCar = Car(RED, 60, 80, 70)
-    playerCar.rect.x = 200
-    playerCar.rect.y = SCREENHEIGHT - 200
+    playerCar = Car(RED, 250, 250, 70)
+    playerCar.car_rect.x = 200
+    playerCar.car_rect.y = SCREENHEIGHT - 200
 
-    car1 = Car(PURPLE, 60, 80, random.randint(50,100))
-    car1.rect.x = 1000
-    car1.rect.y = SCREENHEIGHT - 250
-
-    car2 = Car(YELLOW, 60, 80, random.randint(50,100))
-    car2.rect.x = 1300
-    car2.rect.y = SCREENHEIGHT - 200
-
-    car3 = Car(CYAN, 60, 80, random.randint(50,100))
-    car3.rect.x = 1400
-    car3.rect.y = SCREENHEIGHT - 100
-
-    car4 = Car(BLUE, 60, 80, random.randint(50,100))
-    car4.rect.x = 1500
-    car4.rect.y = SCREENHEIGHT - 100
+    # car1 = Car(PURPLE, 60, 80, random.randint(50,100))
+    # car1.rect.x = 1000
+    # car1.rect.y = SCREENHEIGHT - 250
+    #
+    # car2 = Car(YELLOW, 60, 80, random.randint(50,100))
+    # car2.rect.x = 1300
+    # car2.rect.y = SCREENHEIGHT - 200
+    #
+    # car3 = Car(CYAN, 60, 80, random.randint(50,100))
+    # car3.rect.x = 1400
+    # car3.rect.y = SCREENHEIGHT - 100
+    #
+    # car4 = Car(BLUE, 60, 80, random.randint(50,100))
+    # car4.rect.x = 1500
+    # car4.rect.y = SCREENHEIGHT - 100
 
 
     # Add the car to the list of objects
     all_sprites_list.add(playerCar)
-    all_sprites_list.add(car1)
-    all_sprites_list.add(car2)
-    all_sprites_list.add(car3)
-    all_sprites_list.add(car4)
+    # all_sprites_list.add(car1)
+    # all_sprites_list.add(car2)
+    # all_sprites_list.add(car3)
+    # all_sprites_list.add(car4)
 
 
     all_coming_cars = pygame.sprite.Group()
-    all_coming_cars.add(car1)
-    all_coming_cars.add(car2)
-    all_coming_cars.add(car3)
-    all_coming_cars.add(car4)
+    # all_coming_cars.add(car1)
+    # all_coming_cars.add(car2)
+    # all_coming_cars.add(car3)
+    # all_coming_cars.add(car4)
 
 
     #Allowing the user to close the window...
@@ -146,14 +146,16 @@ def car_racing():
                 for car in car_collision_list:
                     print("Car crash!")
                     # End Of Game
-                    carryOn = False
+                    carryOn = True
 
             all_sprites_list.update()
             
             #Now let's draw all the sprites in one go. (For now we only have 1 sprite!)
 
             screen.blit(bg, (0,0))
-            all_sprites_list.draw(screen)
+            screen.blit(playerCar.showmask, (0,0))
+            # all_sprites_list.draw(screen)
+
  
             #Refresh Screen
             pygame.display.flip()

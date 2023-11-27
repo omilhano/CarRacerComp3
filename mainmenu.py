@@ -1,10 +1,10 @@
 import pygame
 from pygame import mixer
-from game import car_racing
+from gametest import car_racing
 from settings import settings
 from credits import credits_
 from sounds import *
-#TODO Continue game button
+# TODO Continue game button
 # Creating a function that creates the GUI
 
 def menu():
