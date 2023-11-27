@@ -6,7 +6,7 @@ from sounds import *
 
 
 # Creating a function that creates the GUI
-def setting():
+def settings():
     from mainmenu import menu
     # initiating pygames
     pygame.init()

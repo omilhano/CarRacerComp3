@@ -1,6 +1,5 @@
 import pygame
 
-#TODO Back Button
 def credits_():
     TEXTCOLOR = (255,101,80)
     pygame.init()

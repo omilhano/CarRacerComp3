@@ -1,7 +1,7 @@
 import pygame
 from pygame import mixer
 from game import car_racing
-from setting import setting
+from settings import settings
 from credits import credits_
 from sounds import *
 #TODO Continue game button
@@ -55,7 +55,7 @@ def menu():
             #pressing the settings button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:
-                    setting()
+                    settings()
 
             #test position of the mouse
             # if ev.type == pygame.MOUSEBUTTONDOWN:
