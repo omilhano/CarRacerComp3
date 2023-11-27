@@ -1,5 +1,6 @@
 import pygame
 from car_test import Car
+from healthbar import *
 
 
 def car_racing():
@@ -15,10 +16,17 @@ def car_racing():
     # to have game state
     game_active = True
     clock = pygame.time.Clock()
-    playerCar = Car(130, 680, 70)
+
+    # initialize car
+    MAX_CAR_HP = 100
+    playerCar = Car(130, 680, 70, MAX_CAR_HP)
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
+    healthbar = Healthbar(5, 5, 300, 40, MAX_CAR_HP)
+
+    # font
     corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
+    # for utils
     start_time = 0
 
     def pause():
@@ -42,18 +50,20 @@ def car_racing():
     def display_score():
         current_time = int(pygame.time.get_ticks() / 1000) - start_time
         score_surface = corbelfont.render(f" Score:{current_time}", False, (197, 136, 215))
-        score_rect = score_surface.get_rect(center=(400, 50))
+        score_rect = score_surface.get_rect(center=(400, 30))
         screen.blit(score_surface, score_rect)
-
-    speed = 1  # TODO what is this
 
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 carryOn = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_x:
-                    playerCar.moveRight(10)
+                # damage taker test
+                if event.key == pygame.K_f:
+                    if playerCar.get_damaged(5):
+                        game_active = False
+                    else:
+                        healthbar.hp -= 5
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
@@ -71,6 +81,8 @@ def car_racing():
 
             screen.blit(bg, (0, 0))
             display_score()
+            # drawing the healthbar
+            healthbar.draw(screen)
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
