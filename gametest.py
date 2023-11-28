@@ -30,7 +30,6 @@ def car_racing():
     start_time = 0
 
     def pause():
-        game_active = False
         loop = True
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
@@ -78,19 +77,18 @@ def car_racing():
             pause()
 
         if game_active:
-
             screen.blit(bg, (0, 0))
             display_score()
             # drawing the healthbar
             healthbar.draw(screen)
-            # test position
-            print(playerCar.rect.x)
-            print(playerCar.rect.y)
             player_group.draw(screen)
+            # test position
+            # print(playerCar.rect.x)
+            # print(playerCar.rect.y)
         else:
             # TODO GAME OVER MENU
-            start_time = int(pygame.time.get_ticks() / 1000)
-            screen.fill((0, 0, 0))
+            pygame.mixer.stop()
+            gameovermenu()
 
         # Number of frames per second e.g. 60
         clock.tick(60)
