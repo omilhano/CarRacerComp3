@@ -64,16 +64,16 @@ def car_racing():
                         game_active = False
                     else:
                         healthbar.hp -= 5
+                if event.key == pygame.K_w:
+                    playerCar.moveUp()
+                if event.key == pygame.K_s:
+                    playerCar.moveDown()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             playerCar.moveLeft(5)
         if keys[pygame.K_d]:
             playerCar.moveRight(5)
-        if keys[pygame.K_w]:
-            playerCar.moveBackward(5)
-        if keys[pygame.K_s]:
-            playerCar.moveForward(5)
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -84,8 +84,8 @@ def car_racing():
             # drawing the healthbar
             healthbar.draw(screen)
             # test position
-            # print(playerCar.rect.x)
-            # print(playerCar.rect.y)
+            print(playerCar.rect.x)
+            print(playerCar.rect.y)
             player_group.draw(screen)
         else:
             # TODO GAME OVER MENU
