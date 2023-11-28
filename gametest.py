@@ -1,6 +1,7 @@
-import pygame
+import pygame, random
 from car_test import Car
 from healthbar import *
+from hazards import Hazards
 
 
 def car_racing():
@@ -23,6 +24,12 @@ def car_racing():
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     healthbar = Healthbar(5, 5, 300, 40, MAX_CAR_HP)
+
+    # initialize hazards
+
+    oilspill = Hazards(1000, 680, 5)
+    all_hazards = pygame.sprite.Group()
+    all_hazards.add(oilspill)
 
     # font
     corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
@@ -81,17 +88,29 @@ def car_racing():
             display_score()
             # drawing the healthbar
             healthbar.draw(screen)
-            player_group.draw(screen)
+
+
+            # create hazards on road
+
+            for hazards in all_hazards:
+                hazards.object_speed(random.randint(20, 30))
+                if hazards.rect.right < 0:
+                    hazards.rect.center = [1300, 680]
+            all_hazards.draw(screen)
+
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
-            gameovermenu()
+            # gameovermenu()
+            pass
 
         # Number of frames per second e.g. 60
         clock.tick(60)
+        # so its on top of everything
+        player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
     pygame.quit()
