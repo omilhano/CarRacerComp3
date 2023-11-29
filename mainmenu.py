@@ -1,6 +1,6 @@
 import pygame
 from pygame import mixer
-from gametest import car_racing
+from game import car_racing
 from settings import settings
 from credits import credits_
 from sounds import *

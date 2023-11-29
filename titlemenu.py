@@ -6,7 +6,7 @@ from mainmenu import menu
 
 #starting music
 mixer.init()
-mixer.music.load("soundtrackmenu.mp3")
+mixer.music.load("sounds/soundtrackmenu.mp3")
 mixer.music.set_volume(0.7)
 mixer.music.play()
 # Creating a function that creates the GUI
@@ -34,7 +34,7 @@ def interface():
             elif ev.type == pygame.KEYDOWN:
             # Check if ENTER/Return is KEYDOWN
                 if ev.key == pygame.K_RETURN:
-                    mixer.music.load("enginerev.mp3")
+                    mixer.music.load("sounds/enginerev.mp3")
                     mixer.music.set_volume(0.7)
                     mixer.music.play()
                     pygame.time.delay(1000)

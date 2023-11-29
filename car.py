@@ -1,59 +1,49 @@
 import pygame
-WHITE = (255, 255, 255)
-RED = (255,0,0)
+import healthbar
 
 class Car(pygame.sprite.Sprite):
-    #This class represents a car. It derives from the "Sprite" class in Pygame.
+    # This class represents a car. It derives from the "Sprite" class in Pygame.
 
-    def __init__(self, color, width, height, speed):
+    def __init__(self,position_x, position_y, speed, health):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        # Pass in the color of the car, and its x and y position, width and height.
-        # Set the background color and set it to be transparent
-        self.image = pygame.Surface([width, height])
-        self.image.fill(WHITE)
-        self.image.set_colorkey(WHITE)
-
-        #Initialise attributes of the car.
-        self.width=width
-        self.height=height
-        self.color = color
-        self.speed = speed
-
-        # Draw the car (a rectangle!)
-        pygame.draw.rect(self.image, self.color, [0, 0, self.width, self.height])
-
-        # Instead we could load a proper picture of a car...
-        #self.image = pygame.image.load("car.png").convert_alpha()
-
-        # Fetch the rectangle object that has the dimensions of the image.
+        # Load the car image
+        self.image = pygame.image.load("images/pickup_test.png").convert_alpha()
         self.rect = self.image.get_rect()
+        self.car_mask = pygame.mask.from_surface(self.image)
+        self.rect.center = [position_x, position_y]
+        self.speed = speed
+        self.health = health
+
+    # TODO ask if healthbar should be in menu or in car or should be two separate identities
+    def get_damaged(self, damage):
+        # If collide lower hp
+        # Returns true if kill car
+        self.health -= damage
+        return self.health <= 0
 
     def moveRight(self, pixels):
         self.rect.x += pixels
 
     def moveLeft(self, pixels):
         self.rect.x -= pixels
-    
+
     def objectSpeed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def moveForward(self, pixels):
-        self.rect.y += pixels
+    def moveUp(self):
+        if self.rect.y == 555:
+            self.rect.y = 480
+        elif self.rect.y == 630:
+            self.rect.y = 555
 
-    def moveBackward(self, pixels):
-        self.rect.y -= pixels
+    def moveDown(self):
+        if self.rect.y == 480:
+            self.rect.y = 555
+        elif self.rect.y == 555:
+            self.rect.y = 630
 
     def changeSpeed(self, speed):
         self.speed = speed
 
-    #changes with every click
-    def repaint(self, new_color):
-        if self.color != new_color:
-            self.color = new_color
-        else:
-            self.color = RED
-        pygame.draw.rect(self.image, self.color, [0, 0, self.width, self.height])
-
-    

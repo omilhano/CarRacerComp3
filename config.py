@@ -16,7 +16,7 @@ def startingUp():
     pygame.init()
     pygame.mixer.music.stop()
     mixer.music.unload()
-    mixer.music.load("musicbackground.mp3")
+    mixer.music.load("sounds/musicbackground.mp3")
     mixer.music.set_volume(volume)
     mixer.music.play()
 
