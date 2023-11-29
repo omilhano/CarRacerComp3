@@ -71,7 +71,7 @@ def car_racing():
                     if playerCar.get_damaged(5):
                         game_active = False
                     else:
-                        healthbar.hp -= 5
+                        healthbar.hp = playerCar.health
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
                 if event.key == pygame.K_s:

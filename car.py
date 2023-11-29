@@ -16,7 +16,6 @@ class Car(pygame.sprite.Sprite):
         self.speed = speed
         self.health = health
 
-    # TODO ask if healthbar should be in menu or in car or should be two separate identities
     def get_damaged(self, damage):
         # If collide lower hp
         # Returns true if kill car

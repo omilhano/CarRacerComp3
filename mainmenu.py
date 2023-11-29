@@ -1,6 +1,7 @@
 import pygame
 from pygame import mixer
 from game import car_racing
+from load import continue_game
 from settings import settings
 from credits import credits_
 from sounds import *
@@ -23,13 +24,8 @@ def menu():
     screen = pygame.display.set_mode(res)
     # name
     pygame.display.set_caption("Car Racer")
-    # music control
-    # pygame.mixer.music.stop()
-    # mixer.music.unload()
-    # mixer.music.load("musicbackground.mp3")
-    # mixer.music.set_volume(volume)
-    # mixer.music.play()
-
+    #  continue screen temporarily
+    continue_screen = pygame.image.load("images/inprogress.png")
     clock = pygame.time.Clock()
 
     while True:
@@ -54,7 +50,7 @@ def menu():
             # pressing the continue game button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
-                    pass
+                    continue_game()
                     # pressing the settings button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:

@@ -1,7 +1,3 @@
-# TODO avoid circular import
-# TODO solved audio issue
-# TODO maybe solve timer issue
-
 from pygame import mixer
 import pygame
 

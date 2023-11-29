@@ -1,6 +1,3 @@
-# TODO volume up and down
-# TODO volume mute
-# TODO CONFIG FILE
 import pygame
 from pygame import mixer
 from sounds import *
@@ -27,7 +24,7 @@ def settings():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 275 <= mouse[0] <= 310 and 515 <= mouse[1] <= 550:
                     # mute and play
-                    pause()  # TODO this just turns off and on the song, doesnt actually pause
+                    pause()  # this just turns off and on the song, doesnt actually pause
                 if 595 <= mouse[0] <= 642 and 515 <= mouse[1] <= 545:
                     menu()
                 if 270 <= mouse[0] <= 290 and 428 <= mouse[1] <= 433:

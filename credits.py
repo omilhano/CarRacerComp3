@@ -1,10 +1,9 @@
-#TODO CONFIG FILE
 import pygame
 
 def credits_():
     TEXTCOLOR = (255,101,80)
     pygame.init()
-    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha()
+    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha() # TODO change to sprite cursor
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     arialfont = pygame.font.SysFont('arial', 50)
