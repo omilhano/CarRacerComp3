@@ -31,6 +31,9 @@ def car_racing():
     all_hazards = pygame.sprite.Group()
     all_hazards.add(oilspill)
 
+    #initialize mouse
+
+
     # font
     corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
     # for utils
