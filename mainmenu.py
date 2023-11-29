@@ -11,9 +11,7 @@ from cursor import Cursor
 # Creating a function that creates the GUI
 
 def menu():
-    global first_time  # TODO this is a brute way to force it but doesnt work, we will need a config file to fix this
-    if first_time:
-        startingUp()
+    startingUp()
     # initiating pygames
     pygame.init()
     # custom cursor image
@@ -76,4 +74,4 @@ def menu():
         pygame.display.flip()
 
         # frames
-        clock.tick(120)
+        clock.tick(60)

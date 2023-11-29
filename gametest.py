@@ -23,16 +23,15 @@ def car_racing():
     playerCar = Car(130, 680, 70, MAX_CAR_HP)
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
-    healthbar = Healthbar(5, 5, 300, 40, MAX_CAR_HP)
+    healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
 
     # initialize hazards
 
-    oilspill = Hazards(1000, 680, 5)
+    bloodspill = Hazards(1000, 680, 5)
     all_hazards = pygame.sprite.Group()
-    all_hazards.add(oilspill)
+    all_hazards.add(bloodspill)
 
-    #initialize mouse
-
+    # initialize mouse
 
     # font
     corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
@@ -92,13 +91,18 @@ def car_racing():
             # drawing the healthbar
             healthbar.draw(screen)
 
-
             # create hazards on road
-
+            roadLane = 0
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    hazards.rect.center = [1300, 680]
+                    roadLane = random.randint(1, 3)
+                    if roadLane == 1:
+                        hazards.rect.center = [1300, 608]
+                    elif roadLane == 2:
+                        hazards.rect.center = [1300, 680]
+                    else:
+                        hazards.rect.center = [1300, 760]
             all_hazards.draw(screen)
 
             # test position
