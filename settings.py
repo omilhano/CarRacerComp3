@@ -8,7 +8,6 @@ from sounds import *
 
 # Creating a function that creates the GUI
 def settings():
-
     from mainmenu import menu
     # initiating pygame
     pygame.init()
@@ -27,9 +26,8 @@ def settings():
                 pygame.quit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 275 <= mouse[0] <= 310 and 515 <= mouse[1] <= 550:
-                    # deafen music
-                    pygame.mixer.music.pause()
-                    pass
+                    # mute and play
+                    pause()  # TODO this just turns off and on the song, doesnt actually pause
                 if 595 <= mouse[0] <= 642 and 515 <= mouse[1] <= 545:
                     menu()
                 if 270 <= mouse[0] <= 290 and 428 <= mouse[1] <= 433:

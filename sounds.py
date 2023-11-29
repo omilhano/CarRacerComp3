@@ -1,7 +1,9 @@
 from pygame import mixer
 import pygame
+
 volume = 0.6
 first_time = True
+music_paused = False
 
 def startingUp():
     global first_time
@@ -14,13 +16,26 @@ def startingUp():
         mixer.music.load("sounds/musicbackground.mp3")
         mixer.music.set_volume(volume)
         mixer.music.play()
-        print("INSIDE OF STARTING UP", first_time)
+
 
 def lower_volume():
     global volume
     volume -= 0.1
     pygame.mixer.music.set_volume(volume)
+
+
 def increase_volume():
     global volume
     volume += 0.1
     pygame.mixer.music.set_volume(volume)
+
+
+# mute and unmute
+def pause():
+    global music_paused
+    if music_paused:
+        mixer.music.play()
+        music_paused = False
+    else:
+        mixer.music.pause()
+        music_paused = True
