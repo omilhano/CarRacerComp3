@@ -1,8 +1,6 @@
 import pygame
 
-
-# TODO ask if there can be inheritance
-class Hazards(pygame.sprite.Sprite):
+class Powers(pygame.sprite.Sprite):
 
     def __init__(self, position_x, position_y, speed, path_file, type):
         # Call the parent class (Sprite) constructor

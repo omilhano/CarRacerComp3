@@ -2,7 +2,8 @@ import pygame, random
 from car import Car
 from healthbar import *
 from hazards import Hazards
-
+#TODO powerups
+# TODO zombies
 
 def car_racing():
     pygame.init()
@@ -139,7 +140,6 @@ def car_racing():
                     healthbar.hp = playerCar.health
                     hazard_sign.rect.center = [1400, 760]
             # test position
-            #test test test
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
         else:
