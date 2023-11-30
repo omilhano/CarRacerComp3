@@ -41,8 +41,6 @@ def car_racing():
 
     # font
     corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
-    # for utils
-    start_time = 0
 
     def pause():
         loop = True
@@ -65,8 +63,8 @@ def car_racing():
             clock.tick(60)
 
     def display_score():
-        current_time = int(pygame.time.get_ticks() / 1000) - start_time
-        score_surface = corbelfont.render(f" Score:{current_time}", False, (197, 136, 215))
+        current_score = playerCar.score
+        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
         score_rect = score_surface.get_rect(center=(400, 30))
         screen.blit(score_surface, score_rect)
 
@@ -101,15 +99,15 @@ def car_racing():
 
         if game_active:
             screen.blit(bg, (0, 0))
-            display_score()
-            # drawing the healthbar
+            # drawing the healthbar and score
             healthbar.draw(screen)
-
+            display_score()
             # create hazards on road
             roadLane = 0
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
+                    playerCar.updateScore(50)
                     roadLane = random.randint(1, 3)
                     if roadLane == 1:
                         hazards.rect.center = [1300, 605]
@@ -118,8 +116,11 @@ def car_racing():
                     else:
                         hazards.rect.center = [1300, 760]
             all_hazards.draw(screen)
+
+            #collision logic
+
             if check_collisions(playerCar, all_hazards) == "bloodspill":
-                random_position = random.randint(1, 2)  # scuffed solution doesn't always work
+                random_position = random.randint(1, 2)  # TODO scuffed solution doesn't always work
                 if random_position == 1:
                     playerCar.moveUp()
                 else:
@@ -130,13 +131,13 @@ def car_racing():
                     game_active = False
                 else:
                     healthbar.hp = playerCar.health
-                    level_cone.rect.center = [-10, 760]
+                    level_cone.rect.center = [1300, 760]
             elif check_collisions(playerCar, all_hazards) == "hazard_sign":
                 if playerCar.get_damaged(5):
                     game_active = False
                 else:
                     healthbar.hp = playerCar.health
-                    hazard_sign.rect.center = [-10, 760]
+                    hazard_sign.rect.center = [1400, 760]
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
