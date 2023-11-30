@@ -26,10 +26,16 @@ def car_racing():
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
 
     # initialize hazards
-
-    bloodspill = Hazards(1000, 680, 5)
+    bloodspill_img = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
+    level_cone_img = pygame.image.load("images/traficcone_lv1.png").convert_alpha()
+    danger_sign = pygame.image.load("images/hazard_roadsignlv1.png").convert_alpha()
+    bloodspill = Hazards(1000, 680, 5, bloodspill_img, "bloodspill")
+    level_cone = Hazards(1200, 608, 5, level_cone_img, "level_cone")
+    hazard_sign = Hazards(1500, 760, 5, danger_sign, "hazard_sign")
     all_hazards = pygame.sprite.Group()
     all_hazards.add(bloodspill)
+    all_hazards.add(level_cone)
+    all_hazards.add(hazard_sign)
 
     # initialize mouse
 
@@ -61,17 +67,22 @@ def car_racing():
         score_rect = score_surface.get_rect(center=(400, 30))
         screen.blit(score_surface, score_rect)
 
+    def check_collisions(playerCar, all_hazards):
+        tester = ""
+        for sprite in all_hazards:
+            if pygame.sprite.collide_mask(playerCar, sprite) is None:
+                pass
+            else:
+                tester = sprite.getType()
+                print(tester)
+        return tester
+
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 carryOn = False
             elif event.type == pygame.KEYDOWN:
                 # damage taker test
-                if event.key == pygame.K_f:
-                    if playerCar.get_damaged(5):
-                        game_active = False
-                    else:
-                        healthbar.hp = playerCar.health
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
                 if event.key == pygame.K_s:
@@ -98,13 +109,31 @@ def car_racing():
                 if hazards.rect.right < 0:
                     roadLane = random.randint(1, 3)
                     if roadLane == 1:
-                        hazards.rect.center = [1300, 608]
+                        hazards.rect.center = [1300, 605]
                     elif roadLane == 2:
-                        hazards.rect.center = [1300, 680]
+                        hazards.rect.center = [1300, 682]
                     else:
                         hazards.rect.center = [1300, 760]
             all_hazards.draw(screen)
-
+            if check_collisions(playerCar, all_hazards) == "bloodspill":
+                random_position = random.randint(1, 2)  # scuffed solution doesn't always work
+                if random_position == 1:
+                    playerCar.moveUp()
+                else:
+                    playerCar.moveDown()
+                pass
+            elif check_collisions(playerCar, all_hazards) == "level_cone":
+                if playerCar.get_damaged(5):
+                    game_active = False
+                else:
+                    healthbar.hp = playerCar.health
+                    level_cone.rect.center = [-10, 760]
+            elif check_collisions(playerCar, all_hazards) == "hazard_sign":
+                if playerCar.get_damaged(5):
+                    game_active = False
+                else:
+                    healthbar.hp = playerCar.health
+                    hazard_sign.rect.center = [-10, 760]
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)

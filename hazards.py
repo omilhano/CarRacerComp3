@@ -3,17 +3,21 @@ import pygame
 
 class Hazards(pygame.sprite.Sprite):
 
-    def __init__(self, position_x, position_y, speed):
+    def __init__(self, position_x, position_y, speed, path_file, type):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
+        self.image = path_file
         self.rect = self.image.get_rect()
-        self.car_mask = pygame.mask.from_surface(self.image)
+        self.hazard_mask = pygame.mask.from_surface(self.image)
         self.position_x = position_x
         self.position_y = position_y
         self.rect.center = [position_x, position_y]
         self.speed = speed
+        self.type = type
 
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
+
+    def getType(self):
+        return self.type
