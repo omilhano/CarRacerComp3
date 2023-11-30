@@ -2,6 +2,7 @@ import pygame, random
 from car import Car
 from healthbar import *
 from hazards import Hazards
+from garage import garage_screen
 
 
 def car_racing():
@@ -142,6 +143,10 @@ def car_racing():
             #test test test
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
+
+            #end level
+            if playerCar.score == 1000:
+                garage_screen()
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
