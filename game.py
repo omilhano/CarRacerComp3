@@ -139,6 +139,7 @@ def car_racing():
                     healthbar.hp = playerCar.health
                     hazard_sign.rect.center = [1400, 760]
             # test position
+            #test test test
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
         else:
