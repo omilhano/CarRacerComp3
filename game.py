@@ -46,8 +46,10 @@ def car_racing():
 
     def pause():
         loop = True
+        bg = pygame.image.load("images/inprogress.png").convert_alpha()
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
+        screen.blit(bg, [0,0])
         screen.blit(pausetext, [200, 200])
         screen.blit(spacebartext, [200, 250])
         while loop:
@@ -58,6 +60,7 @@ def car_racing():
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
                         loop = False
+                        bg = pygame.image.load("images/level1bg.jpg").convert()
             pygame.display.update()
             clock.tick(60)
 
