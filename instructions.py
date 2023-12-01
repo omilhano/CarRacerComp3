@@ -27,3 +27,4 @@ def instructions():
                 quit()
             if event.type == pygame.KEYDOWN:
                 car_racing()
+        pygame.display.flip()
