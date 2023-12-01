@@ -2,7 +2,11 @@
 
 Driven to Decay: Byte the Dust is a python game created as a final project for the subject of Computation3.
 
-## TBD
+## For installation
+
+```bash
+git clone https://github.com/omilhano/CarRacerComp3
+```
 
 ## Usage
 
