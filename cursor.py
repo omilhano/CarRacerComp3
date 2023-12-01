@@ -1,5 +1,6 @@
 import pygame
 
+
 class Cursor(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
