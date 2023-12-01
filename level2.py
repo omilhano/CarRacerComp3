@@ -1,12 +1,12 @@
 import pygame, random
 
-
 from hazards import Hazards
-from garage import garage_screen
-#TODO powerups
+
+
+# TODO powerups
 # TODO zombies
 
-def start_level2():
+def start_level2(playerCar, healthbar):
     pygame.init()
 
     # defining screen/background
@@ -20,16 +20,18 @@ def start_level2():
     game_active = True
     clock = pygame.time.Clock()
 
+    player_group = pygame.sprite.Group()
+    player_group.add(playerCar)
     # initialize hazards
-    bloodspill_img = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
-    level_cone_img = pygame.image.load("images/traficcone_lv1.png").convert_alpha()
-    danger_sign = pygame.image.load("images/hazard_roadsignlv1.png").convert_alpha()
-    bloodspill = Hazards(1000, 680, 5, bloodspill_img, "bloodspill")
-    level_cone = Hazards(1200, 608, 5, level_cone_img, "level_cone")
-    hazard_sign = Hazards(1500, 760, 5, danger_sign, "hazard_sign")
+    oilspill_img = pygame.image.load("images/oil_spill.png").convert_alpha()
+    beartrap_img = pygame.image.load("images/beartrap_lv2.png").convert_alpha()
+    roadsign_img = pygame.image.load("images/hazard_roadsign_lv2.png").convert_alpha()
+    oilspill = Hazards(1000, 680, 5, oilspill_img, "bloodspill")
+    beartrap = Hazards(1200, 608, 5, beartrap_img, "beartrap")
+    hazard_sign = Hazards(1500, 760, 5, roadsign_img, "hazard_sign")
     all_hazards = pygame.sprite.Group()
-    all_hazards.add(bloodspill)
-    all_hazards.add(level_cone)
+    all_hazards.add(oilspill)
+    all_hazards.add(beartrap)
     all_hazards.add(hazard_sign)
 
     # initialize mouse
@@ -42,7 +44,7 @@ def start_level2():
         bg = pygame.image.load("images/inprogress.png").convert_alpha()
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
-        screen.blit(bg, [0,0])
+        screen.blit(bg, [0, 0])
         screen.blit(pausetext, [200, 200])
         screen.blit(spacebartext, [200, 250])
         while loop:
@@ -112,7 +114,7 @@ def start_level2():
                         hazards.rect.center = [1300, 760]
             all_hazards.draw(screen)
 
-            #collision logic
+            # collision logic
 
             if check_collisions(playerCar, all_hazards) == "bloodspill":
                 random_position = random.randint(1, 2)  # TODO scuffed solution doesn't always work
@@ -121,12 +123,12 @@ def start_level2():
                 else:
                     playerCar.moveDown()
                 pass
-            elif check_collisions(playerCar, all_hazards) == "level_cone":
+            elif check_collisions(playerCar, all_hazards) == "beartrap":
                 if playerCar.get_damaged(5):
                     game_active = False
                 else:
                     healthbar.hp = playerCar.health
-                    level_cone.rect.center = [1300, 760]
+                    beartrap.rect.center = [1300, 760]
             elif check_collisions(playerCar, all_hazards) == "hazard_sign":
                 if playerCar.get_damaged(5):
                     game_active = False
@@ -138,8 +140,6 @@ def start_level2():
             # print(playerCar.rect.y)
 
             # actually its 1000 but testing 200
-            if playerCar.score == 200:
-                garage_screen(playerCar)
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()

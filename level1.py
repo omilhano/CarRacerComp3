@@ -83,7 +83,6 @@ def start_level1():
             if event.type == pygame.QUIT:
                 carryOn = False
             elif event.type == pygame.KEYDOWN:
-                # damage taker test
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
                 if event.key == pygame.K_s:
@@ -138,14 +137,13 @@ def start_level1():
             # print(playerCar.rect.y)
 
             # actually its 1000 but testing 200
-            if playerCar.score == 900:
-                garage_screen(playerCar)
+            if playerCar.score == 200:
+                garage_screen(playerCar, healthbar)
         else:
-            from gameOver import gameover
             # TODO GAME OVER MENU
             pygame.mixer.stop()
-            gameover()
-
+            # gameovermenu()
+            pass
 
         # Number of frames per second e.g. 60
         clock.tick(60)
