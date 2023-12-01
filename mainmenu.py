@@ -1,6 +1,6 @@
 import pygame
 from pygame import mixer
-from level1 import car_racing
+from level1 import start_level1
 from instructions import instructions
 from load import continue_game
 from settings import settings

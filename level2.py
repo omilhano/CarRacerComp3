@@ -1,16 +1,16 @@
 import pygame, random
-from car import Car
-from healthbar import *
+
+
 from hazards import Hazards
 from garage import garage_screen
 #TODO powerups
 # TODO zombies
 
-def start_level1():
+def start_level2():
     pygame.init()
 
     # defining screen/background
-    bg = pygame.image.load("images/level1bg.jpg").convert()
+    bg = pygame.image.load("images/level2bg.png").convert()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     pygame.display.set_caption("Car Racing")
@@ -19,12 +19,6 @@ def start_level1():
     # to have game state
     game_active = True
     clock = pygame.time.Clock()
-
-    # initialize car
-    playerCar = Car(130, 680, 70)
-    player_group = pygame.sprite.Group()
-    player_group.add(playerCar)
-    healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
 
     # initialize hazards
     bloodspill_img = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
@@ -76,6 +70,7 @@ def start_level1():
                 pass
             else:
                 tester = sprite.getType()
+                print(tester)
         return tester
 
     while carryOn:

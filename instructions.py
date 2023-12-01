@@ -1,7 +1,7 @@
 import pygame
 
 from cursor import Cursor
-from level1 import car_racing
+from level1 import start_level1
 
 
 def instructions():
@@ -26,5 +26,5 @@ def instructions():
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.KEYDOWN:
-                car_racing()
+                start_level1()
         pygame.display.flip()
