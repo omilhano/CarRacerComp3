@@ -1,9 +1,10 @@
 import pygame
+
 from cursor import Cursor
 from level1 import start_level1
 
 
-def instructions():
+def gameover():
     pygame.init()
     # custom cursor image
     custom_cursor = Cursor()
@@ -16,14 +17,16 @@ def instructions():
     pygame.display.set_caption("Car Racer")
 
     while True:
-        bg = pygame.image.load("images/instructions.png")
+        bg = pygame.image.load("images/gameOver.png")
         screen.blit(bg, (0, 0))
+        mouse_pos = pygame.mouse.get_pos()
         # draw mouse
         cursor_group.draw(screen)
         cursor_group.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            if event.type == pygame.KEYDOWN:
-                start_level1()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if 1000 <= mouse_pos[0] <= 1265 and 650 <= mouse_pos[1] <= 780:
+                    start_level1()
         pygame.display.flip()
