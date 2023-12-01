@@ -1,14 +1,19 @@
 import pygame
+
 from car import Car
 from cursor import Cursor
+
 
 # TODO image background
 # TODO define powerups
 # TODO give car money attribute
 # TODO give car health upgrade attribute
 # TODO give car damage (??) attribute
-def garage_screen():
+def garage_screen(playerCar):
     pygame.init()
+
+    # looks dumb ask Liah
+    playerCar = playerCar
 
     # defining screen/background
     bg = pygame.image.load("images/garage.png").convert_alpha()
@@ -21,6 +26,14 @@ def garage_screen():
     cursor_group.add(custom_cursor)
     clock = pygame.time.Clock()
 
+    def upgrade_health():
+        playerCar.max_hp += 10
+
+    def recover_health():
+        playerCar.health += 10
+
+    upgrade_health()
+    print(playerCar.health)
     while True:
         mouse = pygame.mouse.get_pos()
         # getting the input of the user
@@ -58,6 +71,7 @@ def garage_screen():
         # draw mouse
         cursor_group.draw(screen)
         cursor_group.update()
+
         # PYGAME BUILT-IN FUNCTION that updates the screen at every iteration of the loop
         pygame.display.flip()
 

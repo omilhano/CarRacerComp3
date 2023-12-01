@@ -5,7 +5,7 @@ import healthbar
 class Car(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
-    def __init__(self, position_x, position_y, speed, health):
+    def __init__(self, position_x, position_y, speed):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
@@ -15,7 +15,8 @@ class Car(pygame.sprite.Sprite):
         self.car_mask = pygame.mask.from_surface(self.image)
         self.rect.center = [position_x, position_y]
         self.speed = speed
-        self.health = health
+        self.health = 100
+        self.max_hp = self.health
         self.score = 0
 
     def get_damaged(self, damage):

@@ -1,6 +1,10 @@
-import pygame
+from turtle import speed
 
-class Powers(pygame.sprite.Sprite):
+import pygame
+from abc import ABC, abstractmethod
+
+
+class Powers(ABC, pygame.sprite.Sprite):
 
     def __init__(self, position_x, position_y, speed, path_file, type):
         # Call the parent class (Sprite) constructor
@@ -15,8 +19,20 @@ class Powers(pygame.sprite.Sprite):
         self.speed = speed
         self.type = type
 
+    @staticmethod
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
+    @abstractmethod
+    def getType(self):
+        return self.type
+
+
+class invincible(Powers):
+    def __init__(self, position_x, position_y, speed, path_file, type):
+        super().__init__(position_x, position_y, speed, path_file, type)
+
+    # invincible make car take no damage
+    # how to implement this? remove collision?
     def getType(self):
         return self.type

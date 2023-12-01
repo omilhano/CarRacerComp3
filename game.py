@@ -2,6 +2,7 @@ import pygame, random
 from car import Car
 from healthbar import *
 from hazards import Hazards
+from garage import garage_screen
 #TODO powerups
 # TODO zombies
 
@@ -20,8 +21,7 @@ def car_racing():
     clock = pygame.time.Clock()
 
     # initialize car
-    MAX_CAR_HP = 100
-    playerCar = Car(130, 680, 70, MAX_CAR_HP)
+    playerCar = Car(130, 680, 70)
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
@@ -142,6 +142,10 @@ def car_racing():
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
+
+            # actually its 1000 but testing 200
+            if playerCar.score == 200:
+                garage_screen(playerCar)
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
