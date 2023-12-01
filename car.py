@@ -6,6 +6,11 @@ import random
 class Car(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
+    # Initialize constants
+    # TODO why doesnt it work
+    TOP_LANE_Y = 480
+    MID_LANE_Y = 555
+    BOTTOM_LANE_Y = 630
     def __init__(self, position_x, position_y, speed):
         # Call the parent class (Sprite) constructor
         super().__init__()
