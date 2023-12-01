@@ -117,12 +117,7 @@ def start_level2(playerCar, healthbar):
             # collision logic
 
             if check_collisions(playerCar, all_hazards) == "bloodspill":
-                random_position = random.randint(1, 2)  # TODO scuffed solution doesn't always work
-                if random_position == 1:
-                    playerCar.moveUp()
-                else:
-                    playerCar.moveDown()
-                pass
+                playerCar.change_rand_lane()
             elif check_collisions(playerCar, all_hazards) == "beartrap":
                 if playerCar.get_damaged(5):
                     game_active = False
@@ -140,6 +135,10 @@ def start_level2(playerCar, healthbar):
             # print(playerCar.rect.y)
 
             # actually its 1000 but testing 200
+            if playerCar.score == 400:
+                # scuffed
+                from garage import garage_screen
+                garage_screen(playerCar, healthbar, 2)
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()

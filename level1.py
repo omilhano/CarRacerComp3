@@ -137,13 +137,12 @@ def start_level1():
             # print(playerCar.rect.y)
 
             # actually its 1000 but testing 200
-            if playerCar.score == 200:
-                garage_screen(playerCar, healthbar)
+            if playerCar.score == 600:
+                garage_screen(playerCar, healthbar, 1)
         else:
-            # TODO GAME OVER MENU
+            from gameOver import gameover
             pygame.mixer.stop()
-            # gameovermenu()
-            pass
+            gameover()
 
         # Number of frames per second e.g. 60
         clock.tick(60)

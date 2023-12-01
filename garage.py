@@ -11,7 +11,7 @@ from level2 import start_level2
 # TODO give car money attribute
 # TODO give car health upgrade attribute
 # TODO give car damage (??) attribute
-def garage_screen(playerCar, healthbar):
+def garage_screen(playerCar, healthbar, level):
     pygame.init()
 
     # looks dumb ask Liah
@@ -52,7 +52,10 @@ def garage_screen(playerCar, healthbar):
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 995 <= mouse[0] <= 1212 and 708 <= mouse[1] <= 735:
-                    start_level2(playerCar, healthbar)
+                    if level == 1:
+                        start_level2(playerCar, healthbar)
+                    elif level == 2:
+                        start_level3(playerCar, healthbar)
                 # level 2
             # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
