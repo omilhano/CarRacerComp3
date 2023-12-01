@@ -1,7 +1,7 @@
 import pygame
 
 from cursor import Cursor
-from game import car_racing
+from level1 import car_racing
 
 
 def instructions():

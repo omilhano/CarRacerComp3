@@ -45,26 +45,21 @@ def garage_screen(playerCar):
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
                     pygame.quit()
-            # press the credits button
+            # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 785 <= mouse[0] <= 1130 and 440 <= mouse[1] <= 595:
+                if 995 <= mouse[0] <= 1212 and 708 <= mouse[1] <= 735:
                     pass
-            # pressing the play button
+                #level 2
+            # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 100 <= mouse[0] <= 445 and 140 <= mouse[1] <= 295:
+                if 84 <= mouse[0] <= 166 and 95 <= mouse[1] <= 115:
                     pass
-            # pressing the continue game button
-            if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
-                    pass
-                    # pressing the settings button
-            if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:
-                    pass
+                #buy button
+
 
             # test position of the mouse
-            # if ev.type == pygame.MOUSEBUTTONDOWN:
-            #     print(pygame.mouse.get_pos())
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                 print(pygame.mouse.get_pos())
 
         # setting background
         screen.blit(bg, (0, 0))
