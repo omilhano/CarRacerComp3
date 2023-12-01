@@ -1,6 +1,7 @@
 import pygame
 from pygame import mixer
 from game import car_racing
+from instructions import instructions
 from load import continue_game
 from settings import settings
 from credits import credits_
@@ -46,7 +47,7 @@ def menu():
             # pressing the play button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 100 <= mouse[0] <= 445 and 140 <= mouse[1] <= 295:
-                    car_racing()
+                    instructions()
             # pressing the continue game button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
