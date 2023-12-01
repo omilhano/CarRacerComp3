@@ -1,5 +1,6 @@
 import pygame
 import healthbar
+import random
 
 
 class Car(pygame.sprite.Sprite):
@@ -51,3 +52,11 @@ class Car(pygame.sprite.Sprite):
 
     def updateScore(self, score):
         self.score += score
+
+    def change_rand_lane(self):
+        if self.rect.y == 480:
+            self.rect.y = random.choice([555, 630])
+        elif self.rect.y == 555:
+            self.rect.y = random.choice([480, 630])
+        else:
+            self.rect.y = random.choice([480, 555])

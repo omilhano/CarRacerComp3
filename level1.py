@@ -120,12 +120,7 @@ def start_level1():
             #collision logic
 
             if check_collisions(playerCar, all_hazards) == "bloodspill":
-                random_position = random.randint(1, 2)  # TODO scuffed solution doesn't always work
-                if random_position == 1:
-                    playerCar.moveUp()
-                else:
-                    playerCar.moveDown()
-                pass
+                playerCar.change_rand_lane()
             elif check_collisions(playerCar, all_hazards) == "level_cone":
                 if playerCar.get_damaged(5):
                     game_active = False
