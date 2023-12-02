@@ -1,7 +1,7 @@
 import pygame, random
 
 from hazards import Hazards
-
+from gameOver import gameover
 
 # TODO powerups
 # TODO zombies
@@ -123,13 +123,13 @@ def start_level2(playerCar, healthbar):
                     game_active = False
                 else:
                     healthbar.hp = playerCar.health
-                    beartrap.rect.center = [1300, 760]
+                    beartrap.rect.center = [1400, random.choice([605, 682, 760])]
             elif check_collisions(playerCar, all_hazards) == "hazard_sign":
                 if playerCar.get_damaged(5):
                     game_active = False
                 else:
                     healthbar.hp = playerCar.health
-                    hazard_sign.rect.center = [1400, 760]
+                    hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
             # test position
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
@@ -142,7 +142,7 @@ def start_level2(playerCar, healthbar):
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
-            # gameovermenu()
+            gameover()
             pass
 
         # Number of frames per second e.g. 60

@@ -1,7 +1,7 @@
 import pygame
 
 from cursor import Cursor
-from level1 import start_level1
+
 
 
 def gameover():
@@ -28,5 +28,6 @@ def gameover():
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 1000 <= mouse_pos[0] <= 1265 and 650 <= mouse_pos[1] <= 780:
+                    from level1 import start_level1
                     start_level1()
         pygame.display.flip()
