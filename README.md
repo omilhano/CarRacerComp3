@@ -1,8 +1,8 @@
-# Driven to Decay: Byte the Dust
+## Driven to Decay: Byte the Dust
 
 Driven to Decay: Byte the Dust is a python game created as a final project for the subject of Computation3.
 
-# Project Description
+## Project Description
 
 This program allows the user to play a racer game with the goal of reaching the final level and surviving a post apocalyptic world in a pixel art style. 
 Pygame was the library used for the creation of this game.
@@ -19,7 +19,7 @@ git clone https://github.com/omilhano/CarRacerComp3
 python main.py # to be able to run the game
 ```
 
-# How to play
+## How to play
 
 The game has an instruction panel but the WASD keys can be used to maneuver the car to avoid obstacles and get powerups.
 
