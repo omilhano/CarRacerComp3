@@ -19,7 +19,7 @@ git clone https://github.com/omilhano/CarRacerComp3
 python main.py # to be able to run the game
 ```
 
-#How to play
+# How to play
 
 The game has an instruction panel but the WASD keys can be used to maneuver the car to avoid obstacles and get powerups.
 
