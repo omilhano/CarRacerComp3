@@ -1,7 +1,8 @@
 import pygame
-
-
-# TODO ask liah if there can be inheritance
+# TODO change ammount of damage each hazard gives
+# TODO theyre still spawning on top of each other respectfully
+# TODO ask liah if there can be inheritance, refering to powerUps also
+# TODO change ammount of score each hazard gives
 class Hazards(pygame.sprite.Sprite):
 
     def __init__(self, position_x, position_y, speed, path_file, type):

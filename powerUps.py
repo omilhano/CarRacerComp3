@@ -28,6 +28,7 @@ class Powers(ABC, pygame.sprite.Sprite):
         return self.type
 
 
+# ask liah if it should be in same class or im just dummy java-pilled
 class invincible(Powers):
     def __init__(self, position_x, position_y, speed, path_file, type):
         super().__init__(position_x, position_y, speed, path_file, type)

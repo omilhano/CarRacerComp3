@@ -26,17 +26,15 @@ def garage_screen(playerCar, healthbar, level):
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
     cursor_group.add(custom_cursor)
-    cursor_group.add(custom_cursor)
     clock = pygame.time.Clock()
 
     def recover_health():
-        if playerCar.health < 90:
+        if playerCar.health <= 90:
             playerCar.health += 10
-            # ask liah why not automatic
-            healthbar.hp += 10
-        elif playerCar.health == 95:
-            playerCar.health += 5
-            healthbar.hp += 5
+            healthbar.hp = playerCar.health
+        elif playerCar.health + 10 > 100:
+            playerCar.health = 100
+            healthbar.hp = playerCar.health
 
     while True:
         mouse = pygame.mouse.get_pos()
@@ -51,15 +49,15 @@ def garage_screen(playerCar, healthbar, level):
                     pygame.quit()
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 995 <= mouse[0] <= 1212 and 708 <= mouse[1] <= 735:
+                if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 750:
                     if level == 1:
                         start_level2(playerCar, healthbar)
                     elif level == 2:
-                        start_level3(playerCar, healthbar)
+                        pass # start_level3(playerCar, healthbar)
                 # level 2
             # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 84 <= mouse[0] <= 166 and 95 <= mouse[1] <= 115:
+                if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
                     recover_health()
                     print(playerCar.health)
                 # buy button

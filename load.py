@@ -1,5 +1,5 @@
 import pygame
-
+# TODO this, eventually
 
 def continue_game():
     pygame.init()

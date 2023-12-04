@@ -165,8 +165,8 @@ def start_level1():
             # print(playerCar.rect.x)
             # print(playerCar.rect.y)
 
-            # actually its 1000 but testing 200
-            if playerCar.score == 1000:
+            # Score testing variable
+            if playerCar.score == 200:
                 garage_screen(playerCar, healthbar, 1)
         else:
             from gameOver import gameover

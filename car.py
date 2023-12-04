@@ -7,7 +7,8 @@ class Car(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     # Initialize constants
-    # TODO why doesnt it work
+    #  why doesnt it work liah :3
+    #does it need to be inside innit
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
     BOTTOM_LANE_Y = 630
