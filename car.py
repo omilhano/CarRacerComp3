@@ -4,11 +4,12 @@ import random
 
 
 class Car(pygame.sprite.Sprite):
+
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     # Initialize constants
-    #  why doesnt it work liah :3
-    #does it need to be inside innit
+    # TODO fix
+    # todo required python
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
     BOTTOM_LANE_Y = 630
@@ -37,9 +38,6 @@ class Car(pygame.sprite.Sprite):
 
     def moveLeft(self, pixels):
         self.rect.x -= pixels
-
-    def objectSpeed(self, speed):
-        self.rect.x -= self.speed * speed / 20
 
     def moveUp(self):
         if self.rect.y == 555:

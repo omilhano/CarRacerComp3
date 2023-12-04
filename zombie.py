@@ -1,7 +1,8 @@
 import pygame
 import random
 
-
+# TODO file with paths (hazards, powerups and zombies)
+# TODO class child/ dictionary
 class Zombies(pygame.sprite.Sprite):
     def __init__(self, type_zombie, position_x, position_y):
         super().__init__()
@@ -41,6 +42,7 @@ class Zombies(pygame.sprite.Sprite):
             self.speed = 6.5
             self.money = 3
             self.probability = 0.999
+
 
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20

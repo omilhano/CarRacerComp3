@@ -14,10 +14,6 @@ from level2 import start_level2
 def garage_screen(playerCar, healthbar, level):
     pygame.init()
 
-    # looks dumb ask Liah
-    playerCar = playerCar
-    healthbar = healthbar
-
     # defining screen/background
     bg = pygame.image.load("images/garage.png").convert_alpha()
     res = (1282, 800)

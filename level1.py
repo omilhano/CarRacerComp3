@@ -30,6 +30,7 @@ def start_level1():
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
 
     # initialize hazards
+    # TODO change in hazards
     bloodspill_img = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
     level_cone_img = pygame.image.load("images/traficcone_lv1.png").convert_alpha()
     danger_sign = pygame.image.load("images/hazard_roadsignlv1.png").convert_alpha()
@@ -166,7 +167,7 @@ def start_level1():
             # print(playerCar.rect.y)
 
             # Score testing variable
-            if playerCar.score == 200:
+            if playerCar.score == 1000:
                 garage_screen(playerCar, healthbar, 1)
         else:
             from gameOver import gameover
