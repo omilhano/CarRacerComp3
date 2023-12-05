@@ -47,13 +47,13 @@ def start_level1():
 
     # create zombies
     fastZombie = Zombies("fast", 1280, random.choice([605, 682, 760]))
-    fastZombie.assign_attributes()
+    # fastZombie.assign_attributes()
 
     normalZombie = Zombies("normal", 1300, random.choice([605, 682, 760]))
-    normalZombie.assign_attributes()
+    # normalZombie.assign_attributes()
 
     staticZombie = Zombies("static", 1400, random.choice([605, 682, 760] ))
-    staticZombie.assign_attributes()
+    # staticZombie.assign_attributes()
 
     all_zombies = pygame.sprite.Group()
     all_zombies.add(fastZombie)
