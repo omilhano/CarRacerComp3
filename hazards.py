@@ -1,4 +1,6 @@
 import pygame
+
+
 # TODO change ammount of damage each hazard gives
 # TODO theyre still spawning on top of each other respectfully
 # TODO change amount of score each hazard gives
@@ -18,6 +20,8 @@ class Hazards(pygame.sprite.Sprite):
         self.speed = speed
         self.type = type
 
+    def object_speed(self, speed):
+        self.rect.x -= self.speed * speed / 20
 
     def getType(self):
         return self.type

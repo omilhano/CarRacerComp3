@@ -4,10 +4,12 @@ from healthbar import *
 from hazards import Hazards
 from zombie import Zombies
 from garage import garage_screen
+import sys
 
 
 # TODO powerups
 # TODO zombies
+# TODO talk eli about sys.exit()
 
 def start_level1():
     pygame.init()
@@ -72,7 +74,7 @@ def start_level1():
         while loop:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    quit()
+                    sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
@@ -167,7 +169,7 @@ def start_level1():
             # print(playerCar.rect.y)
 
             # Score testing variable
-            if playerCar.score == 1000:
+            if playerCar.score == 100:
                 garage_screen(playerCar, healthbar, 1)
         else:
             from gameOver import gameover
@@ -181,4 +183,5 @@ def start_level1():
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    pygame.quit()
+        # this doesn't raise an error when quitting
+    sys.exit()

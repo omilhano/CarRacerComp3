@@ -27,12 +27,17 @@ class Car(pygame.sprite.Sprite):
         self.max_hp = self.health
         self.score = 0
 
-    def get_damaged(self, damage):
+    def get_damaged(self, damage) -> bool:
         # If collide lower hp
         # Returns true if kill car
         self.health -= damage
         return self.health <= 0
 
+    def collide_beartrap(self):
+        # using pygame.time.get_ticks()
+        # make so that no key pressed works
+        # called inside the levels code
+        pass
     def moveRight(self, pixels):
         self.rect.x += pixels
 

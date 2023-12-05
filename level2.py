@@ -122,6 +122,7 @@ def start_level2(playerCar, healthbar):
                 if playerCar.get_damaged(5):
                     game_active = False
                 else:
+                    pygame.time.delay(5000)
                     healthbar.hp = playerCar.health
                     beartrap.rect.center = [1400, random.choice([605, 682, 760])]
             elif check_collisions(playerCar, all_hazards) == "hazard_sign":
