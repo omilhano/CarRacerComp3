@@ -34,26 +34,18 @@ def start_level1():
 
     # initialize hazards
     # TODO change in hazards
-    bloodspill_img = pygame.image.load(blood_spill).convert_alpha()
-    level_cone_img = pygame.image.load(cone).convert_alpha()
-    danger_sign = pygame.image.load(road_sign_lv1).convert_alpha()
-    bloodspill = Hazards(1000, 680, 5, bloodspill_img, "bloodspill")
-    level_cone = Hazards(1200, 608, 5, level_cone_img, "level_cone")
-    hazard_sign = Hazards(1500, 760, 5, danger_sign, "hazard_sign")
+    bloodspill = Hazards("spill", random.randint(1300, 1500), random.choice([605, 682, 760])) # TODO change to correct y
+    level_cone = Hazards("small", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
     all_hazards = pygame.sprite.Group()
     all_hazards.add(bloodspill)
     all_hazards.add(level_cone)
     all_hazards.add(hazard_sign)
 
     # create zombies
-    fastZombie = Zombies("fast", 1280, random.choice([605, 682, 760]))
-    # fastZombie.assign_attributes()
-
-    normalZombie = Zombies("normal", 1300, random.choice([605, 682, 760]))
-    # normalZombie.assign_attributes()
-
-    staticZombie = Zombies("static", 1400, random.choice([605, 682, 760] ))
-    # staticZombie.assign_attributes()
+    fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    normalZombie = Zombies("normal", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760] ))
 
     all_zombies = pygame.sprite.Group()
     all_zombies.add(fastZombie)

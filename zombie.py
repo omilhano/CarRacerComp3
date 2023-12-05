@@ -3,7 +3,7 @@ import random
 from config import normal_zombie, fast_zombie, static_zombie
 
 
-# TODO file with paths (hazards, powerups and zombies)
+# Todo make fast zombie even more rare
 class Zombies(pygame.sprite.Sprite):
     def __init__(self, type_zombie, position_x, position_y):
         super().__init__()
@@ -26,10 +26,10 @@ class Zombies(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def can_spawn(self) -> bool:
+    def can_spawn(self) -> bool: # TODO somethings wrong
         var_rand = random.random()
         # true if spawn
-        return var_rand <= self.probability
+        return var_rand >= self.probability
 
 
 zombie_types = {

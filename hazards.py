@@ -1,5 +1,7 @@
 import pygame
 
+from config import road_sign_lv1, cone, blood_spill
+
 
 # TODO change ammount of damage each hazard gives
 # TODO theyre still spawning on top of each other respectfully
@@ -8,21 +10,34 @@ import pygame
 # TODO class child/ dictionary
 class Hazards(pygame.sprite.Sprite):
 
-    def __init__(self, position_x, position_y, speed, path_file, type):
+    def __init__(self, hazard_type, position_x, position_y):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = path_file
-        self.rect = self.image.get_rect()
-        self.hazard_mask = pygame.mask.from_surface(self.image)
+        self.hazard_type = hazard_type
         self.position_x = position_x
         self.position_y = position_y
-        self.rect.center = [position_x, position_y]
-        self.speed = speed
-        self.type = type
+        self.speed = 5
+        # options for hazards
+        self.damage = hazard_types[hazard_type]["damage"]
+        self.image = pygame.image.load(hazard_types[hazard_type]["image"]).convert_alpha()
+
+        # Defining rectangle and positions
+        self.rect = self.image.get_rect()
+        self.rect.center = [self.position_x, self.position_y]
+        self.hazard_mask = pygame.mask.from_surface(self.image)
 
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
     def getType(self):
-        return self.type
+        return self.hazard_type
+
+
+hazard_types = {
+    "tall": {"damage": 5, "image": road_sign_lv1},
+
+    "small": {"damage": 3,"image": cone},
+
+    "spill": {"damage": 0, "image": blood_spill}
+}
