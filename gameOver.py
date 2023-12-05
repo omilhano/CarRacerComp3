@@ -1,6 +1,7 @@
 import pygame
 
 from cursor import Cursor
+from config import gameover
 
 
 
@@ -17,7 +18,7 @@ def gameover():
     pygame.display.set_caption("Car Racer")
 
     while True:
-        bg = pygame.image.load("images/gameOver.png")
+        bg = pygame.image.load(gameover).convert_alpha()
         screen.blit(bg, (0, 0))
         mouse_pos = pygame.mouse.get_pos()
         # draw mouse

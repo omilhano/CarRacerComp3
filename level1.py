@@ -1,5 +1,6 @@
 import pygame, random
 from car import Car
+from config import level1, blood_spill, cone, road_sign_lv1, pause_menu
 from healthbar import *
 from hazards import Hazards
 from zombie import Zombies
@@ -15,7 +16,7 @@ def start_level1():
     pygame.init()
 
     # defining screen/background
-    bg = pygame.image.load("images/level1bg.jpg").convert()
+    bg = pygame.image.load(level1).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     pygame.display.set_caption("Car Racing")
@@ -33,9 +34,9 @@ def start_level1():
 
     # initialize hazards
     # TODO change in hazards
-    bloodspill_img = pygame.image.load("images/blood_spill_lv1.png").convert_alpha()
-    level_cone_img = pygame.image.load("images/traficcone_lv1.png").convert_alpha()
-    danger_sign = pygame.image.load("images/hazard_roadsignlv1.png").convert_alpha()
+    bloodspill_img = pygame.image.load(blood_spill).convert_alpha()
+    level_cone_img = pygame.image.load(cone).convert_alpha()
+    danger_sign = pygame.image.load(road_sign_lv1).convert_alpha()
     bloodspill = Hazards(1000, 680, 5, bloodspill_img, "bloodspill")
     level_cone = Hazards(1200, 608, 5, level_cone_img, "level_cone")
     hazard_sign = Hazards(1500, 760, 5, danger_sign, "hazard_sign")
@@ -65,7 +66,7 @@ def start_level1():
 
     def pause():
         loop = True
-        bg = pygame.image.load("images/inprogress.png").convert_alpha()
+        bg = pygame.image.load(pause_menu).convert_alpha()
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
         screen.blit(bg, [0, 0])
@@ -79,7 +80,7 @@ def start_level1():
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
                         loop = False
-                        bg = pygame.image.load("images/level1bg.jpg").convert()
+                        bg = pygame.image.load(level1).convert()
             pygame.display.update()
             clock.tick(60)
 

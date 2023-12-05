@@ -7,6 +7,7 @@ from settings import settings
 from credits import credits_
 from sounds import *
 from cursor import Cursor
+from config import continue_scr, main_menu
 
 
 # TODO Continue game button
@@ -26,7 +27,7 @@ def menu():
     # name
     pygame.display.set_caption("Car Racer")
     #  continue screen temporarily
-    continue_screen = pygame.image.load("images/inprogress.png")
+    continue_screen = pygame.image.load(continue_scr) # TODO maybe change var to bg?
     clock = pygame.time.Clock()
 
     while True:
@@ -62,7 +63,7 @@ def menu():
             #     print(pygame.mouse.get_pos())
 
         # setting background
-        bg = pygame.image.load("images/menuimg.png")
+        bg = pygame.image.load(main_menu)
         screen.blit(bg, (0, 0))
         # draw mouse
         cursor_group.draw(screen)

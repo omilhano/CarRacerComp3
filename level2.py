@@ -2,6 +2,8 @@ import pygame, random
 
 from hazards import Hazards
 from gameOver import gameover
+from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
+
 
 # TODO powerups
 # TODO zombies
@@ -10,7 +12,7 @@ def start_level2(playerCar, healthbar):
     pygame.init()
 
     # defining screen/background
-    bg = pygame.image.load("images/level2bg.png").convert()
+    bg = pygame.image.load(level2).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     pygame.display.set_caption("Car Racing")
@@ -23,9 +25,9 @@ def start_level2(playerCar, healthbar):
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     # initialize hazards
-    oilspill_img = pygame.image.load("images/oil_spill.png").convert_alpha()
-    beartrap_img = pygame.image.load("images/beartrap_lv2.png").convert_alpha()
-    roadsign_img = pygame.image.load("images/hazard_roadsign_lv2.png").convert_alpha()
+    oilspill_img = pygame.image.load(oil_spill).convert_alpha()
+    beartrap_img = pygame.image.load(bear_trap).convert_alpha()
+    roadsign_img = pygame.image.load(road_sign_lv2).convert_alpha()
     oilspill = Hazards(1000, 680, 5, oilspill_img, "bloodspill")
     beartrap = Hazards(1200, 608, 5, beartrap_img, "beartrap")
     hazard_sign = Hazards(1500, 760, 5, roadsign_img, "hazard_sign")
@@ -41,7 +43,7 @@ def start_level2(playerCar, healthbar):
 
     def pause():
         loop = True
-        bg = pygame.image.load("images/inprogress.png").convert_alpha()
+        bg = pygame.image.load(pause_menu).convert_alpha()
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
         screen.blit(bg, [0, 0])
@@ -55,7 +57,7 @@ def start_level2(playerCar, healthbar):
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
                         loop = False
-                        bg = pygame.image.load("images/level1bg.jpg").convert()
+                        bg = pygame.image.load(level1).convert()
             pygame.display.update()
             clock.tick(60)
 

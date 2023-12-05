@@ -4,18 +4,15 @@ from car import Car
 from cursor import Cursor
 from healthbar import Healthbar
 from level2 import start_level2
+from config import garage
 
-
-# TODO image background
 # TODO define powerups
 # TODO give car money attribute
-# TODO give car health upgrade attribute
-# TODO give car damage (??) attribute
 def garage_screen(playerCar, healthbar, level):
     pygame.init()
 
     # defining screen/background
-    bg = pygame.image.load("images/garage.png").convert_alpha()
+    bg = pygame.image.load(garage).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     pygame.display.set_caption("Car Racing")
@@ -45,7 +42,7 @@ def garage_screen(playerCar, healthbar, level):
                     pygame.quit()
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 750:
+                if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 750: #TODO aleeeeex pls fix
                     if level == 1:
                         start_level2(playerCar, healthbar)
                     elif level == 2:
@@ -59,7 +56,7 @@ def garage_screen(playerCar, healthbar, level):
                 # buy button
 
             # test position of the mouse
-            if ev.type == pygame.MOUSEBUTTONDOWN:
+            if ev.type == pygame.MOUSEBUTTONDOWN: # todo delet
                 print(pygame.mouse.get_pos())
 
         # setting background

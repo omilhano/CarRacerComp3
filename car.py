@@ -1,6 +1,7 @@
 import pygame
 import healthbar
 import random
+from config import normal_car
 
 
 class Car(pygame.sprite.Sprite):
@@ -8,7 +9,6 @@ class Car(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     # Initialize constants
-    # TODO fix
     # todo required python
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
@@ -18,7 +18,7 @@ class Car(pygame.sprite.Sprite):
         super().__init__()
 
         # Load the car image
-        self.image = pygame.image.load("images/pickup_test.png").convert_alpha()
+        self.image = pygame.image.load(normal_car).convert_alpha()
         self.rect = self.image.get_rect()
         self.car_mask = pygame.mask.from_surface(self.image)
         self.rect.center = [position_x, position_y]
@@ -33,7 +33,7 @@ class Car(pygame.sprite.Sprite):
         self.health -= damage
         return self.health <= 0
 
-    def collide_beartrap(self):
+    def collide_beartrap(self): #TODO
         # using pygame.time.get_ticks()
         # make so that no key pressed works
         # called inside the levels code
@@ -45,16 +45,16 @@ class Car(pygame.sprite.Sprite):
         self.rect.x -= pixels
 
     def moveUp(self):
-        if self.rect.y == 555:
-            self.rect.y = 480
-        elif self.rect.y == 630:
-            self.rect.y = 555
+        if self.rect.y == Car.MID_LANE_Y:
+            self.rect.y = Car.TOP_LANE_Y
+        elif self.rect.y == Car.BOTTOM_LANE_Y:
+            self.rect.y = Car.MID_LANE_Y
 
     def moveDown(self):
-        if self.rect.y == 480:
-            self.rect.y = 555
-        elif self.rect.y == 555:
-            self.rect.y = 630
+        if self.rect.y == Car.TOP_LANE_Y:
+            self.rect.y = Car.MID_LANE_Y
+        elif self.rect.y == Car.MID_LANE_Y:
+            self.rect.y = Car.BOTTOM_LANE_Y
 
     def changeSpeed(self, speed):
         self.speed = speed
@@ -63,9 +63,9 @@ class Car(pygame.sprite.Sprite):
         self.score += score
 
     def change_rand_lane(self):
-        if self.rect.y == 480:
-            self.rect.y = random.choice([555, 630])
-        elif self.rect.y == 555:
-            self.rect.y = random.choice([480, 630])
+        if self.rect.y == Car.TOP_LANE_Y:
+            self.rect.y = random.choice([Car.MID_LANE_Y, Car.BOTTOM_LANE_Y])
+        elif self.rect.y == Car.MID_LANE_Y:
+            self.rect.y = random.choice([Car.TOP_LANE_Y, Car.BOTTOM_LANE_Y])
         else:
-            self.rect.y = random.choice([480, 555])
+            self.rect.y = random.choice([Car.TOP_LANE_Y, Car.MID_LANE_Y])

@@ -1,5 +1,6 @@
 import pygame
 import random
+from config import normal_zombie, fast_zombie, static_zombie
 
 # TODO file with paths (hazards, powerups and zombies)
 # TODO class child/ dictionary
@@ -19,7 +20,7 @@ class Zombies(pygame.sprite.Sprite):
 
     def assign_attributes(self):
         if self.type_zombie == "fast":
-            self.image = pygame.image.load("images/fastZombie.png").convert_alpha()
+            self.image = pygame.image.load(fast_zombie).convert_alpha()
             self.rect = self.image.get_rect()
             self.rect.center = [self.position_x, self.position_y]
             self.zombie_mask = pygame.mask.from_surface(self.image)
@@ -27,7 +28,7 @@ class Zombies(pygame.sprite.Sprite):
             self.money = 5
             self.probability = 0.9995
         elif self.type_zombie == "static":
-            self.image = pygame.image.load("images/staticZombie.png").convert_alpha()
+            self.image = pygame.image.load(static_zombie).convert_alpha()
             self.rect = self.image.get_rect()
             self.rect.center = [self.position_x, self.position_y]
             self.zombie_mask = pygame.mask.from_surface(self.image)
@@ -35,7 +36,7 @@ class Zombies(pygame.sprite.Sprite):
             self.money = 1
             self.probability = 0.993
         else:
-            self.image = pygame.image.load("images/zombie.png").convert_alpha()
+            self.image = pygame.image.load(normal_zombie).convert_alpha()
             self.rect = self.image.get_rect()
             self.rect.center = [self.position_x, self.position_y]
             self.zombie_mask = pygame.mask.from_surface(self.image)

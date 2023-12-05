@@ -1,9 +1,14 @@
 import pygame
 
+from cursor import Cursor
+from config import credits_screen
+
 def credits_():
     TEXTCOLOR = (255,101,80)
     pygame.init()
-    custom_cursor = pygame.image.load('images/cursor.png').convert_alpha() # TODO change to sprite cursor
+    custom_cursor = Cursor()
+    cursor_group = pygame.sprite.Group()
+    cursor_group.add(custom_cursor)
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     arialfont = pygame.font.SysFont('arial', 50)
@@ -24,9 +29,10 @@ def credits_():
                 if 995 <= mouse[0] <= 1230 and 630<= mouse[1] <= 775:    
                   menu()  
             
-        bg = pygame.image.load("images/credits.png").convert_alpha()
+        bg = pygame.image.load(credits_screen).convert_alpha()
         screen.blit(bg,(0,0))
         screen.blit(credit_text_alex, (0,0))
         screen.blit(credit_text_eli,(0,50))
-        screen.blit( custom_cursor, mouse)
-        pygame.display.update()
+        cursor_group.draw(screen)
+        cursor_group.update()
+        pygame.display.flip()

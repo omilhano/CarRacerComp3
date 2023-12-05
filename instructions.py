@@ -1,4 +1,6 @@
 import pygame
+
+from config import intructions
 from cursor import Cursor
 from level1 import start_level1
 
@@ -16,7 +18,7 @@ def instructions():
     pygame.display.set_caption("Car Racer")
 
     while True:
-        bg = pygame.image.load("images/instructions.png")
+        bg = pygame.image.load(intructions)
         screen.blit(bg, (0, 0))
         # draw mouse
         cursor_group.draw(screen)
