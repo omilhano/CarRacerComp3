@@ -5,9 +5,7 @@ import random
 from config import normal_car
 
 
-
 class Car(pygame.sprite.Sprite):
-
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     # Initialize constants
@@ -15,6 +13,7 @@ class Car(pygame.sprite.Sprite):
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
     BOTTOM_LANE_Y = 630
+
     def __init__(self, position_x, position_y, speed):
         # Call the parent class (Sprite) constructor
         super().__init__()
@@ -28,6 +27,7 @@ class Car(pygame.sprite.Sprite):
         self.health = 100
         self.max_hp = self.health
         self.score = 0
+        self.money = 0
 
     # If collide lower hp
     # Returns true if kill car
@@ -37,14 +37,17 @@ class Car(pygame.sprite.Sprite):
         self.health -= hazard.get_damage()
         hazard.hazard_tp()
         return self.health <= 0
+
     def collide_spill(self):
         pass
         # TODO program spill collision
-    def collide_beartrap(self): #TODO
+
+    def collide_beartrap(self):  # TODO
         # using pygame.time.get_ticks()
         # make so that no key pressed works
         # called inside the levels code
         pass
+
     def moveRight(self, pixels):
         self.rect.x += pixels
 
@@ -68,6 +71,16 @@ class Car(pygame.sprite.Sprite):
 
     def updateScore(self, score):
         self.score += score
+
+    def display_score(self, surface): # TODO ask liah draw on each level or just on mother file
+        # font
+        corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
+        current_score = self.score
+        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
+        score_rect = score_surface.get_rect(center=(400, 30))
+        surface.blit(score_surface, score_rect)
+    def updateMoney(self, money):
+        self.money += money
 
     def change_rand_lane(self):
         if self.rect.y == Car.TOP_LANE_Y:

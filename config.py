@@ -35,4 +35,5 @@ static_zombie = "images/staticZombie.png"
 
 # Cars
 
-normal_car = "images/pickup_test.png"  # TODO fix file name
+normal_car = "images/pickup.png"
+normal_bike = "images/motor_bike.png"

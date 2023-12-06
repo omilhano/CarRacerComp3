@@ -30,7 +30,6 @@ def start_level1():
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
-
     # initialize hazards
     # TODO change in hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500), random.choice([605, 682, 760])) # TODO change to correct y
@@ -74,11 +73,12 @@ def start_level1():
             pygame.display.update()
             clock.tick(60)
 
-    def display_score():
-        current_score = playerCar.score
-        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
-        score_rect = score_surface.get_rect(center=(400, 30))
-        screen.blit(score_surface, score_rect)
+    # def display_score(): # TODO ask liah draw on each level or just on mother file
+    #     current_score = playerCar.score
+    #     score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
+    #     score_rect = score_surface.get_rect(center=(400, 30))
+    #     screen.blit(score_surface, score_rect)
+
 
     def check_collisions(playerCar, all_hazards):
         hazard = None
@@ -111,7 +111,7 @@ def start_level1():
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
             healthbar.draw(screen)
-            display_score()
+            playerCar.display_score(screen)
             # create hazards on road
             roadLane = 0
             for hazards in all_hazards:
