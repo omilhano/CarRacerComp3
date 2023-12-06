@@ -55,10 +55,6 @@ def menu():
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:
                     settings()
 
-            # test position of the mouse
-            # if ev.type == pygame.MOUSEBUTTONDOWN:
-            #     print(pygame.mouse.get_pos())
-
         # setting background
         bg = pygame.image.load(main_menu)
         screen.blit(bg, (0, 0))

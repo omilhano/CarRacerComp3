@@ -132,9 +132,6 @@ def start_level3(playerCar, healthbar):
                 else:
                     healthbar.hp = playerCar.health
                     hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
-            # test position
-            # print(playerCar.rect.x)
-            # print(playerCar.rect.y)
 
             # actually its 1000 but testing 200
             if playerCar.score == 400:

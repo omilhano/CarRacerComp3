@@ -1,7 +1,9 @@
 import pygame
+import hazards
 import healthbar
 import random
 from config import normal_car
+
 
 
 class Car(pygame.sprite.Sprite):
@@ -27,12 +29,17 @@ class Car(pygame.sprite.Sprite):
         self.max_hp = self.health
         self.score = 0
 
-    def get_damaged(self, damage) -> bool:
-        # If collide lower hp
-        # Returns true if kill car
-        self.health -= damage
+    # If collide lower hp
+    # Returns true if kill car
+    def get_damaged(self, hazard) -> bool:
+        if hazard.get_type() == "spill":
+            self.collide_spill()
+        self.health -= hazard.get_damage()
+        hazard.hazard_tp()
         return self.health <= 0
-
+    def collide_spill(self):
+        pass
+        # TODO program spill collision
     def collide_beartrap(self): #TODO
         # using pygame.time.get_ticks()
         # make so that no key pressed works

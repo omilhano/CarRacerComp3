@@ -141,26 +141,27 @@ def start_level1():
                             zombies.rect.center = [1300, 760]
 
             # collision logic
-            if check_collisions(playerCar, all_hazards) == bloodspill:
-                playerCar.change_rand_lane() #todo fix
-            elif check_collisions(playerCar, all_hazards) == level_cone:
-                if playerCar.get_damaged(level_cone.damage): #Liahhhhhh
-                    game_active = False
-                else:
-                    healthbar.hp = playerCar.health
-                    level_cone.rect.center = [1400, random.choice([605, 682, 760])]
-            elif check_collisions(playerCar, all_hazards) == "tall":
-                if playerCar.get_damaged(5):
-                    game_active = False
-                else:
-                    healthbar.hp = playerCar.health
-                    hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
-            # test position
-            # print(playerCar.rect.x)
-            # print(playerCar.rect.y)
+            hazard_collide = check_collisions(playerCar, all_hazards)
+            if hazard_collide:
+                if playerCar.get_damaged(hazard_collide):  # todo :3
+                     game_active = False
+                healthbar.hp = playerCar.health
+                # playerCar.change_rand_lane() #todo fix
+            # elif check_collisions(playerCar, all_hazards):
+            #     if playerCar.get_damaged(level_cone.damage): #Liahhhhhh
+            #         game_active = False
+            #     else:
+            #         healthbar.hp = playerCar.health
+            #         level_cone.rect.center = [1400, random.choice([605, 682, 760])]
+            # elif check_collisions(playerCar, all_hazards) == hazard_sign:
+            #     if playerCar.get_damaged(hazard_sign.damage):
+            #         game_active = False
+            #     else:
+            #         healthbar.hp = playerCar.health
+            #         hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
 
             # Score testing variable
-            if playerCar.score == 100:
+            if playerCar.score == 1000:
                 garage_screen(playerCar, healthbar, 1)
         else:
             from gameOver import gameover

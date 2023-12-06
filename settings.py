@@ -38,9 +38,6 @@ def settings():
                     lower_volume()
                 if 620 <= mouse[0] <= 642 and 420 <= mouse[1] <= 445:
                     increase_volume()
-                # test position of the mouse
-                if ev.type == pygame.MOUSEBUTTONDOWN:  # todo delet
-                    print(pygame.mouse.get_pos())
         # setting the background color as black
         bg = pygame.image.load(settings_screen).convert_alpha()
         screen.blit(bg, (0, 0))

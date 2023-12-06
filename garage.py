@@ -34,11 +34,11 @@ def garage_screen(playerCar, healthbar, level):
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                sys.exit() #TODO exit
+                sys.exit()
             # press on quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
-                    sys.exit() #TODO exit
+                    sys.exit()
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 760:
@@ -46,17 +46,15 @@ def garage_screen(playerCar, healthbar, level):
                         start_level2(playerCar, healthbar)
                     elif level == 2:
                         pass # start_level3(playerCar, healthbar)
-                # level 2
             # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
                     recover_health()
                     print(playerCar.health)
-                # buy button
 
             # test position of the mouse
-            if ev.type == pygame.MOUSEBUTTONDOWN: # todo delet
-                print(pygame.mouse.get_pos())
+            # if ev.type == pygame.MOUSEBUTTONDOWN: # todo delet
+            #     print(pygame.mouse.get_pos())
 
         # setting background
         screen.blit(bg, (0, 0))

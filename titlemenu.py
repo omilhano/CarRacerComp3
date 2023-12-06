@@ -29,7 +29,7 @@ def interface():
     pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface loop
     while True:
-        mouse = pygame.mouse.get_pos()
+        pygame.mouse.get_pos()
         # getting the input of the user
         for ev in pygame.event.get():
             # press on exit button

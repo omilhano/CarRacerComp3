@@ -1,11 +1,12 @@
+import random
+
 import pygame
 
 from config import road_sign_lv1, cone, blood_spill
 
 
-# TODO change ammount of damage each hazard gives
 # TODO theyre still spawning on top of each other respectfully
-# TODO change amount of score each hazard gives
+# TODO change amount of score each hazard gives !!!
 # TODO oilspill creative for powerup
 # TODO class child/ dictionary
 class Hazards(pygame.sprite.Sprite):
@@ -30,9 +31,14 @@ class Hazards(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def getType(self): #liahhhh
+    def get_type(self): #liahhhh
         return self.hazard_type
 
+    def get_damage(self):
+        return self.damage
+
+    def hazard_tp(self):
+        self.rect.center = [1400, random.choice([605, 682, 760])]
 
 hazard_types = {
     "tall": {"damage": 5, "image": road_sign_lv1},
