@@ -1,6 +1,6 @@
 import pygame, random
 from car import Car
-from config import level1, blood_spill, cone, road_sign_lv1, pause_menu
+from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
 from healthbar import *
 from hazards import Hazards
 from zombie import Zombies
@@ -72,8 +72,20 @@ def start_level1():
                         screen.fill((0, 0, 0))
                         loop = False
             pygame.display.update()
-            clock.tick(60)
+            clock.tick(60) # TODO ask alex why clock ticks here
 
+    def level_end():
+        loop = True
+        end_screen = pygame.image.load(level1_end).convert_alpha()
+        screen.blit(end_screen, [0, 0])
+        while loop:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    garage_screen(playerCar, healthbar, 1)
+            pygame.display.update()
+            clock.tick(60) # TODO ask alex why clock ticks here
 
     def check_collisions(playerCar, all_sprites):
         object_sprite = None
@@ -146,8 +158,8 @@ def start_level1():
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
             # Score testing variable
-            if playerCar.score == 1000:
-                garage_screen(playerCar, healthbar, 1)
+            if playerCar.score == 300:
+                level_end()
         else:
             from gameOver import gameover
             pygame.mixer.stop()

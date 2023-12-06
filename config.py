@@ -16,9 +16,11 @@ credits_screen = "images/credits.png"
 intructions = "images/instructions.png"
 titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
+
 # level backgrounds
 # TODO convert all files either to png or jpg not both
 level1 = "images/level1bg.jpg"
+level1_end = "images/level1_end.jpg"
 level2 = "images/level2bg.png"
 level3 = "images/level3bg.jpg"
 # Hazards
