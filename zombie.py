@@ -5,6 +5,7 @@ from config import normal_zombie, fast_zombie, static_zombie
 
 # Todo make fast zombie even more rare
 class Zombies(pygame.sprite.Sprite):
+
     def __init__(self, type_zombie, position_x, position_y):
         super().__init__()
 
@@ -30,6 +31,9 @@ class Zombies(pygame.sprite.Sprite):
         var_rand = random.random()
         # true if spawn
         return var_rand <= self.probability
+
+    def zombie_tp(self) -> None:
+        self.rect.center = [1400, random.choice([605, 682, 760])]
 
 
 zombie_types = {

@@ -26,7 +26,7 @@ def gameover():
         cursor_group.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit() #TODO exit
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 1000 <= mouse_pos[0] <= 1265 and 650 <= mouse_pos[1] <= 780:
                     from level1 import start_level1

@@ -25,7 +25,7 @@ def instructions():
         cursor_group.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit() #TODO exit
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 start_level1()
         pygame.display.flip()

@@ -32,7 +32,8 @@ def start_level1():
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
     # initialize hazards
     # TODO change in hazards
-    bloodspill = Hazards("spill", random.randint(1300, 1500), random.choice([605, 682, 760])) # TODO change to correct y
+    bloodspill = Hazards("spill", random.randint(1300, 1500),
+                         random.choice([605, 682, 760]))  # TODO change to correct y
     level_cone = Hazards("small", random.randint(1300, 1500), random.choice([605, 682, 760]))
     hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
     all_hazards = pygame.sprite.Group()
@@ -43,7 +44,7 @@ def start_level1():
     # create zombies
     fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
     normalZombie = Zombies("normal", random.randint(1300, 1500), random.choice([605, 682, 760]))
-    staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760] ))
+    staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760]))
 
     all_zombies = pygame.sprite.Group()
     all_zombies.add(fastZombie)
@@ -73,21 +74,15 @@ def start_level1():
             pygame.display.update()
             clock.tick(60)
 
-    # def display_score(): # TODO ask liah draw on each level or just on mother file
-    #     current_score = playerCar.score
-    #     score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
-    #     score_rect = score_surface.get_rect(center=(400, 30))
-    #     screen.blit(score_surface, score_rect)
 
-
-    def check_collisions(playerCar, all_hazards):
-        hazard = None
-        for sprite in all_hazards:
+    def check_collisions(playerCar, all_sprites):
+        object_sprite = None
+        for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
                 pass
             else:
-                hazard = sprite
-        return hazard
+                object_sprite = sprite
+        return object_sprite
 
     while carryOn:
         for event in pygame.event.get():
@@ -112,6 +107,7 @@ def start_level1():
             # drawing the healthbar and score
             healthbar.draw(screen)
             playerCar.display_score(screen)
+            playerCar.display_money(screen)
             # create hazards on road
             roadLane = 0
             for hazards in all_hazards:
@@ -128,7 +124,7 @@ def start_level1():
             all_hazards.draw(screen)
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
-            staticZombie.object_speed(random.randint(20,30))
+            staticZombie.object_speed(random.randint(20, 30))
             for zombies in all_zombies:
                 if zombies.can_spawn():
                     if zombies.rect.right < 0:
@@ -144,22 +140,11 @@ def start_level1():
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
                 if playerCar.get_damaged(hazard_collide):  # todo :3
-                     game_active = False
+                    game_active = False
                 healthbar.hp = playerCar.health
-                # playerCar.change_rand_lane() #todo fix
-            # elif check_collisions(playerCar, all_hazards):
-            #     if playerCar.get_damaged(level_cone.damage): #Liahhhhhh
-            #         game_active = False
-            #     else:
-            #         healthbar.hp = playerCar.health
-            #         level_cone.rect.center = [1400, random.choice([605, 682, 760])]
-            # elif check_collisions(playerCar, all_hazards) == hazard_sign:
-            #     if playerCar.get_damaged(hazard_sign.damage):
-            #         game_active = False
-            #     else:
-            #         healthbar.hp = playerCar.health
-            #         hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
-
+            zombie_collide = check_collisions(playerCar, all_zombies)
+            if zombie_collide:
+                playerCar.get_money(zombie_collide)
             # Score testing variable
             if playerCar.score == 1000:
                 garage_screen(playerCar, healthbar, 1)

@@ -25,7 +25,7 @@ def credits_():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                sys.exit()  # TODO exit
+                sys.exit()
             # press on menu button to go back
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 print(pygame.mouse.get_pos())
