@@ -26,10 +26,10 @@ class Zombies(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def can_spawn(self) -> bool: # TODO somethings wrong
+    def can_spawn(self) -> bool:
         var_rand = random.random()
         # true if spawn
-        return var_rand >= self.probability
+        return var_rand <= self.probability
 
 
 zombie_types = {

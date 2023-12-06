@@ -1,6 +1,4 @@
-import pygame
-from pygame import mixer
-from level1 import start_level1
+import sys
 from instructions import instructions
 from load import continue_game
 from settings import settings
@@ -12,7 +10,6 @@ from config import continue_scr, main_menu
 
 # TODO Continue game button
 # Creating a function that creates the GUI
-
 def menu():
     startingUp()
     # initiating pygames
@@ -27,7 +24,7 @@ def menu():
     # name
     pygame.display.set_caption("Car Racer")
     #  continue screen temporarily
-    continue_screen = pygame.image.load(continue_scr) # TODO maybe change var to bg?
+    continue_screen = pygame.image.load(continue_scr)  # TODO maybe change var to bg?
     clock = pygame.time.Clock()
 
     while True:
@@ -36,11 +33,11 @@ def menu():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                pygame.quit()
+                sys.exit()  # TODO exit
             # press on quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
-                    pygame.quit()
+                    sys.exit()  # TODO exit
             # press the credits button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 785 <= mouse[0] <= 1130 and 440 <= mouse[1] <= 595:

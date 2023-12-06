@@ -1,5 +1,5 @@
 # TODO learn difference between flip and update
-# TODO ask liah if config, ya know, circular import
+# TODO utils file
 # File Paths
 # Sounds
 main_sound = "sounds/soundtrackmenu.mp3"
@@ -9,7 +9,7 @@ cursor_img = "images/cursor.png"
 # Backgrounds
 main_menu = "images/menuimg.png"
 garage = "images/garage.png"
-settings = "images/settings.jpg"
+settings_screen = "images/settings.jpg"
 gameover = "images/gameOver.png"
 continue_scr = "images/inprogress.png"
 credits_screen = "images/credits.png"
@@ -17,8 +17,10 @@ intructions = "images/instructions.png"
 titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
 # level backgrounds
+# TODO convert all files either to png or jpg not both
 level1 = "images/level1bg.jpg"
 level2 = "images/level2bg.png"
+level3 = "images/level3bg.jpg"
 # Hazards
 blood_spill = "images/blood_spill_lv1.png"
 cone = "images/traficcone_lv1.png"
@@ -31,7 +33,6 @@ fast_zombie = "images/fastZombie.png"
 normal_zombie = "images/zombie.png"
 static_zombie = "images/staticZombie.png"
 
-
 # Cars
 
-normal_car = "images/pickup_test.png" # TODO fix file name
+normal_car = "images/pickup_test.png"  # TODO fix file name

@@ -30,7 +30,7 @@ class Hazards(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def getType(self):
+    def getType(self): #liahhhh
         return self.hazard_type
 
 

@@ -1,10 +1,9 @@
+import sys
 import pygame
-
-from car import Car
-from cursor import Cursor
-from healthbar import Healthbar
-from level2 import start_level2
 from config import garage
+from cursor import Cursor
+from level2 import start_level2
+
 
 # TODO define powerups
 # TODO give car money attribute
@@ -35,14 +34,14 @@ def garage_screen(playerCar, healthbar, level):
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                pygame.quit()
+                sys.exit() #TODO exit
             # press on quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
-                    pygame.quit()
+                    sys.exit() #TODO exit
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 750: #TODO aleeeeex pls fix
+                if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 760:
                     if level == 1:
                         start_level2(playerCar, healthbar)
                     elif level == 2:

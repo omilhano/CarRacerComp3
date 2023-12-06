@@ -1,5 +1,6 @@
-from pygame import mixer
 import pygame
+from pygame import mixer
+
 
 volume = 0.6
 first_time = True

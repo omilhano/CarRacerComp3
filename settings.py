@@ -1,6 +1,8 @@
+import sys
+
 import pygame
 from pygame import mixer
-from config import settings
+from config import settings_screen
 
 from cursor import Cursor
 from sounds import *
@@ -25,19 +27,22 @@ def settings():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                pygame.quit()
+                sys.exit() #TODO exit sys
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 275 <= mouse[0] <= 310 and 515 <= mouse[1] <= 550:
+                if 275 <= mouse[0] <= 315 and 515 <= mouse[1] <= 560:
                     # mute and play
                     pause()  # this just turns off and on the song, doesnt actually pause
-                if 595 <= mouse[0] <= 642 and 515 <= mouse[1] <= 545:
+                if 600 <= mouse[0] <= 655 and 515 <= mouse[1] <= 545:
                     menu()
                 if 270 <= mouse[0] <= 290 and 428 <= mouse[1] <= 433:
                     lower_volume()
                 if 620 <= mouse[0] <= 642 and 420 <= mouse[1] <= 445:
                     increase_volume()
+                # test position of the mouse
+                if ev.type == pygame.MOUSEBUTTONDOWN:  # todo delet
+                    print(pygame.mouse.get_pos())
         # setting the background color as black
-        bg = pygame.image.load(settings).convert_alpha()
+        bg = pygame.image.load(settings_screen).convert_alpha()
         screen.blit(bg, (0, 0))
         cursor_group.draw(screen)
         cursor_group.update()

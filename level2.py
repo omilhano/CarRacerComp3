@@ -1,5 +1,5 @@
+import sys
 import pygame, random
-
 from hazards import Hazards
 from gameOver import gameover
 from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
@@ -43,21 +43,20 @@ def start_level2(playerCar, healthbar):
 
     def pause():
         loop = True
-        bg = pygame.image.load(pause_menu).convert_alpha()
+        pause_screen = pygame.image.load(pause_menu).convert_alpha()
         pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
         spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
-        screen.blit(bg, [0, 0])
+        screen.blit(pause_screen, [0, 0])
         screen.blit(pausetext, [200, 200])
         screen.blit(spacebartext, [200, 250])
         while loop:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    quit()
+                    sys.exit() #TODO exit
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         screen.fill((0, 0, 0))
                         loop = False
-                        bg = pygame.image.load(level1).convert()
             pygame.display.update()
             clock.tick(60)
 
@@ -67,7 +66,7 @@ def start_level2(playerCar, healthbar):
         score_rect = score_surface.get_rect(center=(400, 30))
         screen.blit(score_surface, score_rect)
 
-    def check_collisions(playerCar, all_hazards):
+    def check_collisions(playerCar, all_hazards): # TODO redo
         tester = ""
         for sprite in all_hazards:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
@@ -154,4 +153,4 @@ def start_level2(playerCar, healthbar):
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    pygame.quit()
+    sys.exit() #TODO exit

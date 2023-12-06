@@ -1,5 +1,5 @@
+import sys
 import pygame
-
 from config import intructions
 from cursor import Cursor
 from level1 import start_level1
@@ -25,7 +25,7 @@ def instructions():
         cursor_group.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                quit()
+                sys.exit() #TODO exit
             if event.type == pygame.KEYDOWN:
                 start_level1()
         pygame.display.flip()

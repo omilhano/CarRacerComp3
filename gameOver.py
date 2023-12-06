@@ -1,5 +1,5 @@
+import sys
 import pygame
-
 from cursor import Cursor
 from config import gameover
 
@@ -26,7 +26,7 @@ def gameover():
         cursor_group.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                quit()
+                sys.exit() #TODO exit
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 1000 <= mouse_pos[0] <= 1265 and 650 <= mouse_pos[1] <= 780:
                     from level1 import start_level1
