@@ -6,7 +6,6 @@ from level2 import start_level2
 
 
 # TODO define powerups
-# TODO give car money attribute
 def garage_screen(playerCar, healthbar, level):
     pygame.init()
 
@@ -28,6 +27,11 @@ def garage_screen(playerCar, healthbar, level):
             playerCar.health = 100
             healthbar.hp = playerCar.health
 
+    def buy_health():
+        if playerCar.money - 5 > -1:
+            playerCar.money -= 5
+            recover_health()
+
     while True:
         mouse = pygame.mouse.get_pos()
         # getting the input of the user
@@ -35,7 +39,7 @@ def garage_screen(playerCar, healthbar, level):
             # press on exit button
             if ev.type == pygame.QUIT:
                 sys.exit()
-            # press on quit button
+            # press on quit button # TODO theres a quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
                     sys.exit()
@@ -45,12 +49,11 @@ def garage_screen(playerCar, healthbar, level):
                     if level == 1:
                         start_level2(playerCar, healthbar)
                     elif level == 2:
-                        pass # start_level3(playerCar, healthbar)
+                        pass  # start_level3(playerCar, healthbar)
             # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
-                    recover_health()
-                    print(playerCar.health)
+                    buy_health()
 
             # test position of the mouse
             # if ev.type == pygame.MOUSEBUTTONDOWN: # todo delet
@@ -62,6 +65,8 @@ def garage_screen(playerCar, healthbar, level):
         cursor_group.draw(screen)
         cursor_group.update()
         healthbar.draw(screen)
+        playerCar.display_score(screen)
+        playerCar.display_money(screen)
 
         # PYGAME BUILT-IN FUNCTION that updates the screen at every iteration of the loop
         pygame.display.flip()

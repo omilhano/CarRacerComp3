@@ -18,11 +18,10 @@ titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
 
 # level backgrounds
-# TODO convert all files either to png or jpg not both
-level1 = "images/level1bg.jpg"
-level1_end = "images/level1_end.jpg"
+level1 = "images/level1bg.jpg" # TODO convert to png
+level1_end = "images/level1_end.jpg" # TODO convert to png
 level2 = "images/level2bg.png"
-level3 = "images/level3bg.jpg"
+level3 = "images/level3bg.jpg" # TODO convert to png
 # Hazards
 blood_spill = "images/blood_spill_lv1.png"
 cone = "images/traficcone_lv1.png"
@@ -34,8 +33,9 @@ road_sign_lv2 = "images/hazard_roadsign_lv2.png"
 fast_zombie = "images/fastZombie.png"
 normal_zombie = "images/zombie.png"
 static_zombie = "images/staticZombie.png"
-
+# Power Up
+invincibility = "images/mario_head.png"
+slow = "images/slow.png"
 # Cars
-
 normal_car = "images/pickup.png"
 normal_bike = "images/motor_bike.png"

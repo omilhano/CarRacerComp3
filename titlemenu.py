@@ -34,7 +34,7 @@ def interface():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                sys.exit()  # TODO exit
+                sys.exit()
             elif ev.type == pygame.KEYDOWN:
                 # Check if ENTER/Return is KEYDOWN
                 if ev.key == pygame.K_RETURN:

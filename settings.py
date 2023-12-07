@@ -27,7 +27,7 @@ def settings():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                sys.exit() #TODO exit sys
+                sys.exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 275 <= mouse[0] <= 315 and 515 <= mouse[1] <= 560:
                     # mute and play

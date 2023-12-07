@@ -33,11 +33,11 @@ def menu():
         for ev in pygame.event.get():
             # press on exit button
             if ev.type == pygame.QUIT:
-                sys.exit()  # TODO exit
+                sys.exit()
             # press on quit button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
-                    sys.exit()  # TODO exit
+                    sys.exit()
             # press the credits button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 785 <= mouse[0] <= 1130 and 440 <= mouse[1] <= 595:
