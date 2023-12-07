@@ -1,4 +1,5 @@
 import random
+from abc import ABC
 
 import pygame
 
@@ -9,7 +10,7 @@ from config import road_sign_lv1, cone, blood_spill
 # TODO change amount of score each hazard gives !!!
 # TODO oilspill creative for powerup
 # TODO class child
-class Hazards(pygame.sprite.Sprite):
+class Hazards(ABC, pygame.sprite.Sprite):
 
     def __init__(self, hazard_type, position_x, position_y):
         # Call the parent class (Sprite) constructor
@@ -31,7 +32,7 @@ class Hazards(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    def get_type(self):  # liahhhh
+    def get_type(self):
         return self.hazard_type
 
     def get_damage(self):
@@ -39,6 +40,13 @@ class Hazards(pygame.sprite.Sprite):
 
     def hazard_tp(self):
         self.rect.center = [1400, random.choice([605, 682, 760])]
+
+# TODO maybe this child class is useless??
+
+
+class Spill(Hazards):
+    def __init__(self, position_x, position_y):
+        super().__init__("spill", position_x, position_y)
 
 
 hazard_types = {
