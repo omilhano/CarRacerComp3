@@ -9,7 +9,6 @@ from config import road_sign_lv1, cone, blood_spill
 # TODO theyre still spawning on top of each other respectfully
 # TODO change amount of score each hazard gives !!!
 # TODO oilspill creative for powerup
-# TODO class child
 class Hazards(ABC, pygame.sprite.Sprite):
 
     def __init__(self, hazard_type, position_x, position_y):

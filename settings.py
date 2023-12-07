@@ -10,7 +10,7 @@ from sounds import *
 # TODO changes volume buttons sizes
 # Creating a function that creates the GUI
 def settings():
-    from mainmenu import menu
+    from mainmenu import menu # TODO liahh
     # initiating pygame
     pygame.init()
     custom_cursor = Cursor()

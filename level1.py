@@ -3,13 +3,13 @@ from car import Car
 from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
 from healthbar import *
 from hazards import Hazards
+from utils import pause, level_end
+from visual_points import draw
 from zombie import Zombies
-from garage import garage_screen
 import sys
 
 
 # TODO powerups
-# TODO talk eli about sys.exit()
 
 def start_level1():
     pygame.init()
@@ -31,9 +31,8 @@ def start_level1():
     player_group.add(playerCar)
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
     # initialize hazards
-    # TODO change in hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
-                         random.choice([605, 682, 760]))  # TODO change to correct y
+                         random.choice([605, 682, 760]))
     level_cone = Hazards("small", random.randint(1300, 1500), random.choice([605, 682, 760]))
     hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
     all_hazards = pygame.sprite.Group()
@@ -50,42 +49,6 @@ def start_level1():
     all_zombies.add(fastZombie)
     all_zombies.add(normalZombie)
     all_zombies.add(staticZombie)
-    # initialize mouse
-
-    # font
-    corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
-
-    def pause():
-        loop = True
-        pause_screen = pygame.image.load(pause_menu).convert_alpha()
-        pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
-        spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
-        screen.blit(pause_screen, [0, 0])
-        screen.blit(pausetext, [200, 200])
-        screen.blit(spacebartext, [200, 250])
-        while loop:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        screen.fill((0, 0, 0))
-                        loop = False
-            pygame.display.update()
-            clock.tick(60) # TODO ask alex why clock ticks here
-
-    def level_end():
-        loop = True
-        end_screen = pygame.image.load(level1_end).convert_alpha()
-        screen.blit(end_screen, [0, 0])
-        while loop:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    garage_screen(playerCar, healthbar, 1)
-            pygame.display.update()
-            clock.tick(60) # TODO ask alex why clock ticks here
 
     def check_collisions(playerCar, all_sprites):
         object_sprite = None
@@ -117,7 +80,7 @@ def start_level1():
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            healthbar.draw(screen)
+            draw(healthbar, screen)
             playerCar.display_score(screen)
             playerCar.display_money(screen)
             # create hazards on road
@@ -158,8 +121,8 @@ def start_level1():
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
             # Score testing variable
-            if playerCar.score == 300:
-                level_end()
+            if playerCar.score == 1000:
+                level_end(1, playerCar, healthbar)
         else:
             from gameOver import gameover
             pygame.mixer.stop()
@@ -173,4 +136,4 @@ def start_level1():
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting
-    sys.exit()
+    sys.exit()  # todo died screen

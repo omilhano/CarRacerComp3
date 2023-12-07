@@ -3,6 +3,7 @@ import pygame
 from config import garage
 from cursor import Cursor
 from level2 import start_level2
+from visual_points import draw
 
 
 # TODO define powerups
@@ -39,10 +40,6 @@ def garage_screen(playerCar, healthbar, level):
             # press on exit button
             if ev.type == pygame.QUIT:
                 sys.exit()
-            # press on quit button # TODO theres a quit button
-            if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:
-                    sys.exit()
             # press the continue button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 1000 <= mouse[0] <= 1230 and 725 <= mouse[1] <= 760:
@@ -56,7 +53,7 @@ def garage_screen(playerCar, healthbar, level):
                     buy_health()
 
             # test position of the mouse
-            # if ev.type == pygame.MOUSEBUTTONDOWN: # todo delet
+            # if ev.type == pygame.MOUSEBUTTONDOWN:
             #     print(pygame.mouse.get_pos())
 
         # setting background
@@ -64,7 +61,7 @@ def garage_screen(playerCar, healthbar, level):
         # draw mouse
         cursor_group.draw(screen)
         cursor_group.update()
-        healthbar.draw(screen)
+        draw(healthbar, screen)
         playerCar.display_score(screen)
         playerCar.display_money(screen)
 

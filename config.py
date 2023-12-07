@@ -1,5 +1,4 @@
 # TODO learn difference between flip and update
-# TODO utils file
 # File Paths
 # Sounds
 main_sound = "sounds/soundtrackmenu.mp3"

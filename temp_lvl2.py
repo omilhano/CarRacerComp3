@@ -1,14 +1,16 @@
-import sys
 import pygame, random
+from car import Car
+from config import level2, pause_menu, level1_end
+from healthbar import *
 from hazards import Hazards
-from gameOver import gameover
-from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
+from zombie import Zombies
+from garage import garage_screen
+import sys
 
 
 # TODO powerups
-# TODO zombies
 
-def start_level2(playerCar, healthbar):
+def start_level2():
     pygame.init()
 
     # defining screen/background
@@ -22,20 +24,30 @@ def start_level2(playerCar, healthbar):
     game_active = True
     clock = pygame.time.Clock()
 
+    # initialize car
+    playerCar = Car(130, 680, 70)
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
+    healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
     # initialize hazards
-    oilspill_img = pygame.image.load(oil_spill).convert_alpha()
-    beartrap_img = pygame.image.load(bear_trap).convert_alpha()
-    roadsign_img = pygame.image.load(road_sign_lv2).convert_alpha()
-    oilspill = Hazards(1000, 680, 5, oilspill_img, "bloodspill")
-    beartrap = Hazards(1200, 608, 5, beartrap_img, "beartrap")
-    hazard_sign = Hazards(1500, 760, 5, roadsign_img, "hazard_sign")
+    bloodspill = Hazards("spill", random.randint(1300, 1500),
+                         random.choice([605, 682, 760]))
+    level_cone = Hazards("small", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
     all_hazards = pygame.sprite.Group()
-    all_hazards.add(oilspill)
-    all_hazards.add(beartrap)
+    all_hazards.add(bloodspill)
+    all_hazards.add(level_cone)
     all_hazards.add(hazard_sign)
 
+    # create zombies
+    fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    normalZombie = Zombies("normal", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760]))
+
+    all_zombies = pygame.sprite.Group()
+    all_zombies.add(fastZombie)
+    all_zombies.add(normalZombie)
+    all_zombies.add(staticZombie)
     # initialize mouse
 
     # font
@@ -58,30 +70,34 @@ def start_level2(playerCar, healthbar):
                         screen.fill((0, 0, 0))
                         loop = False
             pygame.display.update()
-            clock.tick(60)
+            clock.tick(60)  # here so mouse can have movement
 
-    def display_score():
-        current_score = playerCar.score
-        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
-        score_rect = score_surface.get_rect(center=(400, 30))
-        screen.blit(score_surface, score_rect)
+    def level_end(): # Todo utils
+        loop = True
+        end_screen = pygame.image.load(level1_end).convert_alpha()
+        screen.blit(end_screen, [0, 0])
+        while loop:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    garage_screen(playerCar, healthbar, 1)
+            pygame.display.update()
 
-    def check_collisions(playerCar, all_hazards): # TODO redo
-        tester = ""
-        for sprite in all_hazards:
+    def check_collisions(playerCar, all_sprites):
+        object_sprite = None
+        for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
                 pass
             else:
-                tester = sprite.getType()
-                print(tester)
-        return tester
+                object_sprite = sprite
+        return object_sprite
 
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 carryOn = False
             elif event.type == pygame.KEYDOWN:
-                # damage taker test
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
                 if event.key == pygame.K_s:
@@ -99,7 +115,8 @@ def start_level2(playerCar, healthbar):
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
             healthbar.draw(screen)
-            display_score()
+            playerCar.display_score(screen)
+            playerCar.display_money(screen)
             # create hazards on road
             roadLane = 0
             for hazards in all_hazards:
@@ -114,40 +131,43 @@ def start_level2(playerCar, healthbar):
                     else:
                         hazards.rect.center = [1300, 760]
             all_hazards.draw(screen)
+            fastZombie.object_speed(random.randint(30, 40))
+            normalZombie.object_speed(random.randint(20, 30))
+            staticZombie.object_speed(random.randint(20, 30))
+            for zombies in all_zombies:
+                if zombies.can_spawn():
+                    if zombies.rect.right < 0:
+                        roadLane = random.randint(1, 3)
+                        if roadLane == 1:
+                            zombies.rect.center = [1300, 605]
+                        elif roadLane == 2:
+                            zombies.rect.center = [1300, 682]
+                        else:
+                            zombies.rect.center = [1300, 760]
 
             # collision logic
-
-            if check_collisions(playerCar, all_hazards) == "bloodspill":
-                playerCar.change_rand_lane()
-            elif check_collisions(playerCar, all_hazards) == "beartrap":
-                if playerCar.get_damaged(5):
+            hazard_collide = check_collisions(playerCar, all_hazards)
+            if hazard_collide:
+                if playerCar.get_damaged(hazard_collide):  # todo :3
                     game_active = False
-                else:
-                    pygame.time.delay(5000)
-                    healthbar.hp = playerCar.health
-                    beartrap.rect.center = [1400, random.choice([605, 682, 760])]
-            elif check_collisions(playerCar, all_hazards) == "hazard_sign":
-                if playerCar.get_damaged(5):
-                    game_active = False
-                else:
-                    healthbar.hp = playerCar.health
-                    hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
-
-            # actually its 1000 but testing 200
-            if playerCar.score == 400:
-                # scuffed
-                from garage import garage_screen
-                garage_screen(playerCar, healthbar, 2)
+                healthbar.hp = playerCar.health
+            zombie_collide = check_collisions(playerCar, all_zombies)
+            if zombie_collide:
+                playerCar.get_money(zombie_collide)
+            # Score testing variable
+            if playerCar.score == 1000:
+                level_end()
         else:
-            # TODO GAME OVER MENU
+            from gameOver import gameover
             pygame.mixer.stop()
             gameover()
-            pass
 
         # Number of frames per second e.g. 60
         clock.tick(60)
+        all_zombies.draw(screen)
         # so its on top of everything
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
+        # this doesn't raise an error when quitting
     sys.exit()

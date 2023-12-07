@@ -41,7 +41,7 @@ class Car(pygame.sprite.Sprite):
     def collide_spill(self):
         # TODO change car color
         # todo spill teleports away
-        # todo how to make it less weird
+        # todo change mask size or center or wtv
         self.change_rand_lane()
 
 
@@ -79,7 +79,7 @@ class Car(pygame.sprite.Sprite):
     def updateScore(self, score):
         self.score += score
 
-    def display_score(self, surface):  # TODO ask liah draw on each level or just on mother file
+    def display_score(self, surface):  # TODO utils
         # font
         corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
         current_score = self.score
@@ -87,7 +87,7 @@ class Car(pygame.sprite.Sprite):
         score_rect = score_surface.get_rect(center=(400, 30))
         surface.blit(score_surface, score_rect)
 
-    def display_money(self, surface):  # TODO ask liah draw on each level or just on mother file
+    def display_money(self, surface):  # TODO utils
         # font
         corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
         current_money = self.money
