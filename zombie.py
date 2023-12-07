@@ -41,7 +41,7 @@ class Zombies(pygame.sprite.Sprite):
 
 zombie_types = {
     "fast": {"speed": 10, "money": 5, "probability": 0.0005, "image": fast_zombie},
-    
+
     "normal": {"speed": 6.5, "money": 3, "probability": 0.001,
                "image": normal_zombie},
 
