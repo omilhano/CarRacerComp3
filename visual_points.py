@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init()
-#     font
+# font
 corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
 
 
