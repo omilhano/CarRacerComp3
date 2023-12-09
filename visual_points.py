@@ -19,14 +19,14 @@ def draw(health_points, surface):
     surface.blit(hp_text, hp_rect)
 
 
-def display_score(score, surface):  # TODO utils
+def display_score(score, surface):
     current_score = score
     score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
     score_rect = score_surface.get_rect(center=(400, 30))
     surface.blit(score_surface, score_rect)
 
 
-def display_money(money, surface):  # TODO utils
+def display_money(money, surface):
     current_money = money
     money_surface = corbelfont.render(f" Money:{current_money}", False, (197, 136, 215))
     money_rect = money_surface.get_rect(center=(580, 30))

@@ -29,7 +29,7 @@ def garage_screen(playerCar, healthbar, level):
             healthbar.hp = playerCar.health
 
     def buy_health():
-        if playerCar.health != 100: #added this
+        if playerCar.health != 100:  # added this
             if playerCar.money - 5 > -1:
                 playerCar.money -= 5
                 recover_health()
@@ -52,10 +52,6 @@ def garage_screen(playerCar, healthbar, level):
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
                     buy_health()
-
-            # test position of the mouse
-            # if ev.type == pygame.MOUSEBUTTONDOWN:
-            #     print(pygame.mouse.get_pos())
 
         # setting background
         screen.blit(bg, (0, 0))

@@ -7,10 +7,11 @@ from config import settings_screen
 from cursor import Cursor
 from sounds import *
 
+
 # TODO changes volume buttons sizes
 # Creating a function that creates the GUI
 def settings():
-    from mainmenu import menu # TODO liahh
+    from mainmenu import menu  # TODO liahh
     # initiating pygame
     pygame.init()
     custom_cursor = Cursor()
@@ -29,15 +30,18 @@ def settings():
             if ev.type == pygame.QUIT:
                 sys.exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 275 <= mouse[0] <= 315 and 515 <= mouse[1] <= 560:
+                if 275 <= mouse[0] <= 315 and 515 <= mouse[1] <= 565:
                     # mute and play
                     pause()  # this just turns off and on the song, doesnt actually pause
                 if 600 <= mouse[0] <= 655 and 515 <= mouse[1] <= 545:
                     menu()
-                if 270 <= mouse[0] <= 290 and 428 <= mouse[1] <= 433:
+                if 280 <= mouse[0] <= 310 and 435 <= mouse[1] <= 455:
                     lower_volume()
-                if 620 <= mouse[0] <= 642 and 420 <= mouse[1] <= 445:
+                if 629 <= mouse[0] <= 663 and 431 <= mouse[1] <= 460:
                     increase_volume()
+                # test position of the mouse
+                if ev.type == pygame.MOUSEBUTTONDOWN:
+                    print(pygame.mouse.get_pos())
         # setting the background color as black
         bg = pygame.image.load(settings_screen).convert_alpha()
         screen.blit(bg, (0, 0))
