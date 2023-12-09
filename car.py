@@ -78,8 +78,8 @@ class Car(pygame.sprite.Sprite):
         self.money += zombie.money
         zombie.zombie_tp()
 
-    def updateScore(self, score):
-        self.score += score
+    def updateScore(self, hazard_type):
+        self.score += hazards.hazard_types[hazard_type]["score"]
 
     def change_rand_lane(self):
         if self.rect.y == Car.TOP_LANE_Y:

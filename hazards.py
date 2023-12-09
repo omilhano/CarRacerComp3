@@ -6,8 +6,6 @@ import pygame
 from config import road_sign_lv1, cone, blood_spill
 
 
-# TODO theyre still spawning on top of each other respectfully
-# TODO change amount of score each hazard gives !!!
 # TODO oilspill creative for powerup
 class Hazards(ABC, pygame.sprite.Sprite):
 
@@ -21,6 +19,7 @@ class Hazards(ABC, pygame.sprite.Sprite):
         self.speed = 5
         # options for hazards
         self.damage = hazard_types[hazard_type]["damage"]
+        self.score = hazard_types[hazard_type]["score"]
         self.image = pygame.image.load(hazard_types[hazard_type]["image"]).convert_alpha()
 
         # Defining rectangle and positions
@@ -49,9 +48,9 @@ class Spill(Hazards):
 
 
 hazard_types = {
-    "tall": {"damage": 5, "image": road_sign_lv1},
+    "tall": {"damage": 5, "image": road_sign_lv1, "score": 100},
 
-    "small": {"damage": 3, "image": cone},
+    "small": {"damage": 3, "image": cone, "score": 25},
 
-    "spill": {"damage": 0, "image": blood_spill}
+    "spill": {"damage": 0, "image": blood_spill, "score": 75}
 }

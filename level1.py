@@ -95,7 +95,7 @@ def start_level1():
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(50)
+                    playerCar.updateScore(hazards.hazard_type)
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazards)
 
@@ -124,7 +124,7 @@ def start_level1():
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
             # Score testing variable
-            if playerCar.score == 1000:
+            if playerCar.score > 1000:
                 level_end(1, playerCar, healthbar)
 
             # check collision between hazards ( don't spawn same x)

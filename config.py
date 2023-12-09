@@ -1,4 +1,3 @@
-# TODO learn difference between flip and update
 # File Paths
 # Sounds
 main_sound = "sounds/soundtrackmenu.mp3"
