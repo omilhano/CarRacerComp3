@@ -9,7 +9,7 @@ cursor_img = "images/cursor.png"
 main_menu = "images/menuimg.png"
 intro_game = "images/intro_to_game.png"
 garage = "images/garage.png"
-settings_screen = "images/settings.jpg"
+settings_screen = "images/settings.png"
 gameover = "images/gameOver.png"
 continue_scr = "images/inprogress.png"
 credits_screen = "images/credits.png"
@@ -19,10 +19,10 @@ titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
 
 # level backgrounds
-level1 = "images/level1bg.jpg" # TODO convert to png
-level1_end = "images/level1_end.jpg" # TODO convert to png
+level1 = "images/level1bg.png"
+level1_end = "images/level1_end.png"
 level2 = "images/level2bg.png"
-level3 = "images/level3bg.jpg" # TODO convert to png
+level3 = "images/level3bg.png"
 # Hazards
 blood_spill = "images/blood_spill_lv1.png"
 cone = "images/traficcone_lv1.png"

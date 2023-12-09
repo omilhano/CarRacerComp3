@@ -30,13 +30,16 @@ def game_intro():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:  # TODO back to menu
+                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 725:  # TODO back to menu
                     from mainmenu import menu #TODO fix circular import
                     menu()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:  # TODO singleplayer
+                if 47 <= mouse[0] <= 500 and 527 <= mouse[1] <= 594:  # TODO singleplayer
                     instructions(1)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 712:  # TODO multiplayer
+                if 783 <= mouse[0] <= 1205 and 527 <= mouse[1] <= 595:  # TODO multiplayer
                     instructions(2)
+            # test position of the mouse
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print(pygame.mouse.get_pos())
         pygame.display.flip()

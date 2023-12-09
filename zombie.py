@@ -3,7 +3,6 @@ import random
 from config import normal_zombie, fast_zombie, static_zombie
 
 
-# Todo make fast zombie even more rare
 class Zombies(pygame.sprite.Sprite):
 
     def __init__(self, type_zombie, position_x, position_y):
