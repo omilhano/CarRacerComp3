@@ -19,8 +19,6 @@ def credits_():
     credit_text_eli = arialfont.render('Eli Godinho, 20221781', True, TEXTCOLOR)
     while True:
         mouse = pygame.mouse.get_pos()
-        # solves circular import
-        from mainmenu import menu
         mouse = pygame.mouse.get_pos()
         for ev in pygame.event.get():
             # press on exit button
@@ -30,6 +28,7 @@ def credits_():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 print(pygame.mouse.get_pos())
                 if 995 <= mouse[0] <= 1230 and 630 <= mouse[1] <= 775:
+                    from mainmenu import menu #TODO solve circular import
                     menu()
 
         bg = pygame.image.load(credits_screen).convert_alpha()
