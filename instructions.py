@@ -1,6 +1,6 @@
 import sys
 import pygame
-from config import intructions_single
+from config import intructions_single, intructions_multi
 from cursor import Cursor
 from level1 import start_level1
 
@@ -21,7 +21,7 @@ def instructions(players):
         if players == 1:
             bg = pygame.image.load(intructions_single)
         else:
-            bg = pygame.image.load(intructions_single) #TODO instrunctions multi
+            bg = pygame.image.load(intructions_multi)
         screen.blit(bg, (0, 0))
         # draw mouse
         cursor_group.draw(screen)
