@@ -6,7 +6,6 @@ from config import intro_game
 from cursor import Cursor
 
 
-
 def game_intro():
     pygame.init()
     # custom cursor image
@@ -30,16 +29,19 @@ def game_intro():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 725:  # TODO back to menu
-                    from mainmenu import menu #TODO fix circular import
+                if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 725:
+                    # back to menu
+                    from mainmenu import menu  # TODO fix circular import
                     menu()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 47 <= mouse[0] <= 500 and 527 <= mouse[1] <= 594:  # TODO singleplayer
+                # single player
+                if 47 <= mouse[0] <= 500 and 527 <= mouse[1] <= 594:
                     instructions(1)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if 783 <= mouse[0] <= 1205 and 527 <= mouse[1] <= 595:  # TODO multiplayer
+                # multiplayer
+                if 783 <= mouse[0] <= 1205 and 527 <= mouse[1] <= 595:
                     instructions(2)
             # test position of the mouse
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print(pygame.mouse.get_pos())
+            # if event.type == pygame.MOUSEBUTTONDOWN:
+            #     print(pygame.mouse.get_pos())
         pygame.display.flip()

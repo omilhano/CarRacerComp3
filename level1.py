@@ -1,4 +1,5 @@
-import pygame, random
+import pygame
+import random
 from car import Car
 from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
 from healthbar import *
@@ -59,6 +60,13 @@ def start_level1():
                 object_sprite = sprite
         return object_sprite
 
+    def check_if_stacked(hazard):
+        for other_hazard in all_hazards:
+            if pygame.sprite.collide_mask(hazard, other_hazard) is None:
+                pass
+            else:
+                hazard.hazard_tp()
+
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -84,18 +92,13 @@ def start_level1():
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
             # create hazards on road
-            roadLane = 0
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
                     playerCar.updateScore(50)
-                    roadLane = random.randint(1, 3)
-                    if roadLane == 1:
-                        hazards.rect.center = [1300, 605]
-                    elif roadLane == 2:
-                        hazards.rect.center = [1300, 682]
-                    else:
-                        hazards.rect.center = [1300, 760]
+                    hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+                    check_if_stacked(hazards)
+
             all_hazards.draw(screen)
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
@@ -105,13 +108,13 @@ def start_level1():
                     if zombies.rect.right < 0:
                         roadLane = random.randint(1, 3)
                         if roadLane == 1:
-                            zombies.rect.center = [1300, 605]
+                            zombies.rect.center = [random.randint(1400, 1500) + 40, 605]
                         elif roadLane == 2:
-                            zombies.rect.center = [1300, 682]
+                            zombies.rect.center = [random.randint(1400, 1500) + 50, 682]
                         else:
-                            zombies.rect.center = [1300, 760]
+                            zombies.rect.center = [random.randint(1400, 1500) + 120, 760]
 
-            # collision logic
+            # collision logic between car and obstacles
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
                 if playerCar.get_damaged(hazard_collide):  # todo :3
@@ -123,6 +126,9 @@ def start_level1():
             # Score testing variable
             if playerCar.score == 1000:
                 level_end(1, playerCar, healthbar)
+
+            # check collision between hazards ( don't spawn same x)
+
         else:
             from gameOver import gameover
             pygame.mixer.stop()

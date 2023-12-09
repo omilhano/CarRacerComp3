@@ -8,7 +8,6 @@ from cursor import Cursor
 from sounds import *
 
 
-# TODO changes volume buttons sizes
 # Creating a function that creates the GUI
 def settings():
     from mainmenu import menu  # TODO liahh

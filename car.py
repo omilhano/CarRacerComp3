@@ -51,9 +51,13 @@ class Car(pygame.sprite.Sprite):
 
     def moveRight(self, pixels):
         self.rect.x += pixels
+        if self.rect.right > 1270:
+            self.rect.x -= pixels
 
     def moveLeft(self, pixels):
         self.rect.x -= pixels
+        if self.rect.x < 0:
+            self.rect.x += pixels
 
     def moveUp(self):
         if self.rect.y == Car.MID_LANE_Y:
