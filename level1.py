@@ -4,7 +4,7 @@ from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_
 from healthbar import *
 from hazards import Hazards
 from utils import pause, level_end
-from visual_points import draw
+from visual_points import draw, display_score, display_money
 from zombie import Zombies
 import sys
 
@@ -81,8 +81,8 @@ def start_level1():
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
             draw(healthbar, screen)
-            playerCar.display_score(screen)
-            playerCar.display_money(screen)
+            display_score(playerCar.score, screen)
+            display_money(playerCar.money, screen)
             # create hazards on road
             roadLane = 0
             for hazards in all_hazards:
