@@ -38,9 +38,6 @@ class Car(pygame.sprite.Sprite):
         return self.health <= 0
 
     def collide_spill(self):
-        # TODO change car color
-        # todo spill teleports away
-        # todo change mask size or center or wtv
         self.change_rand_lane()
 
     def collide_beartrap(self):  # TODO
