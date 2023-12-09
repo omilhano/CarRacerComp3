@@ -29,9 +29,10 @@ def garage_screen(playerCar, healthbar, level):
             healthbar.hp = playerCar.health
 
     def buy_health():
-        if playerCar.money - 5 > -1:
-            playerCar.money -= 5
-            recover_health()
+        if playerCar.health == 100: #added this
+            if playerCar.money - 5 > -1:
+                playerCar.money -= 5
+                recover_health()
 
     while True:
         mouse = pygame.mouse.get_pos()
