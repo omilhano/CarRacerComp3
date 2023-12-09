@@ -1,11 +1,11 @@
 import sys
 import pygame
-from config import intructions
+from config import intructions_single
 from cursor import Cursor
 from level1 import start_level1
 
 
-def instructions():
+def instructions(players):
     pygame.init()
     # custom cursor image
     custom_cursor = Cursor()
@@ -18,7 +18,10 @@ def instructions():
     pygame.display.set_caption("Car Racer")
 
     while True:
-        bg = pygame.image.load(intructions)
+        if players == 1:
+            bg = pygame.image.load(intructions_single)
+        else:
+            bg = pygame.image.load(intructions_single) #TODO instrunctions multi
         screen.blit(bg, (0, 0))
         # draw mouse
         cursor_group.draw(screen)

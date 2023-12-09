@@ -7,12 +7,13 @@ icon_image = 'images/icon.png'
 cursor_img = "images/cursor.png"
 # Backgrounds
 main_menu = "images/menuimg.png"
+intro_game = "images/intro_to_game.png"
 garage = "images/garage.png"
 settings_screen = "images/settings.jpg"
 gameover = "images/gameOver.png"
 continue_scr = "images/inprogress.png"
 credits_screen = "images/credits.png"
-intructions = "images/instructions.png"
+intructions_single = "images/instructions.png"
 titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
 
