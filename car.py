@@ -79,21 +79,21 @@ class Car(pygame.sprite.Sprite):
     def updateScore(self, score):
         self.score += score
 
-    def display_score(self, surface):  # TODO utils
-        # font
-        corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
-        current_score = self.score
-        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
-        score_rect = score_surface.get_rect(center=(400, 30))
-        surface.blit(score_surface, score_rect)
-
-    def display_money(self, surface):  # TODO utils
-        # font
-        corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
-        current_money = self.money
-        money_surface = corbelfont.render(f" Money:{current_money}", False, (197, 136, 215))
-        money_rect = money_surface.get_rect(center=(580, 30))
-        surface.blit(money_surface, money_rect)
+    # def display_score(self, surface):  # TODO utils
+    #     # font
+    #     corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
+    #     current_score = self.score
+    #     score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
+    #     score_rect = score_surface.get_rect(center=(400, 30))
+    #     surface.blit(score_surface, score_rect)
+    #
+    # def display_money(self, surface):  # TODO utils
+    #     # font
+    #     corbelfont = pygame.font.SysFont('Corbel', 40)  # Select font and size
+    #     current_money = self.money
+    #     money_surface = corbelfont.render(f" Money:{current_money}", False, (197, 136, 215))
+    #     money_rect = money_surface.get_rect(center=(580, 30))
+    #     surface.blit(money_surface, money_rect)
 
     def change_rand_lane(self):
         if self.rect.y == Car.TOP_LANE_Y:

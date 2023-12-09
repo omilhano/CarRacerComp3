@@ -3,7 +3,7 @@ import pygame
 from config import garage
 from cursor import Cursor
 from level2 import start_level2
-from visual_points import draw
+from visual_points import draw, display_score, display_money
 
 
 # TODO define powerups
@@ -63,8 +63,8 @@ def garage_screen(playerCar, healthbar, level):
         cursor_group.draw(screen)
         cursor_group.update()
         draw(healthbar, screen)
-        playerCar.display_score(screen)
-        playerCar.display_money(screen)
+        display_score(playerCar.score, screen)
+        display_money(playerCar.money, screen)
 
         # PYGAME BUILT-IN FUNCTION that updates the screen at every iteration of the loop
         pygame.display.flip()
