@@ -5,8 +5,6 @@ from cursor import Cursor
 from level2 import start_level2
 from visual_points import draw, display_score, display_money
 
-
-# TODO define powerups
 def garage_screen(playerCar, healthbar, level):
     pygame.init()
 
