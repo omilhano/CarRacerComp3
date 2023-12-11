@@ -4,6 +4,7 @@ from car import Car
 from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
 from healthbar import *
 from hazards import Hazards
+from powerUps import Invincible
 from utils import pause, level_end
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
@@ -43,13 +44,26 @@ def start_level1():
 
     # create zombies
     fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not fastZombie.can_spawn():
+        fastZombie.zombie_tp()
     normalZombie = Zombies("normal", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not normalZombie.can_spawn():
+        fastZombie.zombie_tp()
     staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not staticZombie.can_spawn():
+        fastZombie.zombie_tp()
 
     all_zombies = pygame.sprite.Group()
     all_zombies.add(fastZombie)
     all_zombies.add(normalZombie)
     all_zombies.add(staticZombie)
+
+    # create power ups
+    invincibility = Invincible(random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not invincibility.can_spawn():
+        invincibility.powerup_tp()
+    all_powers = pygame.sprite.Group()
+    all_powers.add(invincibility)
 
     def check_collisions(playerCar, all_sprites):
         object_sprite = None
@@ -99,35 +113,40 @@ def start_level1():
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazards)
 
-            all_hazards.draw(screen)
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
             staticZombie.object_speed(random.randint(20, 30))
             for zombies in all_zombies:
                 if zombies.can_spawn():
                     if zombies.rect.right < 0:
-                        roadLane = random.randint(1, 3)
-                        if roadLane == 1:
-                            zombies.rect.center = [random.randint(1400, 1500) + 40, 605]
-                        elif roadLane == 2:
-                            zombies.rect.center = [random.randint(1400, 1500) + 50, 682]
-                        else:
-                            zombies.rect.center = [random.randint(1400, 1500) + 120, 760]
+                        zombies.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+
+            invincibility.object_speed(random.randint(20, 30))
+            for powers in all_powers:
+                if powers.can_spawn():
+                    if powers.rect.right < 0:
+                        powers.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
 
             # collision logic between car and obstacles
+            powerup_collide = check_collisions(playerCar, all_powers)
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
-                if playerCar.get_damaged(hazard_collide):  # todo :3
-                    game_active = False
-                healthbar.hp = playerCar.health
+                if playerCar.can_collide:
+                    if playerCar.get_damaged(hazard_collide):  # todo :3
+                        game_active = False
+                    healthbar.hp = playerCar.health
+                    if powerup_collide: #so you cant take the ppowerup twice
+                        playerCar.gain_powerup(powerup_collide)
             zombie_collide = check_collisions(playerCar, all_zombies)
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
-            # Score testing variable
-            if playerCar.score > 100:
-                level_end(1, playerCar, healthbar)
 
-            playerCar.update_movement()
+
+
+            playerCar.update_powerup()
+            # Score testing variable
+            if playerCar.score > 1000:
+                level_end(1, playerCar, healthbar)
 
             # check collision between hazards ( don't spawn same x)
 
@@ -139,6 +158,8 @@ def start_level1():
         # Number of frames per second e.g. 60
         clock.tick(60)
         all_zombies.draw(screen)
+        all_powers.draw(screen)
+        all_hazards.draw(screen)
         # so its on top of everything
         player_group.draw(screen)
         # Refresh Screen

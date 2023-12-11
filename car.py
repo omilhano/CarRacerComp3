@@ -4,6 +4,7 @@ import pygame
 import hazards
 import random
 from config import normal_car
+from powerUps import Invincible
 
 
 class Car(pygame.sprite.Sprite):
@@ -21,6 +22,7 @@ class Car(pygame.sprite.Sprite):
 
         # Load the car image
 
+        self.can_collide = True
         self.image = pygame.image.load(normal_car).convert_alpha()
         self.rect = self.image.get_rect()
         self.car_mask = pygame.mask.from_surface(self.image)
@@ -31,7 +33,7 @@ class Car(pygame.sprite.Sprite):
         self.score = 0
         self.money = 0
         self.movement = True
-        self.stop_movement = 0
+        self.status_change_time = 0
 
     # If collide lower hp
     # Returns true if kill car
@@ -43,19 +45,27 @@ class Car(pygame.sprite.Sprite):
         self.health -= hazard.get_damage()
         hazard.hazard_tp()
         return self.health <= 0
-
+    def gain_powerup(self, powerup):
+        if isinstance(powerup, Invincible):
+            self.gain_invincibility()
+        powerup.powerup_tp()
+    def gain_invincibility(self):
+        if self.can_collide:
+            self.can_collide = False
+            self.status_change_time = time.time()
+    def update_powerup(self):
+        if not self.can_collide and time.time() > self.status_change_time + 5:
+            self.can_collide = True
     def collide_spill(self):
         self.change_rand_lane()
 
     def collide_beartrap(self):
         if self.movement:
             self.movement = False
-            print("im stuck")
-            self.stop_movement = time.time()
+            self.status_change_time = time.time()
 
     def update_movement(self):
-        if not self.movement and time.time() > self.stop_movement + 5:
-            print("im free")
+        if not self.movement and time.time() > self.status_change_time + 5:
             self.movement = True
 
     def moveRight(self, pixels):

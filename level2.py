@@ -81,7 +81,7 @@ def start_level2(playerCar, healthbar):
         if keys[pygame.K_d]:
             playerCar.moveRight(5)
         if keys[pygame.K_ESCAPE]:
-            pause()
+            pass
 
         if game_active:
             screen.blit(bg, (0, 0))
@@ -124,12 +124,10 @@ def start_level2(playerCar, healthbar):
                 playerCar.get_money(zombie_collide)
             # Score testing variable
             if playerCar.score > 400:
+                from utils import level_end # TODO this is  NOT a circular import wtf
                 level_end(2, playerCar, healthbar)
 
-            if playerCar.score > 2000:
-                # scuffed
-                from garage import garage_screen
-                garage_screen(playerCar, healthbar, 2)
+            playerCar.update_movement()
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
@@ -142,4 +140,4 @@ def start_level2(playerCar, healthbar):
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    sys.exit()
+    sys.exit() # TODO death
