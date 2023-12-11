@@ -135,13 +135,11 @@ def start_level1():
                     if playerCar.get_damaged(hazard_collide):  # todo :3
                         game_active = False
                     healthbar.hp = playerCar.health
-                    if powerup_collide: #so you cant take the ppowerup twice
-                        playerCar.gain_powerup(powerup_collide)
+            if powerup_collide:
+                playerCar.gain_powerup(powerup_collide)
             zombie_collide = check_collisions(playerCar, all_zombies)
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
-
-
 
             playerCar.update_powerup()
             # Score testing variable

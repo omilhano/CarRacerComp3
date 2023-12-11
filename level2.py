@@ -123,7 +123,7 @@ def start_level2(playerCar, healthbar):
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
             # Score testing variable
-            if playerCar.score > 400:
+            if playerCar.score > 2000:
                 from utils import level_end # TODO this is  NOT a circular import wtf
                 level_end(2, playerCar, healthbar)
 

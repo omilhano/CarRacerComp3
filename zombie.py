@@ -37,6 +37,7 @@ class Zombies(pygame.sprite.Sprite):
         else:
             self.rect.center = [-10, 0]
 
+
 # TODo fast zombie too big
 zombie_types = {
     "fast": {"speed": 10, "money": 5, "probability": 0.0005, "image": fast_zombie},

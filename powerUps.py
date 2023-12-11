@@ -29,7 +29,7 @@ class Powers(ABC, pygame.sprite.Sprite):
 # TODO this
 class Invincible(Powers):
     def __init__(self, position_x, position_y, ):
-        super().__init__(position_x, position_y, 9, "invincible", 0.0002)  # todo change probability and size
+        super().__init__(position_x, position_y, 9, "invincible", 0.0004)  # todo change probability and size
 
         self.image = pygame.image.load(invincibility).convert_alpha()
         self.rect = self.image.get_rect()
