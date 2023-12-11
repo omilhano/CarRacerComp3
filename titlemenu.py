@@ -22,7 +22,7 @@ def interface():
     pygame.display.set_icon(icon)
     # initialize at certain res
     res = (1282, 800)
-    screen = pygame.display.set_mode((res))
+    screen = pygame.display.set_mode(res)
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
     cursor_group.add(custom_cursor)

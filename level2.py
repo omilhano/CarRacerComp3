@@ -3,6 +3,8 @@ import pygame, random
 from hazards import Hazards
 from gameOver import gameover
 from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
+from visual_points import draw, display_score, display_money
+from zombie import Zombies
 
 
 # TODO powerups
@@ -25,56 +27,42 @@ def start_level2(playerCar, healthbar):
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     # initialize hazards
-    oilspill_img = pygame.image.load(oil_spill).convert_alpha()
-    beartrap_img = pygame.image.load(bear_trap).convert_alpha()
-    roadsign_img = pygame.image.load(road_sign_lv2).convert_alpha()
-    oilspill = Hazards(1000, 680, 5, oilspill_img, "bloodspill")
-    beartrap = Hazards(1200, 608, 5, beartrap_img, "beartrap")
-    hazard_sign = Hazards(1500, 760, 5, roadsign_img, "hazard_sign")
+    oilspill = Hazards("spill", random.randint(1300, 1500),
+                       random.choice([605, 682, 760]))
+    beartrap = Hazards("beartrap", random.randint(1300, 1500),
+                       random.choice([605, 682, 760]))  # TODO change to correct
+    hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
+
     all_hazards = pygame.sprite.Group()
     all_hazards.add(oilspill)
     all_hazards.add(beartrap)
     all_hazards.add(hazard_sign)
 
-    # initialize mouse
+    # create zombies
+    fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    normalZombie = Zombies("normal", random.randint(1300, 1500), random.choice([605, 682, 760]))
+    staticZombie = Zombies("static", random.randint(1300, 1500), random.choice([605, 682, 760]))
 
-    # font
-    corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
+    all_zombies = pygame.sprite.Group()
+    all_zombies.add(fastZombie)
+    all_zombies.add(normalZombie)
+    all_zombies.add(staticZombie)
 
-    def pause():
-        loop = True
-        pause_screen = pygame.image.load(pause_menu).convert_alpha()
-        pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
-        spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
-        screen.blit(pause_screen, [0, 0])
-        screen.blit(pausetext, [200, 200])
-        screen.blit(spacebartext, [200, 250])
-        while loop:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        screen.fill((0, 0, 0))
-                        loop = False
-            pygame.display.update()
-            clock.tick(60)
-
-    def display_score():
-        current_score = playerCar.score
-        score_surface = corbelfont.render(f" Score:{current_score}", False, (197, 136, 215))
-        score_rect = score_surface.get_rect(center=(400, 30))
-        screen.blit(score_surface, score_rect)
-
-    def check_collisions(playerCar, all_hazards): # TODO redo
-        tester = ""
-        for sprite in all_hazards:
+    def check_collisions(playerCar, all_sprites):
+        object_sprite = None
+        for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
                 pass
             else:
-                tester = sprite.getType()
-                print(tester)
-        return tester
+                object_sprite = sprite
+        return object_sprite
+
+    def check_if_stacked(hazard):
+        for other_hazard in all_hazards:
+            if pygame.sprite.collide_mask(hazard, other_hazard) is None:
+                pass
+            else:
+                hazard.hazard_tp()
 
     while carryOn:
         for event in pygame.event.get():
@@ -98,43 +86,47 @@ def start_level2(playerCar, healthbar):
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            healthbar.draw(screen)
-            display_score()
+            draw(healthbar, screen)
+            display_score(playerCar.score, screen)
+            display_money(playerCar.money, screen)
+
             # create hazards on road
-            roadLane = 0
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(50)
-                    roadLane = random.randint(1, 3)
-                    if roadLane == 1:
-                        hazards.rect.center = [1300, 605]
-                    elif roadLane == 2:
-                        hazards.rect.center = [1300, 682]
-                    else:
-                        hazards.rect.center = [1300, 760]
+                    playerCar.updateScore(hazards.hazard_type)
+                    hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+                    check_if_stacked(hazards)
             all_hazards.draw(screen)
 
-            # collision logic
+            fastZombie.object_speed(random.randint(30, 40))
+            normalZombie.object_speed(random.randint(20, 30))
+            staticZombie.object_speed(random.randint(20, 30))
+            for zombies in all_zombies:
+                if zombies.can_spawn():
+                    if zombies.rect.right < 0:
+                        roadLane = random.randint(1, 3)
+                        if roadLane == 1:
+                            zombies.rect.center = [random.randint(1400, 1500) + 40, 605]
+                        elif roadLane == 2:
+                            zombies.rect.center = [random.randint(1400, 1500) + 50, 682]
+                        else:
+                            zombies.rect.center = [random.randint(1400, 1500) + 120, 760]
 
-            if check_collisions(playerCar, all_hazards) == "bloodspill":
-                playerCar.change_rand_lane()
-            elif check_collisions(playerCar, all_hazards) == "beartrap":
-                if playerCar.get_damaged(5):
+            # collision logic between car and obstacles
+            hazard_collide = check_collisions(playerCar, all_hazards)
+            if hazard_collide:
+                if playerCar.get_damaged(hazard_collide):  # todo :3
                     game_active = False
-                else:
-                    pygame.time.delay(5000)
-                    healthbar.hp = playerCar.health
-                    beartrap.rect.center = [1400, random.choice([605, 682, 760])]
-            elif check_collisions(playerCar, all_hazards) == "hazard_sign":
-                if playerCar.get_damaged(5):
-                    game_active = False
-                else:
-                    healthbar.hp = playerCar.health
-                    hazard_sign.rect.center = [1400, random.choice([605, 682, 760])]
+                healthbar.hp = playerCar.health
+            zombie_collide = check_collisions(playerCar, all_zombies)
+            if zombie_collide:
+                playerCar.get_money(zombie_collide)
+            # Score testing variable
+            if playerCar.score > 400:
+                level_end(2, playerCar, healthbar)
 
-            # actually its 1000 but testing 200
-            if playerCar.score == 400:
+            if playerCar.score > 2000:
                 # scuffed
                 from garage import garage_screen
                 garage_screen(playerCar, healthbar, 2)

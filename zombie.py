@@ -35,7 +35,7 @@ class Zombies(pygame.sprite.Sprite):
         if self.can_spawn():
             self.rect.center = [1400, random.choice([605, 682, 760])]
         else:
-            self.rect.center = [-10, 0] # TODO test maybe wrong
+            self.rect.center = [-10, 0]
 
 
 zombie_types = {

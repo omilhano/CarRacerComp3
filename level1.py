@@ -124,8 +124,10 @@ def start_level1():
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
             # Score testing variable
-            if playerCar.score > 1000:
+            if playerCar.score > 100:
                 level_end(1, playerCar, healthbar)
+
+            playerCar.update_movement()
 
             # check collision between hazards ( don't spawn same x)
 

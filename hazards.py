@@ -3,7 +3,7 @@ from abc import ABC
 
 import pygame
 
-from config import road_sign_lv1, cone, blood_spill
+from config import road_sign_lv1, cone, blood_spill, bear_trap, oil_spill
 
 
 # TODO oilspill creative for powerup
@@ -52,5 +52,9 @@ hazard_types = {
 
     "small": {"damage": 3, "image": cone, "score": 25},
 
-    "spill": {"damage": 0, "image": blood_spill, "score": 75}
+    "spill": {"damage": 0, "image": blood_spill, "score": 75},
+
+    "beartrap": {"damage": 3, "image": bear_trap, "score": 25},
+
+    "oilspill": {"damage": 0, "image": oil_spill, "score": 75}
 }
