@@ -11,7 +11,6 @@ class Car(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     # Initialize constants
-    # todo required python
     # TODO screen auto adjust
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
@@ -47,6 +46,8 @@ class Car(pygame.sprite.Sprite):
         hazard.hazard_tp()
         return self.health <= 0
 
+    def change_appea
+
     def gain_powerup(self, powerup):
         if isinstance(powerup, Invincible):
             self.gain_invincibility()
@@ -64,7 +65,7 @@ class Car(pygame.sprite.Sprite):
     def collide_spill(self):
         self.change_rand_lane()
 
-    def collide_beartrap(self):  # TODO change car appearance
+    def collide_beartrap(self):  # TODO change car appearence
         if self.movement:
             self.movement = False
             self.status_change_time = time.time()

@@ -23,8 +23,6 @@ def menu():
     screen = pygame.display.set_mode(res)
     # name
     pygame.display.set_caption("Car Racer")
-    #  continue screen temporarily
-    continue_screen = pygame.image.load(continue_scr)  # TODO maybe change var to bg?
     clock = pygame.time.Clock()
 
     while True:
