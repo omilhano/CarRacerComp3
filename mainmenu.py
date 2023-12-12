@@ -9,7 +9,6 @@ from cursor import Cursor
 from config import continue_scr, main_menu
 
 
-# TODO Continue game button
 # Creating a function that creates the GUI
 def menu():
     startingUp()

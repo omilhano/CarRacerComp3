@@ -7,7 +7,6 @@ from garage import garage_screen
 from healthbar import Healthbar
 
 
-# TODO this, eventually
 def continue_game():
     pygame.init()
 
