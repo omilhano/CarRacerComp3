@@ -13,7 +13,15 @@ Pygame was the library used for the creation of this game.
 git clone https://github.com/omilhano/CarRacerComp3
 ```
 
-## How to run
+## How to proceed
+
+# Install dependencies
+
+```python
+pip install -r requirements.txt
+```
+
+# Run the game
 
 ```python
 python main.py # to be able to run the game

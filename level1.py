@@ -1,5 +1,6 @@
 import pygame
 import random
+import json
 from car import Car
 from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
 from healthbar import *
@@ -132,7 +133,7 @@ def start_level1():
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
                 if playerCar.can_collide:
-                    if playerCar.get_damaged(hazard_collide):  # todo :3
+                    if playerCar.get_damaged(hazard_collide):
                         game_active = False
                     healthbar.hp = playerCar.health
             if powerup_collide:
@@ -144,6 +145,9 @@ def start_level1():
             playerCar.update_powerup()
             # Score testing variable
             if playerCar.score > 1000:
+                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score, "level_completed": 1}
+                with open("load.json", "w") as outfile:
+                    json.dump(status, outfile)
                 level_end(1, playerCar, healthbar)
 
             # check collision between hazards ( don't spawn same x)
@@ -155,10 +159,10 @@ def start_level1():
 
         # Number of frames per second e.g. 60
         clock.tick(60)
-        all_zombies.draw(screen)
         all_powers.draw(screen)
         all_hazards.draw(screen)
         # so its on top of everything
+        all_zombies.draw(screen)
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()

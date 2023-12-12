@@ -1,5 +1,5 @@
 import sys
-
+import os
 from game_mode import game_intro
 from load import continue_game
 from settings import settings
@@ -9,7 +9,6 @@ from cursor import Cursor
 from config import continue_scr, main_menu
 
 
-# TODO Continue game button
 # Creating a function that creates the GUI
 def menu():
     startingUp()
@@ -46,6 +45,10 @@ def menu():
             # pressing the play button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 100 <= mouse[0] <= 445 and 140 <= mouse[1] <= 295:
+                    if os.path.exists("load.json"):
+                        os.remove("load.json")
+                    else:
+                        print("The file does not exist")
                     game_intro()
             # pressing the continue game button
             if ev.type == pygame.MOUSEBUTTONDOWN:

@@ -8,7 +8,6 @@ from zombie import Zombies
 
 
 # TODO powerups
-# TODO zombies
 
 def start_level2(playerCar, healthbar):
     pygame.init()
@@ -30,7 +29,7 @@ def start_level2(playerCar, healthbar):
     oilspill = Hazards("spill", random.randint(1300, 1500),
                        random.choice([605, 682, 760]))
     beartrap = Hazards("beartrap", random.randint(1300, 1500),
-                       random.choice([605, 682, 760]))  # TODO change to correct
+                       random.choice([605, 682, 760]))
     hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
 
     all_hazards = pygame.sprite.Group()
@@ -116,7 +115,7 @@ def start_level2(playerCar, healthbar):
             # collision logic between car and obstacles
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
-                if playerCar.get_damaged(hazard_collide):  # todo :3
+                if playerCar.get_damaged(hazard_collide):
                     game_active = False
                 healthbar.hp = playerCar.health
             zombie_collide = check_collisions(playerCar, all_zombies)
@@ -136,6 +135,7 @@ def start_level2(playerCar, healthbar):
 
         # Number of frames per second e.g. 60
         clock.tick(60)
+        all_zombies.draw(screen)
         # so its on top of everything
         player_group.draw(screen)
         # Refresh Screen
