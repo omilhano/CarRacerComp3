@@ -14,7 +14,7 @@ def continue_game():
     with open('load.json', 'r') as openfile:
         # Reading from json file
         json_object = json.load(openfile)
-    playerCar = Car(130, 680, 70)
+    playerCar = Car(130, 680, 70, "car")
     playerCar.health = json_object["health"]
     playerCar.money = json_object["money"]
     playerCar.score = json_object["score"]

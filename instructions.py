@@ -3,6 +3,7 @@ import pygame
 from config import instructions_single, instructions_multi
 from cursor import Cursor
 from level1 import start_level1
+from multiplayer import play_multiplayer
 
 
 def instructions(players):
@@ -30,5 +31,8 @@ def instructions(players):
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                start_level1()
+                if players == 1:
+                    start_level1()
+                else:
+                    play_multiplayer()
         pygame.display.flip()

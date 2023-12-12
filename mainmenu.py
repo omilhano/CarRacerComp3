@@ -51,7 +51,10 @@ def menu():
             # pressing the continue game button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 787 <= mouse[0] <= 1130 and 138 <= mouse[1] <= 292:
-                    continue_game()
+                    try:
+                        continue_game()
+                    except:
+                        print("Can't continue game since no previous savefile exists.")
                     # pressing the settings button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:

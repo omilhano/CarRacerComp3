@@ -1,7 +1,6 @@
 import sys
 import pygame, random
 from hazards import Hazards
-from gameOver import gameover
 from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
 from visual_points import draw, display_score, display_money
 from zombie import Zombies

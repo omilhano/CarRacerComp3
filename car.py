@@ -3,7 +3,7 @@ import time
 import pygame
 import hazards
 import random
-from config import normal_car, invincible_car, spill_car
+from config import normal_car, invincible_car, spill_car, normal_bike
 from powerUps import Invincible
 
 
@@ -16,14 +16,15 @@ class Car(pygame.sprite.Sprite):
     MID_LANE_Y = 555
     BOTTOM_LANE_Y = 630
 
-    def __init__(self, position_x, position_y, speed):
+    def __init__(self, position_x, position_y, speed, vehicle_type):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
         # Load the car image
 
         self.can_collide = True
-        self.image = pygame.image.load(normal_car).convert_alpha()
+        self.vehicle_type = vehicle_type
+        self.image = pygame.image.load(vehicles[vehicle_type]["image"]).convert_alpha()
         self.rect = self.image.get_rect()
         self.car_mask = pygame.mask.from_surface(self.image)
         self.rect.center = [position_x, position_y]
@@ -119,3 +120,10 @@ class Car(pygame.sprite.Sprite):
             self.rect.y = random.choice([Car.TOP_LANE_Y, Car.BOTTOM_LANE_Y])
         else:
             self.rect.y = random.choice([Car.TOP_LANE_Y, Car.MID_LANE_Y])
+
+
+vehicles = {
+    "bike": {"image": normal_bike},
+
+    "car": {"image": normal_car}
+}

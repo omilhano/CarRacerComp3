@@ -15,7 +15,7 @@ import sys
 
 # TODO powerups
 
-def start_level1():
+def play_multiplayer():
     pygame.init()
 
     # defining screen/background
@@ -31,8 +31,10 @@ def start_level1():
 
     # initialize car
     playerCar = Car(130, 680, 70, "car")
+    playerBike = Car(300, 617, 70, "bike")
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
+    player_group.add(playerBike)
     healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
     # initialize hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
@@ -67,10 +69,10 @@ def start_level1():
     all_powers = pygame.sprite.Group()
     all_powers.add(invincibility)
 
-    def check_collisions(playerCar, all_sprites):
+    def check_collisions(player, all_sprites):
         object_sprite = None
         for sprite in all_sprites:
-            if pygame.sprite.collide_mask(playerCar, sprite) is None:
+            if pygame.sprite.collide_mask(player, sprite) is None:
                 pass
             else:
                 object_sprite = sprite
@@ -90,14 +92,22 @@ def start_level1():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
+                if event.key == pygame.K_UP:
+                    playerBike.moveUp()
                 if event.key == pygame.K_s:
                     playerCar.moveDown()
+                if event.key == pygame.K_DOWN:
+                    playerBike.moveDown()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             playerCar.moveLeft(5)
+        if keys[pygame.K_LEFT]:
+            playerBike.moveLeft(5)
         if keys[pygame.K_d]:
             playerCar.moveRight(5)
+        if keys[pygame.K_RIGHT]:
+            playerBike.moveRight(5)
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -143,15 +153,21 @@ def start_level1():
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
 
-            playerCar.update_powerup()
-            # Score testing variable
-            if playerCar.score > 1000:
-                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score, "level_completed": 1}
-                with open("load.json", "w") as outfile:
-                    json.dump(status, outfile)
-                level_end(1, playerCar, healthbar)
+            powerup_collide = check_collisions(playerBike, all_powers)
+            hazard_collide = check_collisions(playerBike, all_hazards)
+            if hazard_collide:
+                if playerBike.can_collide:
+                    if playerBike.get_damaged(hazard_collide):
+                        game_active = False
+                    healthbar.hp = playerBike.health
+            if powerup_collide:
+                playerBike.gain_powerup(powerup_collide)
+            zombie_collide = check_collisions(playerBike, all_zombies)
+            if zombie_collide:
+                playerBike.get_money(zombie_collide)
 
-            # check collision between hazards ( don't spawn same x)
+            playerBike.update_powerup()
+            playerCar.update_powerup()
 
         else:
             from death import death_screen
@@ -165,6 +181,7 @@ def start_level1():
         # so its on top of everything
         all_zombies.draw(screen)
         player_group.draw(screen)
+        print(playerBike.rect.y)
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting

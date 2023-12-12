@@ -2,7 +2,6 @@ import sys
 import pygame
 from cursor import Cursor
 from config import death_screen
-from mainmenu import menu
 
 
 def you_died():
@@ -20,11 +19,15 @@ def you_died():
                 sys.exit()
             # press on menu button to go back
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 995 <= mouse[0] <= 1230 and 630 <= mouse[1] <= 775: #TODO button position
+                if 880 <= mouse[0] <= 1264 and 720 <= mouse[1] <= 785:
+                    from mainmenu import menu
                     menu()
-                if 995 <= mouse[0] <= 1230 and 630 <= mouse[1] <= 775: #TODO button position
+                if 32 <= mouse[0] <= 275 and 720 <= mouse[1] <= 785:
                     from level1 import start_level1  # TODO solve circular import
                     start_level1()
+                # test position of the mouse
+                # if ev.type == pygame.MOUSEBUTTONDOWN:
+                #     print(pygame.mouse.get_pos())
 
         bg = pygame.image.load(death_screen).convert_alpha()
         screen.blit(bg, (0, 0))
