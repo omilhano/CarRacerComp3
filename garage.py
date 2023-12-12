@@ -51,6 +51,12 @@ def garage_screen(playerCar, healthbar, level):
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
                     buy_health()
+                if 32 <= mouse[0] <= 315 and 727 <= mouse[1] <= 765:
+                    from mainmenu import menu
+                    menu()
+            # test position of the mouse
+            # if ev.type == pygame.MOUSEBUTTONDOWN:
+            #     print(pygame.mouse.get_pos())
 
         # setting background
         screen.blit(bg, (0, 0))
