@@ -168,4 +168,4 @@ def start_level1():
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting
-    you_died()
+    you_died() #todo make sure this will also work on level 2
