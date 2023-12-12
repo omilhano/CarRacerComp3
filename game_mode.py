@@ -41,7 +41,5 @@ def game_intro():
                 # multiplayer
                 if 783 <= mouse[0] <= 1205 and 527 <= mouse[1] <= 595:
                     instructions(2)
-            # test position of the mouse
-            # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     print(pygame.mouse.get_pos())
+
         pygame.display.flip()
