@@ -12,6 +12,7 @@ class Car(pygame.sprite.Sprite):
 
     # Initialize constants
     # todo required python
+    # TODO screen auto adjust
     TOP_LANE_Y = 480
     MID_LANE_Y = 555
     BOTTOM_LANE_Y = 630
