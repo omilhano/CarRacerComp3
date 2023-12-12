@@ -38,4 +38,6 @@ invincibility = "images/mario_head.png"
 slow = "images/slow.png"
 # Cars
 normal_car = "images/pickup.png"
+invincible_car = "images/invincible_car.png"
+spill_car = "images/spill_car.png"
 normal_bike = "images/motor_bike.png"
