@@ -9,6 +9,7 @@ from powerUps import Invincible
 from utils import pause, level_end
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
+from death import you_died
 import sys
 
 
@@ -167,4 +168,4 @@ def start_level1():
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting
-    sys.exit()  # todo died screen
+    you_died()

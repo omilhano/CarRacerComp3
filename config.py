@@ -16,6 +16,7 @@ instructions_single = "images/instructions_single.png"
 instructions_multi = "images/instructions_multi.png"
 titlemenu = "images/titlemenu.png"
 pause_menu = "images/inprogress.png"
+death_screen = "images/death_screen.png"
 
 # level backgrounds
 level1 = "images/level1bg.png"
