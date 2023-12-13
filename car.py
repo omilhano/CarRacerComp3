@@ -12,9 +12,6 @@ class Car(pygame.sprite.Sprite):
 
     # Initialize constants
     # TODO screen auto adjust
-    TOP_LANE_Y = 480
-    MID_LANE_Y = 555
-    BOTTOM_LANE_Y = 630
 
     def __init__(self, position_x, position_y, speed, vehicle_type):
         # Call the parent class (Sprite) constructor
@@ -35,6 +32,9 @@ class Car(pygame.sprite.Sprite):
         self.money = 0
         self.movement = True
         self.status_change_time = 0
+        self.top_lane = vehicles[vehicle_type]["top"]
+        self.mid_lane = vehicles[vehicle_type]["mid"]
+        self.bottom_lane = vehicles[vehicle_type]["bottom"]
 
     # If collide lower hp
     # Returns true if kill car
@@ -91,17 +91,17 @@ class Car(pygame.sprite.Sprite):
 
     def moveUp(self):
         if self.movement:
-            if self.rect.y == Car.MID_LANE_Y:
-                self.rect.y = Car.TOP_LANE_Y
-            elif self.rect.y == Car.BOTTOM_LANE_Y:
-                self.rect.y = Car.MID_LANE_Y
+            if self.rect.y == self.mid_lane:
+                self.rect.y = self.top_lane
+            elif self.rect.y == self.bottom_lane:
+                self.rect.y = self.mid_lane
 
     def moveDown(self):
         if self.movement:
-            if self.rect.y == Car.TOP_LANE_Y:
-                self.rect.y = Car.MID_LANE_Y
-            elif self.rect.y == Car.MID_LANE_Y:
-                self.rect.y = Car.BOTTOM_LANE_Y
+            if self.rect.y == self.top_lane:
+                self.rect.y = self.mid_lane
+            elif self.rect.y == self.mid_lane:
+                self.rect.y = self.bottom_lane
 
     def changeSpeed(self, speed):
         self.speed = speed
@@ -114,16 +114,16 @@ class Car(pygame.sprite.Sprite):
         self.score += hazards.hazard_types[hazard_type]["score"]
 
     def change_rand_lane(self):
-        if self.rect.y == Car.TOP_LANE_Y:
-            self.rect.y = random.choice([Car.MID_LANE_Y, Car.BOTTOM_LANE_Y])
-        elif self.rect.y == Car.MID_LANE_Y:
-            self.rect.y = random.choice([Car.TOP_LANE_Y, Car.BOTTOM_LANE_Y])
+        if self.rect.y == self.top_lane:
+            self.rect.y = random.choice([self.mid_lane, self.bottom_lane])
+        elif self.rect.y == self.mid_lane:
+            self.rect.y = random.choice([self.top_lane, self.bottom_lane])
         else:
-            self.rect.y = random.choice([Car.TOP_LANE_Y, Car.MID_LANE_Y])
+            self.rect.y = random.choice([self.top_lane, self.mid_lane])
 
 
 vehicles = {
-    "bike": {"image": normal_bike},
+    "bike": {"image": normal_bike, "top": 505, "mid": 580, "bottom": 650},
 
-    "car": {"image": normal_car}
+    "car": {"image": normal_car, "top": 480, "mid": 555, "bottom": 630}
 }

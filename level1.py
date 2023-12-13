@@ -33,7 +33,7 @@ def start_level1():
     playerCar = Car(130, 680, 70, "car")
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
-    healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
+    healthbar = Healthbar(5, 5, playerCar.health)
     # initialize hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
                          random.choice([605, 682, 760]))

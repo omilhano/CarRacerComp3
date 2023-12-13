@@ -9,7 +9,6 @@ main_menu = "images/menuimg.png"
 intro_game = "images/intro_to_game.png"
 garage = "images/garage.png"
 settings_screen = "images/settings.png"
-continue_scr = "images/inprogress.png"
 credits_screen = "images/credits.png"
 instructions_single = "images/instructions_single.png"
 instructions_multi = "images/instructions_multi.png"
@@ -41,3 +40,21 @@ normal_car = "images/pickup.png"
 invincible_car = "images/invincible_car.png"
 spill_car = "images/spill_car.png"
 normal_bike = "images/motor_bike.png"
+
+# TODO bike invincibility sprite ELI
+# TODO full rules page ELI
+# TODO pause menu ELI
+# TODO credits menu ELI
+# TODO bike invincibility code ELI/ALEX
+# TODO bike healthbar ALEX
+# TODO remove money multiplayer ALEX/ELI
+# TODO remove score multiplayer ALEX/ELI
+# TODO add time to multiplayer ALEX/ELI
+# TODO  slow down code ELI/ALEX
+# TODO exit fix ELI
+# TODO UML diagram ALEX E ELI
+# TODO comment code properly ALEX E ELI
+# TODO eli be happy ALEX
+
+
+# TODO LIAH level classes too repetitive?

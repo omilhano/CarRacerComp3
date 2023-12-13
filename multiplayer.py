@@ -2,12 +2,12 @@ import pygame
 import random
 import json
 from car import Car
-from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
+from config import level1
 from healthbar import *
 from hazards import Hazards
 from powerUps import Invincible
-from utils import pause, level_end
-from visual_points import draw, display_score, display_money
+from utils import pause
+from visual_points import draw
 from zombie import Zombies
 from death import you_died
 import sys
@@ -31,11 +31,12 @@ def play_multiplayer():
 
     # initialize car
     playerCar = Car(130, 680, 70, "car")
-    playerBike = Car(300, 617, 70, "bike")
+    playerBike = Car(300, 680, 70, "bike")
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     player_group.add(playerBike)
-    healthbar = Healthbar(5, 5, 300, 40, playerCar.health)
+    car_healthbar = Healthbar(5, 5, playerCar.health)
+    bike_healthbar = Healthbar(80,80, playerBike.health)
     # initialize hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
                          random.choice([605, 682, 760]))
@@ -113,15 +114,13 @@ def play_multiplayer():
 
         if game_active:
             screen.blit(bg, (0, 0))
-            # drawing the healthbar and score
-            draw(healthbar, screen)
-            display_score(playerCar.score, screen)
-            display_money(playerCar.money, screen)
+            # drawing the healthbar
+            draw(playerBike, screen)
+            draw(playerCar, screen)
             # create hazards on road
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(hazards.hazard_type)
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazards)
 

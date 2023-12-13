@@ -6,7 +6,7 @@ from settings import settings
 from credits import credits_
 from sounds import *
 from cursor import Cursor
-from config import continue_scr, main_menu
+from config import main_menu
 
 
 # Creating a function that creates the GUI

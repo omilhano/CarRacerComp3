@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from config import pause_menu, level1_end, continue_scr
+from config import pause_menu, level1_end
 from garage import garage_screen
 
 pygame.init()
@@ -52,7 +52,7 @@ def level_end(level, playerCar, healthbar):
 end_screens = {
     1: {"image": level1_end},
 
-    2: {"image": continue_scr},
+    2: {"image": pause_menu},
 
-    3: {"image": continue_scr}
+    3: {"image": pause_menu}
 }

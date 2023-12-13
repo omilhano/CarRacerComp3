@@ -1,7 +1,6 @@
 import pygame
 import json
 import os
-from config import continue_scr
 from car import Car
 from garage import garage_screen
 from healthbar import Healthbar
