@@ -65,7 +65,7 @@ def start_level2(playerCar, healthbar):
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                carryOn = False
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 # damage taker test
                 if event.key == pygame.K_w:
@@ -84,7 +84,7 @@ def start_level2(playerCar, healthbar):
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            draw(healthbar, screen)
+            draw(healthbar, screen, "car")
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
 
@@ -122,7 +122,7 @@ def start_level2(playerCar, healthbar):
                 playerCar.get_money(zombie_collide)
             # Score testing variable
             if playerCar.score > 2000:
-                from utils import level_end # TODO this is  NOT a circular import wtf
+                from utils import level_end  # TODO this is  NOT a circular import wtf
                 level_end(2, playerCar, healthbar)
 
             playerCar.update_movement()
@@ -139,4 +139,4 @@ def start_level2(playerCar, healthbar):
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    sys.exit() # TODO death
+    sys.exit()  # TODO death

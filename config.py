@@ -46,12 +46,8 @@ normal_bike = "images/motor_bike.png"
 # TODO pause menu ELI
 # TODO credits menu ELI
 # TODO bike invincibility code ELI/ALEX
-# TODO bike healthbar ALEX
-# TODO remove money multiplayer ALEX/ELI
-# TODO remove score multiplayer ALEX/ELI
 # TODO add time to multiplayer ALEX/ELI
 # TODO  slow down code ELI/ALEX
-# TODO exit fix ELI
 # TODO UML diagram ALEX E ELI
 # TODO comment code properly ALEX E ELI
 # TODO eli be happy ALEX

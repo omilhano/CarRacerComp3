@@ -7,7 +7,7 @@ from healthbar import *
 from hazards import Hazards
 from powerUps import Invincible
 from utils import pause
-from visual_points import draw
+from visual_points import draw, display_time
 from zombie import Zombies
 from death import you_died
 import sys
@@ -36,7 +36,7 @@ def play_multiplayer():
     player_group.add(playerCar)
     player_group.add(playerBike)
     car_healthbar = Healthbar(5, 5, playerCar.health)
-    bike_healthbar = Healthbar(80,80, playerBike.health)
+    bike_healthbar = Healthbar(800,5, playerBike.health)
     # initialize hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
                          random.choice([605, 682, 760]))
@@ -89,7 +89,7 @@ def play_multiplayer():
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                carryOn = False
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
@@ -114,9 +114,10 @@ def play_multiplayer():
 
         if game_active:
             screen.blit(bg, (0, 0))
+            display_time(screen)
             # drawing the healthbar
-            draw(playerBike, screen)
-            draw(playerCar, screen)
+            draw(bike_healthbar, screen, "bike")
+            draw(car_healthbar, screen, "car")
             # create hazards on road
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
@@ -145,7 +146,7 @@ def play_multiplayer():
                 if playerCar.can_collide:
                     if playerCar.get_damaged(hazard_collide):
                         game_active = False
-                    healthbar.hp = playerCar.health
+                    car_healthbar.hp = playerCar.health
             if powerup_collide:
                 playerCar.gain_powerup(powerup_collide)
             zombie_collide = check_collisions(playerCar, all_zombies)
@@ -158,7 +159,7 @@ def play_multiplayer():
                 if playerBike.can_collide:
                     if playerBike.get_damaged(hazard_collide):
                         game_active = False
-                    healthbar.hp = playerBike.health
+                    bike_healthbar.hp = playerBike.health
             if powerup_collide:
                 playerBike.gain_powerup(powerup_collide)
             zombie_collide = check_collisions(playerBike, all_zombies)

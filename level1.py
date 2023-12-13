@@ -86,7 +86,7 @@ def start_level1():
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                carryOn = False
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
@@ -104,7 +104,7 @@ def start_level1():
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            draw(healthbar, screen)
+            draw(healthbar, screen, "car")
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
             # create hazards on road
