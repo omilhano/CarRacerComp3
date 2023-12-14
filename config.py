@@ -53,7 +53,7 @@ normal_bike = "images/sprites/motor_bike.png"
 invincible_bike = "images/sprites/invincible_bike.png"
 stuck_bike = "images/sprites/spill_bike.png"
 
-# TODO repository public
+# TODO change rarities 
 # TODO bike invincibility sprite ELI
 # TODO UML diagram ALEX E ELI
 # TODO check pygame.display.set_caption across all screens
