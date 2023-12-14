@@ -45,7 +45,7 @@ class PowerUp(ABC, pygame.sprite.Sprite):
 
 class Invincible(PowerUp):
     def __init__(self, position_x, position_y):
-        super().__init__(position_x, position_y, 9, "invincible", 1)  # 0.0005
+        super().__init__(position_x, position_y, 9, "invincible", 0.0005)
 
         self.power_up_type = "invincible"  # Test
         self.image = pygame.image.load(invincibility).convert_alpha()
@@ -151,7 +151,6 @@ class SlowTime(PowerUp):
             power.speed = 5
             power.image = pygame.image.load(slowed_sprites[power.power_up_type]["bw_sprite"]).convert_alpha()
         self.powerup_tp()
-        return time.time()
 
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20

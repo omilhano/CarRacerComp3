@@ -158,7 +158,8 @@ def start_level2(playerCar, healthbar):
                     healthbar.hp = playerCar.health
             if powerup_collide:
                 powerup_collide.affect_player(playerCar)
-                status_change_time = powerup_collide.affect_traffic(all_zombies, all_hazards, all_powers)
+                powerup_collide.affect_traffic(all_zombies, all_hazards, all_powers)
+                status_change_time = time.time()
                 if playerCar.health <= 0:
                     game_active = False
                 healthbar.hp = playerCar.health

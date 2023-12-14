@@ -3,7 +3,7 @@ import time
 import pygame
 import hazards
 import random
-from config import normal_car, invincible_car, spill_car, normal_bike
+from config import normal_car, normal_bike
 from powerUps import Invincible
 
 
