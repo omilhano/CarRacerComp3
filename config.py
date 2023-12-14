@@ -17,7 +17,7 @@ pause_menu = "images/backgrounds/paused_scr.png"
 death_screen = "images/backgrounds/death_screen.png"
 rules_1 = "images/backgrounds/rules_1.png"
 rules_2 = "images/backgrounds/rules_2.png"
-
+end_screen = "images/backgrounds/the_end.png"
 # level backgrounds
 level1 = "images/backgrounds/level1bg.png"
 level1_end = "images/backgrounds/level1_end.png"

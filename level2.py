@@ -5,6 +5,7 @@ import pygame, random
 from hazards import Hazards
 from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1,road_sign_lv1
 from powerUps import BearTrap, Invincible, SlowTime
+from theend import game_end
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
 
@@ -170,8 +171,7 @@ def start_level2(playerCar, healthbar):
             playerCar.update_powerup()
             update_traffic()
             if playerCar.score > 2000:
-                from utils import level_end  # TODO this is  NOT a circular import wtf
-                level_end(2, playerCar, healthbar)
+                game_end()
 
             playerCar.update_movement()
         else:
