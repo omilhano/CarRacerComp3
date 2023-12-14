@@ -5,6 +5,7 @@ main_sound = "sounds/soundtrackmenu.mp3"
 icon_image = 'images/sprites/icon.png'
 cursor_img = "images/sprites/cursor.png"
 # Backgrounds
+no_save = "images/backgrounds/no_save_file.png"
 main_menu = "images/backgrounds/menuimg.png"
 intro_game = "images/backgrounds/intro_to_game.png"
 garage = "images/backgrounds/garage.png"

@@ -11,6 +11,7 @@ from credits import credits_
 from sounds import *
 from cursor import Cursor
 from config import main_menu
+from utils import no_save_file
 
 
 # Creating a function that creates the GUI
@@ -58,7 +59,7 @@ def menu():
                     try:
                         continue_game()
                     except:
-                        print("Can't continue game since no previous savefile exists.")
+                        no_save_file()
                     # pressing the settings button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 98 <= mouse[0] <= 445 and 443 <= mouse[1] <= 598:

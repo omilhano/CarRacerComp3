@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from config import pause_menu, level1_end
+from config import pause_menu, level1_end, no_save
 from garage import garage_screen
 
 pygame.init()
@@ -42,6 +42,20 @@ def level_end(level, playerCar, healthbar):
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 garage_screen(playerCar, healthbar, 1)
+        pygame.display.update()
+
+
+def no_save_file():
+    loop = True
+    end_screen = pygame.image.load(no_save).convert_alpha()
+    screen.blit(end_screen, [0, 0])
+    while loop:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                from mainmenu import menu
+                menu()
         pygame.display.update()
 
 
