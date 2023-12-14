@@ -41,36 +41,17 @@ class Car(pygame.sprite.Sprite):
     def get_damaged(self, hazard) -> bool:
         if hazard.get_type() == "spill":
             self.collide_spill()
-        if hazard.get_type() == "beartrap":
-            self.collide_beartrap()
         self.health -= hazard.get_damage()
         hazard.hazard_tp()
         return self.health <= 0
 
-    def gain_powerup(self, powerup):
-        if isinstance(powerup, Invincible):
-            self.gain_invincibility()
-        powerup.powerup_tp()
-
-    def gain_invincibility(self):  # TODO change car appearance
-        if self.can_collide:
-            self.image = pygame.image.load(invincible_car).convert_alpha()
-            self.can_collide = False
-            self.status_change_time = time.time()
+    def collide_spill(self):
+        self.change_rand_lane()
 
     def update_powerup(self):
         if not self.can_collide and time.time() > self.status_change_time + 5:
             self.image = pygame.image.load(normal_car).convert_alpha()
             self.can_collide = True
-
-    def collide_spill(self):
-        self.change_rand_lane()
-
-    def collide_beartrap(self):  # TODO change car appearence
-        if self.movement:
-            self.image = pygame.image.load(spill_car).convert_alpha()
-            self.movement = False
-            self.status_change_time = time.time()
 
     def update_movement(self):
         if not self.movement and time.time() > self.status_change_time + 5:

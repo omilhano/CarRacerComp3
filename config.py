@@ -28,6 +28,8 @@ road_sign_lv1 = "images/hazard_roadsignlv1.png"
 oil_spill = "images/oil_spill.png"
 bear_trap = "images/beartrap_lv2.png"
 road_sign_lv2 = "images/hazard_roadsign_lv2.png"
+oil_spill_bw = "images/oil_spillBW.png"
+road_sign_bw = "images/hazard_roadsign_lv1_BW.png"
 # Zombies
 fast_zombie = "images/fastZombie.png"
 normal_zombie = "images/zombie.png"
@@ -43,17 +45,13 @@ normal_bike = "images/motor_bike.png"
 
 # TODO PUT stuff inside powerups
 # TODO repository public
-# TODO beartrap can and should be changed to powerup (negative) (!!!!!!!)
 # TODO bike invincibility sprite ELI
 # TODO full rules page ELI
 # TODO pause menu ELI
 # TODO credits menu ELI
 # TODO bike invincibility code ELI/ALEX
-# TODO add time to multiplayer ALEX/ELI
 # TODO  slow down code ELI/ALEX
 # TODO UML diagram ALEX E ELI
 # TODO comment code properly ALEX E ELI
 # TODO eli be happy ALEX
-# TODO An abstract class called PowerUp. This class will contain at least two abstract methods called affect_player and affect_traffic.
 # TODO if time maybe change image showing the continue doesn't work without file
-# TODO ADD python version in readme

@@ -39,6 +39,7 @@ class Hazards(ABC, pygame.sprite.Sprite):
     def hazard_tp(self):
         self.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
 
+
 # TODO maybe this child class is useless??
 
 
@@ -53,8 +54,6 @@ hazard_types = {
     "small": {"damage": 3, "image": cone, "score": 25},
 
     "spill": {"damage": 0, "image": blood_spill, "score": 75},
-
-    "beartrap": {"damage": 3, "image": bear_trap, "score": 25},
 
     "oilspill": {"damage": 0, "image": oil_spill, "score": 75}
 }
