@@ -44,5 +44,3 @@ class Invincible(Powers):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
-    # invincible make car take no damage
-    # how to implement this? remove collision?

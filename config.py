@@ -41,6 +41,9 @@ invincible_car = "images/invincible_car.png"
 spill_car = "images/spill_car.png"
 normal_bike = "images/motor_bike.png"
 
+# TODO PUT stuff inside powerups
+# TODO repository public
+# TODO beartrap can and should be changed to powerup (negative) (!!!!!!!)
 # TODO bike invincibility sprite ELI
 # TODO full rules page ELI
 # TODO pause menu ELI
@@ -51,6 +54,6 @@ normal_bike = "images/motor_bike.png"
 # TODO UML diagram ALEX E ELI
 # TODO comment code properly ALEX E ELI
 # TODO eli be happy ALEX
-
-
-# TODO LIAH level classes too repetitive?
+# TODO An abstract class called PowerUp. This class will contain at least two abstract methods called affect_player and affect_traffic.
+# TODO if time maybe change image showing the continue doesn't work without file
+# TODO ADD python version in readme
