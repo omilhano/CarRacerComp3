@@ -5,6 +5,7 @@ import pygame
 
 from game_mode import game_intro
 from load import continue_game
+from rules import rules_p1
 from settings import settings
 from credits import credits_
 from sounds import *
@@ -64,7 +65,7 @@ def menu():
                     settings()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 1105 <= mouse[0] <= 1275 and 760 <= mouse[1] <= 790:
-                    pass # TODO full rules
+                    rules_p1()
             # test position of the mouse
             # if ev.type == pygame.MOUSEBUTTONDOWN:
             #     print(pygame.mouse.get_pos())
