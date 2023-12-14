@@ -3,8 +3,7 @@ import time
 
 import pygame, random
 from hazards import Hazards
-from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1, oil_spill_bw, road_sign_bw, \
-    road_sign_lv1
+from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1,road_sign_lv1
 from powerUps import BearTrap, Invincible, SlowTime
 from visual_points import draw, display_score, display_money
 from zombie import Zombies

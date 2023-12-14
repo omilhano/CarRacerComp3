@@ -117,7 +117,7 @@ class SlowTime(PowerUp):
             self.rect.center = [-10, 0]
 
     def affect_traffic(self):
-        hazards.status_change_time = time.time()
+        # hazards.status_change_time = time.time()
         self.powerup_tp()
         pass
 
