@@ -18,13 +18,15 @@ def game_end():
 
         for ev in pygame.event.get():
             # press on exit button
-            if ev.type == pygame.quit():
+            if ev.type == pygame.QUIT:
                 sys.exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                print(mouse)
-
+                if 1130 <= mouse[0] <= 1245 and 762 <= mouse[1] <= 800:
+                    from mainmenu import menu
+                    menu()
         bg = pygame.image.load(end_screen).convert_alpha()
         screen.blit(bg, (0, 0))
         cursor_group.draw(screen)
         cursor_group.update()
+
         pygame.display.flip()
