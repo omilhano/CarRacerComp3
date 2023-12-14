@@ -46,12 +46,12 @@ normal_bike = "images/sprites/motor_bike.png"
 # TODO PUT stuff inside powerups
 # TODO repository public
 # TODO bike invincibility sprite ELI
-# TODO full rules page ELI
 # TODO pause menu ELI
 # TODO credits menu ELI
 # TODO bike invincibility code ELI/ALEX
 # TODO  slow down code ELI/ALEX
 # TODO UML diagram ALEX E ELI
+# TODO check pygame.display.set_caption across all screens
 # TODO comment code properly ALEX E ELI
 # TODO eli be happy ALEX
 # TODO if time maybe change image showing the continue doesn't work without file
