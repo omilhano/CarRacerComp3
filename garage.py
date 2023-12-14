@@ -60,7 +60,7 @@ def garage_screen(playerCar, healthbar, level):
         # draw mouse
         cursor_group.draw(screen)
         cursor_group.update()
-        draw(healthbar, screen)
+        draw(healthbar, screen, "car")
         display_score(playerCar.score, screen)
         display_money(playerCar.money, screen)
 

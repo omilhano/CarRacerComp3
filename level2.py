@@ -1,7 +1,10 @@
 import sys
+import time
+
 import pygame, random
 from hazards import Hazards
-from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1
+from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1,road_sign_lv1
+from powerUps import BearTrap, Invincible, SlowTime
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
 
@@ -22,19 +25,34 @@ def start_level2(playerCar, healthbar):
     game_active = True
     clock = pygame.time.Clock()
 
+    # variable specific to see if time is slowed
+    time_slowed = False
+    status_change_time = 0
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     # initialize hazards
     oilspill = Hazards("spill", random.randint(1300, 1500),
                        random.choice([605, 682, 760]))
-    beartrap = Hazards("beartrap", random.randint(1300, 1500),
-                       random.choice([605, 682, 760]))
     hazard_sign = Hazards("tall", random.randint(1300, 1500), random.choice([605, 682, 760]))
 
     all_hazards = pygame.sprite.Group()
     all_hazards.add(oilspill)
-    all_hazards.add(beartrap)
     all_hazards.add(hazard_sign)
+
+    # defining powerups
+    invincibility = Invincible(random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not invincibility.can_spawn():
+        invincibility.powerup_tp()
+    all_powers = pygame.sprite.Group()
+    beartrap = BearTrap(random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not beartrap.can_spawn():
+        beartrap.powerup_tp()
+    slow_time = SlowTime(random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not slow_time.can_spawn():
+        beartrap.powerup_tp()
+    all_powers.add(slow_time)
+    all_powers.add(beartrap)
+    all_powers.add(invincibility)
 
     # create zombies
     fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
@@ -47,6 +65,7 @@ def start_level2(playerCar, healthbar):
     all_zombies.add(staticZombie)
 
     def check_collisions(playerCar, all_sprites):
+        # returns None or object from Class
         object_sprite = None
         for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
@@ -62,10 +81,20 @@ def start_level2(playerCar, healthbar):
             else:
                 hazard.hazard_tp()
 
+    def update_traffic():
+        pass
+        if not time_slowed and time.time() > status_change_time + 5:
+            for zombie in all_zombies:
+                zombie.return_normal()
+            for hazard in all_hazards:
+                hazard.return_normal()
+            for power in all_powers:
+                power.return_normal()
+
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                carryOn = False
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 # damage taker test
                 if event.key == pygame.K_w:
@@ -84,7 +113,7 @@ def start_level2(playerCar, healthbar):
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            draw(healthbar, screen)
+            draw(healthbar, screen, "car")
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
 
@@ -111,32 +140,52 @@ def start_level2(playerCar, healthbar):
                         else:
                             zombies.rect.center = [random.randint(1400, 1500) + 120, 760]
 
+            invincibility.object_speed(random.randint(20, 30))
+            beartrap.object_speed(random.randint(20, 30))
+            slow_time.object_speed(random.randint(15, 20))
+            for powers in all_powers:
+                if powers.can_spawn():
+                    if powers.rect.right < 0:
+                        powers.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+
             # collision logic between car and obstacles
+            powerup_collide = check_collisions(playerCar, all_powers)
             hazard_collide = check_collisions(playerCar, all_hazards)
             if hazard_collide:
-                if playerCar.get_damaged(hazard_collide):
+                if playerCar.can_collide:
+                    if playerCar.get_damaged(hazard_collide):
+                        game_active = False
+                    healthbar.hp = playerCar.health
+            if powerup_collide:
+                powerup_collide.affect_player(playerCar)
+                powerup_collide.affect_traffic(all_zombies, all_hazards, all_powers)
+                status_change_time = time.time()
+                if playerCar.health <= 0:
                     game_active = False
                 healthbar.hp = playerCar.health
             zombie_collide = check_collisions(playerCar, all_zombies)
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
-            # Score testing variable
+
+            playerCar.update_powerup()
+            update_traffic()
             if playerCar.score > 2000:
-                from utils import level_end # TODO this is  NOT a circular import wtf
+                from utils import level_end  # TODO this is  NOT a circular import wtf
                 level_end(2, playerCar, healthbar)
 
             playerCar.update_movement()
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
-            gameover()
+            #gameover()
             pass
 
         # Number of frames per second e.g. 60
         clock.tick(60)
         all_zombies.draw(screen)
+        all_powers.draw(screen)
         # so its on top of everything
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    sys.exit() # TODO death
+    sys.exit()  # TODO death

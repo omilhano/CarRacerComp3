@@ -19,11 +19,7 @@ clock = pygame.time.Clock()
 def pause():
     loop = True
     pause_screen = pygame.image.load(pause_menu).convert_alpha()
-    pausetext = corbelfont.render("Game is Paused", True, (100, 25, 225))
-    spacebartext = corbelfont.render("Press Spacebar to continue", True, (100, 25, 225))
     screen.blit(pause_screen, [0, 0])
-    screen.blit(pausetext, [200, 200])
-    screen.blit(spacebartext, [200, 250])
     while loop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -52,7 +48,7 @@ def level_end(level, playerCar, healthbar):
 end_screens = {
     1: {"image": level1_end},
 
-    2: {"image": pause_menu},
-
-    3: {"image": pause_menu}
+    # 2: {"image": level2_end},
+    #
+    # 3: {"image": level3_end}
 }

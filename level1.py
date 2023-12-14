@@ -68,6 +68,7 @@ def start_level1():
     all_powers.add(invincibility)
 
     def check_collisions(playerCar, all_sprites):
+        # returns None or object from Class
         object_sprite = None
         for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
@@ -81,12 +82,13 @@ def start_level1():
             if pygame.sprite.collide_mask(hazard, other_hazard) is None:
                 pass
             else:
+                print("hazards stacked")
                 hazard.hazard_tp()
 
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                carryOn = False
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     playerCar.moveUp()
@@ -104,7 +106,7 @@ def start_level1():
         if game_active:
             screen.blit(bg, (0, 0))
             # drawing the healthbar and score
-            draw(healthbar, screen)
+            draw(healthbar, screen, "car")
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
             # create hazards on road
@@ -138,7 +140,10 @@ def start_level1():
                         game_active = False
                     healthbar.hp = playerCar.health
             if powerup_collide:
-                playerCar.gain_powerup(powerup_collide)
+                powerup_collide.affect_player(playerCar)
+                if playerCar.health <= 0:
+                    game_active = False
+                healthbar.hp = playerCar.health
             zombie_collide = check_collisions(playerCar, all_zombies)
             if zombie_collide:
                 playerCar.get_money(zombie_collide)

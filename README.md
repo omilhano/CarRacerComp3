@@ -20,6 +20,7 @@ git clone https://github.com/omilhano/CarRacerComp3
 ```python
 pip install -r requirements.txt
 ```
+Python is ran on 3.12 version.
 
 # Run the game
 

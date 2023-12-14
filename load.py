@@ -8,7 +8,6 @@ from healthbar import Healthbar
 
 def continue_game():
     pygame.init()
-
     # Opening JSON file
     with open('load.json', 'r') as openfile:
         # Reading from json file
@@ -17,6 +16,6 @@ def continue_game():
     playerCar.health = json_object["health"]
     playerCar.money = json_object["money"]
     playerCar.score = json_object["score"]
-    healthbar = Healthbar(5, 5, 300, 40, 100)
+    healthbar = Healthbar(5, 5,100)
     healthbar.hp = playerCar.health
     garage_screen(playerCar, healthbar, json_object["level_completed"])
