@@ -2,44 +2,46 @@
 # Sounds
 main_sound = "sounds/soundtrackmenu.mp3"
 # Icon
-icon_image = 'images/icon.png'
-cursor_img = "images/cursor.png"
+icon_image = 'images/sprites/icon.png'
+cursor_img = "images/sprites/cursor.png"
 # Backgrounds
-main_menu = "images/menuimg.png"
-intro_game = "images/intro_to_game.png"
-garage = "images/garage.png"
-settings_screen = "images/settings.png"
-credits_screen = "images/credits.png"
-instructions_single = "images/instructions_single.png"
-instructions_multi = "images/instructions_multi.png"
-titlemenu = "images/titlemenu.png"
-pause_menu = "images/inprogress.png"
-death_screen = "images/death_screen.png"
+main_menu = "images/backgrounds/menuimg.png"
+intro_game = "images/backgrounds/intro_to_game.png"
+garage = "images/backgrounds/garage.png"
+settings_screen = "images/backgrounds/settings.png"
+credits_screen = "images/backgrounds/credits.png"
+instructions_single = "images/backgrounds/instructions_single.png"
+instructions_multi = "images/backgrounds/instructions_multi.png"
+titlemenu = "images/backgrounds/titlemenu.png"
+pause_menu = "images/backgrounds/inprogress.png"
+death_screen = "images/backgrounds/death_screen.png"
+rules_1 = "images/backgrounds/rules_1.png"
+rules_2 = "images/backgrounds/rules_2.png"
 
 # level backgrounds
-level1 = "images/level1bg.png"
-level1_end = "images/level1_end.png"
-level2 = "images/level2bg.png"
-level3 = "images/level3bg.png"
+level1 = "images/backgrounds/level1bg.png"
+level1_end = "images/backgrounds/level1_end.png"
+level2 = "images/backgrounds/level2bg.png"
+level3 = "images/backgrounds/level3bg.png"
 # Hazards
-blood_spill = "images/blood_spill_lv1.png"
-cone = "images/traficcone_lv1.png"
-road_sign_lv1 = "images/hazard_roadsignlv1.png"
-oil_spill = "images/oil_spill.png"
-bear_trap = "images/beartrap_lv2.png"
-road_sign_lv2 = "images/hazard_roadsign_lv2.png"
+blood_spill = "images/sprites/blood_spill_lv1.png"
+cone = "images/sprites/traficcone_lv1.png"
+road_sign_lv1 = "images/sprites/hazard_roadsignlv1.png"
+oil_spill = "images/sprites/oil_spill.png"
+bear_trap = "images/sprites/beartrap_lv2.png"
+road_sign_lv2 = "images/sprites/hazard_roadsign_lv2.png"
 # Zombies
-fast_zombie = "images/fastZombie.png"
-normal_zombie = "images/zombie.png"
-static_zombie = "images/staticZombie.png"
+fast_zombie = "images/sprites/fastZombie.png"
+normal_zombie = "images/sprites/zombie.png"
+static_zombie = "images/sprites/staticZombie.png"
 # Power Up
-invincibility = "images/mario_head.png"
-slow = "images/slow.png"
+invincibility = "images/sprites/mario_head.png"
+slow = "images/sprites/slow.png"
 # Cars
-normal_car = "images/pickup.png"
-invincible_car = "images/invincible_car.png"
-spill_car = "images/spill_car.png"
-normal_bike = "images/motor_bike.png"
+normal_car = "images/sprites/pickup.png"
+invincible_car = "images/sprites/invincible_car.png"
+spill_car = "images/sprites/spill_car.png"
+normal_bike = "images/sprites/motor_bike.png"
 
 # TODO PUT stuff inside powerups
 # TODO repository public
