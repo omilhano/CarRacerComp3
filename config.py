@@ -55,7 +55,6 @@ stuck_bike = "images/sprites/spill_bike.png"
 
 # TODO repository public
 # TODO bike invincibility sprite ELI
-# TODO bike invincibility code ELI/ALEX
 # TODO UML diagram ALEX E ELI
 # TODO check pygame.display.set_caption across all screens
 # TODO comment code properly ALEX E ELI
