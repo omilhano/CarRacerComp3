@@ -7,7 +7,6 @@ from config import credits_screen
 
 
 def credits_():
-    TEXTCOLOR = (255, 101, 80)
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
