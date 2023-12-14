@@ -148,7 +148,10 @@ def play_multiplayer():
                         game_active = False
                     car_healthbar.hp = playerCar.health
             if powerup_collide:
-                playerCar.gain_powerup(powerup_collide)
+                powerup_collide.affect_player(playerCar)
+                if playerCar.health <= 0:
+                    game_active = False
+                car_healthbar.hp = playerCar.health
             zombie_collide = check_collisions(playerCar, all_zombies)
             if zombie_collide:
                 playerCar.get_money(zombie_collide)
@@ -161,7 +164,10 @@ def play_multiplayer():
                         game_active = False
                     bike_healthbar.hp = playerBike.health
             if powerup_collide:
-                playerBike.gain_powerup(powerup_collide)
+                powerup_collide.affect_player(playerBike)
+                if playerCar.health <= 0:
+                    game_active = False
+                bike_healthbar.hp = playerBike.health
             zombie_collide = check_collisions(playerBike, all_zombies)
             if zombie_collide:
                 playerBike.get_money(zombie_collide)
@@ -181,7 +187,6 @@ def play_multiplayer():
         # so its on top of everything
         all_zombies.draw(screen)
         player_group.draw(screen)
-        print(playerBike.rect.y)
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting

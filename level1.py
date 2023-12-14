@@ -150,7 +150,7 @@ def start_level1():
 
             playerCar.update_powerup()
             # Score testing variable
-            if playerCar.score > 100:
+            if playerCar.score > 1000:
                 status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score, "level_completed": 1}
                 with open("load.json", "w") as outfile:
                     json.dump(status, outfile)

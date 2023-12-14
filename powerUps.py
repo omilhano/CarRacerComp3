@@ -4,8 +4,9 @@ import time
 import pygame
 from abc import ABC, abstractmethod
 
-from config import invincibility, bear_trap, invincible_car, spill_car, slow, fast_zombieBW, normal_zombieBW, \
-    static_zombieBW, road_sign_lv1BW, blood_spillBW, invincibilityBW, slowBW, bear_trapBW
+from config import invincibility, bear_trap, invincible_car, slow, fast_zombieBW, normal_zombieBW, \
+    static_zombieBW, road_sign_lv1BW, blood_spillBW, invincibilityBW, slowBW, bear_trapBW, invincible_bike, stuck_car, \
+    stuck_bike
 
 
 class PowerUp(ABC, pygame.sprite.Sprite):
@@ -41,9 +42,10 @@ class PowerUp(ABC, pygame.sprite.Sprite):
     def return_normal(self):
         pass
 
+
 class Invincible(PowerUp):
     def __init__(self, position_x, position_y):
-        super().__init__(position_x, position_y, 9, "invincible", 0.0005)
+        super().__init__(position_x, position_y, 9, "invincible", 1)  # 0.0005
 
         self.power_up_type = "invincible"  # Test
         self.image = pygame.image.load(invincibility).convert_alpha()
@@ -54,7 +56,7 @@ class Invincible(PowerUp):
     # overriding abstract method
     def affect_player(self, player):
         if player.can_collide:
-            player.image = pygame.image.load(invincible_car).convert_alpha()
+            player.image = pygame.image.load(invincibility_vehicles[player.vehicle_type]["invincible"]).convert_alpha()
             player.can_collide = False
             player.status_change_time = time.time()
             self.powerup_tp()
@@ -76,6 +78,12 @@ class Invincible(PowerUp):
         self.image = pygame.image.load(invincibility).convert_alpha()
 
 
+invincibility_vehicles = {
+    "car": {"bear_trap": stuck_car, "invincible": invincible_car},
+
+    "bike": {"bear_trap": stuck_bike, "invincible": invincible_bike}
+}
+
 
 class BearTrap(PowerUp):
     def __init__(self, position_x, position_y):
@@ -91,7 +99,7 @@ class BearTrap(PowerUp):
 
     def affect_player(self, player):
         if player.movement:
-            player.image = pygame.image.load(spill_car).convert_alpha()
+            player.image = pygame.image.load(stuck_car).convert_alpha()
             player.movement = False
             player.status_change_time = time.time()
             player.health -= self.get_damage()
@@ -120,7 +128,7 @@ class BearTrap(PowerUp):
 class SlowTime(PowerUp):
     def __init__(self, position_x, position_y):
         super().__init__(position_x, position_y, 9, "slow_time", 0.002)
-        self.power_up_type = "slow_time" # Test
+        self.power_up_type = "slow_time"  # Test
         self.image = pygame.image.load(slow).convert_alpha()
         self.rect = self.image.get_rect()
         self.hazard_mask = pygame.mask.from_surface(self.image)

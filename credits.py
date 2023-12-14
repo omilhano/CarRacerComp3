@@ -22,8 +22,7 @@ def credits_():
                 sys.exit()
             # press on menu button to go back
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                print(pygame.mouse.get_pos()) # TODO should this be here?
-                if 1135 <= mouse[0] <= 1235 and 760 <= mouse[1] <= 790:
+                if 1135 <= mouse[0] <= 1235 and 760 <= mouse[1] <= 790: #TODO check button
                     from mainmenu import menu #TODO solve circular import
                     menu()
 

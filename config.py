@@ -48,8 +48,10 @@ bear_trapBW = "images/sprites/beartrap_lv2BW.png"
 # Cars
 normal_car = "images/sprites/pickup.png"
 invincible_car = "images/sprites/invincible_car.png"
-spill_car = "images/sprites/spill_car.png"
+stuck_car = "images/sprites/spill_car.png"
 normal_bike = "images/sprites/motor_bike.png"
+invincible_bike = "images/sprites/invincible_bike.png"
+stuck_bike = "images/sprites/spill_bike.png"
 
 # TODO repository public
 # TODO bike invincibility sprite ELI

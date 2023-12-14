@@ -51,12 +51,12 @@ class Car(pygame.sprite.Sprite):
 
     def update_powerup(self):
         if not self.can_collide and time.time() > self.status_change_time + 5:
-            self.image = pygame.image.load(normal_car).convert_alpha()
+            self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
             self.can_collide = True
 
     def update_movement(self):
         if not self.movement and time.time() > self.status_change_time + 5:
-            self.image = pygame.image.load(normal_car).convert_alpha()
+            self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
             self.movement = True
 
     def moveRight(self, pixels):
