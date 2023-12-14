@@ -7,7 +7,7 @@ from config import road_sign_lv1, cone, blood_spill, bear_trap, oil_spill
 
 
 # TODO oilspill creative for powerup
-class Hazards(ABC, pygame.sprite.Sprite):
+class Hazards(pygame.sprite.Sprite):
 
     def __init__(self, hazard_type, position_x, position_y):
         # Call the parent class (Sprite) constructor
@@ -39,13 +39,9 @@ class Hazards(ABC, pygame.sprite.Sprite):
     def hazard_tp(self):
         self.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
 
-
-# TODO maybe this child class is useless??
-
-
-class Spill(Hazards):
-    def __init__(self, position_x, position_y):
-        super().__init__("spill", position_x, position_y)
+    def return_normal(self):
+        self.image = pygame.image.load(hazard_types[self.hazard_type]["image"]).convert_alpha()
+        self.speed = 5
 
 
 hazard_types = {

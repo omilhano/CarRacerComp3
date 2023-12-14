@@ -19,6 +19,7 @@ class Car(pygame.sprite.Sprite):
 
         # Load the car image
 
+        self.time_slowed = False
         self.can_collide = True
         self.vehicle_type = vehicle_type
         self.image = pygame.image.load(vehicles[vehicle_type]["image"]).convert_alpha()

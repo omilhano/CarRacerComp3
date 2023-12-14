@@ -25,6 +25,9 @@ def start_level2(playerCar, healthbar):
     game_active = True
     clock = pygame.time.Clock()
 
+    # variable specific to see if time is slowed
+    time_slowed = False
+    status_change_time = 0
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     # initialize hazards
@@ -45,6 +48,8 @@ def start_level2(playerCar, healthbar):
     if not beartrap.can_spawn():
         beartrap.powerup_tp()
     slow_time = SlowTime(random.randint(1300, 1500), random.choice([605, 682, 760]))
+    if not slow_time.can_spawn():
+        beartrap.powerup_tp()
     all_powers.add(slow_time)
     all_powers.add(beartrap)
     all_powers.add(invincibility)
@@ -77,9 +82,14 @@ def start_level2(playerCar, healthbar):
                 hazard.hazard_tp()
 
     def update_traffic():
-        if not hazards.slowed and time.time() > hazards.status_change_time + 5:
-            oilspill.image = pygame.image.load(oil_spill).convert_alpha()
-            hazard_sign.image = pygame.image.load(road_sign_lv1).convert_alpha()
+        pass
+        if not time_slowed and time.time() > status_change_time + 5:
+            for zombie in all_zombies:
+                zombie.return_normal()
+            for hazard in all_hazards:
+                hazard.return_normal()
+            for power in all_powers:
+                power.return_normal()
 
     while carryOn:
         for event in pygame.event.get():
@@ -148,6 +158,7 @@ def start_level2(playerCar, healthbar):
                     healthbar.hp = playerCar.health
             if powerup_collide:
                 powerup_collide.affect_player(playerCar)
+                status_change_time = powerup_collide.affect_traffic(all_zombies, all_hazards, all_powers)
                 if playerCar.health <= 0:
                     game_active = False
                 healthbar.hp = playerCar.health
@@ -165,7 +176,7 @@ def start_level2(playerCar, healthbar):
         else:
             # TODO GAME OVER MENU
             pygame.mixer.stop()
-            gameover()
+            #gameover()
             pass
 
         # Number of frames per second e.g. 60

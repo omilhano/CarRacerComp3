@@ -37,6 +37,9 @@ class Zombies(pygame.sprite.Sprite):
         else:
             self.rect.center = [-10, 0]
 
+    def return_normal(self):
+        self.speed = zombie_types[self.type_zombie]["speed"]
+        self.image = pygame.image.load(zombie_types[self.type_zombie]["image"]).convert_alpha()
 
 zombie_types = {
     "fast": {"speed": 10, "money": 5, "probability": 0.0005, "image": fast_zombie},
