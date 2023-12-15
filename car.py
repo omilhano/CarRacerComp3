@@ -36,7 +36,7 @@ class Car(pygame.sprite.Sprite):
         money : int
             the money of the player
         status_change_time : int
-            #TODO alex what is this
+            to keep track of the time when powerup was caught
         can_move : bool
             to check if the player can move
         can_collide : bool
