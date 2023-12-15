@@ -7,6 +7,10 @@ first_time = True
 music_paused = False
 
 def startingUp():
+    """
+    Function controls the music playing on
+    :return: None
+    """
     global first_time
     if first_time:
         first_time = False

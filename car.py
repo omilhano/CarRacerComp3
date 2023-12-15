@@ -23,19 +23,19 @@ class Car(pygame.sprite.Sprite):
         collide_spill():
             Teleports the player to a random lane
         update_powerup():
-            TODO alex please do this one
+            reverts the positive powerup Invincibility effect
         update_movement():
-            TODO alex please do this one
+            reverts the negative powerup Beartrap effect
         move_right():
             moves the sprite 5 pixels to the right
         move_left():
             moves the sprite 5 pixels to the right
         move_up():
             moves the sprite up one lane
-            doesnt do anything if the player is already in the top most lane
+            doesn't do anything if the player is already in the top most lane
         move_down():
             moves the sprite down one lane
-            doesnt do anything if the player is already in the bottom most lane
+            doesn't do anything if the player is already in the bottom most lane
         get_money(zombie)
             Affects the player when it hits a zombie
         update_score(hazard_type)
@@ -91,7 +91,13 @@ class Car(pygame.sprite.Sprite):
 
     def update_powerup(self):
         """
-        TODO alex please do this one
+        Checks to see if player cannot collide and
+        Checks if 5 seconds have passed since the player
+        collided with the powerup Invincibility
+        If true, reverts the Car sprite to its original and
+        the car is allowed to collide again
+
+
         :return: None
         """
         if not self.can_collide and time.time() > self.status_change_time + 5:
@@ -100,7 +106,12 @@ class Car(pygame.sprite.Sprite):
 
     def update_movement(self):
         """
-        TODO alex please do this one
+        Checks if player cannot move and
+        Checks if 5 seconds have passed since the player
+        collided with the powerup Beartrap
+        If true, reverts the Car sprite to its original
+        and the car is allowed to move again
+
         :return: None
         """
         if not self.can_move and time.time() > self.status_change_time + 5:
