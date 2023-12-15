@@ -6,6 +6,11 @@ from sounds import *
 
 # Creating a function that creates the GUI
 def settings():
+    """
+    Creates a loop that displays a custom screen
+    Player can click the buttons to access the screens described in the buttons
+    :return: None
+    """
     from mainmenu import menu
     # initiating pygame
     pygame.init()
