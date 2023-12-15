@@ -5,17 +5,17 @@ class Healthbar:
 
         Attributes
         x : int
-            #TODO
+            position of the healthbar in the x-axis of the screen
         y : int
-            #TODO
+            position of the healthbar in the y-axis of the screen
         width : int
-            #TODO
+            width of the healthbar in pixels
         height : int
-            #TODO
+            height of the healthbar in pixels
         hp : int
-            #TODO
+            starting healthpoints of the player
         max_hp : int
-            #TODO
+            maximum value of health points of player
         -------
         """
 
