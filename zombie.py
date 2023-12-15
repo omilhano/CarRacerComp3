@@ -4,7 +4,22 @@ from config import normal_zombie, fast_zombie, static_zombie
 
 
 class Zombies(pygame.sprite.Sprite):
+    """
+    #TODO doc
+        A class that represents the cursor on the screen
+        ...
 
+        Attributes
+        image : Surface
+            sprite of the cursor
+        rect : Rect
+            creates a rectangle around the image
+        ----------
+        Methods
+            update():
+                updates the position of the cursor to the position of the mouse
+        -------
+        """
     def __init__(self, type_zombie, position_x, position_y):
         super().__init__()
 

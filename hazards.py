@@ -32,8 +32,18 @@ class Hazards(pygame.sprite.Sprite):
             creates a mask from the image
         ----------
         Methods
-            update():
-                updates the position of the cursor to the position of the mouse
+            object_speed(speed):
+                Dictates how fast the objects move
+            get_score():
+                return score
+            get_type():
+                return type
+            get_damage():
+                return damage
+            hazard_tp():
+                 teleports hazard
+            return_normal():
+                returns speed and sprite of hazard to normal
         -------
         """
 
