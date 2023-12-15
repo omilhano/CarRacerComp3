@@ -60,7 +60,7 @@ class Hazards(pygame.sprite.Sprite):
         """
         Functions that dictates how fast
         the objects move to the left of the screen
-        :param speed: int 
+        :param speed: int
         :return: None
         """
         self.rect.x -= self.speed * speed / 20

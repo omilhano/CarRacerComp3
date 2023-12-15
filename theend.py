@@ -5,6 +5,12 @@ from cursor import Cursor
 
 
 def game_end():
+    """
+    Creates a loop that displays a custom screen letting
+    the player know they finished tha game
+    If player presses, menu button they return menu screen
+    :return: None
+    """
     pygame.init()
 
     custom_cursor = Cursor()
