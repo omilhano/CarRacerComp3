@@ -13,6 +13,11 @@ from death import you_died
 
 
 def play_multiplayer():
+    """
+    the multiplayer gamemode
+    end if any person dies
+    :return: None
+    """
     pygame.init()
 
     # defining screen/background
