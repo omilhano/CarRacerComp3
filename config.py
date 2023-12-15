@@ -1,4 +1,5 @@
 # File Paths
+
 # Sounds
 main_sound = "sounds/soundtrackmenu.mp3"
 # Icon
@@ -24,6 +25,7 @@ level1 = "images/backgrounds/level1bg.png"
 level1_end = "images/backgrounds/level1_end.png"
 level2 = "images/backgrounds/level2bg.png"
 level3 = "images/backgrounds/level3bg.png"
+# Sprites
 # Hazards
 blood_spill = "images/sprites/blood_spill_lv1.png"
 blood_spillBW = "images/sprites/blood_spill_lv1BW.png"
@@ -46,7 +48,7 @@ bear_trap = "images/sprites/beartrap_lv2.png"
 invincibilityBW = "images/sprites/mario_headBW.png"
 slowBW = "images/sprites/slowBW.png"
 bear_trapBW = "images/sprites/beartrap_lv2BW.png"
-# Cars
+# Player Vehicle Sprites
 normal_car = "images/sprites/pickup.png"
 invincible_car = "images/sprites/invincible_car.png"
 stuck_car = "images/sprites/spill_car.png"

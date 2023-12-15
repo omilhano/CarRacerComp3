@@ -3,7 +3,21 @@ from config import cursor_img
 
 
 class Cursor(pygame.sprite.Sprite):
-    # This class represents a car. It derives from the "Sprite" class in Pygame.
+    """
+    A class that represents the cursor on the screen
+    ...
+
+    Attributes
+    image : Surface
+        sprite of the cursor
+    rect : Rect
+        creates a rectangle around the image
+    ----------
+    Methods
+        update():
+            updates the position of the cursor to the position of the mouse
+    -------
+    """
 
     def __init__(self):
         # Call the parent class (Sprite) constructor
@@ -13,4 +27,8 @@ class Cursor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def update(self):
+        """
+        Updates the position of the cursor to the position of the mouse
+        :return: None
+        """
         self.rect.center = pygame.mouse.get_pos()

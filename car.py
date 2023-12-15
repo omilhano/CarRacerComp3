@@ -85,7 +85,6 @@ class Car(pygame.sprite.Sprite):
         self.car_mask = pygame.mask.from_surface(self.image)
         self.rect.center = [130, 680]
         self.health = 100
-        # self.max_hp = self.health i think this isnt used
         self.score = 0
         self.money = 0
         self.status_change_time = 0
