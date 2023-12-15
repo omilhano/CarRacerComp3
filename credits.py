@@ -5,6 +5,14 @@ from config import credits_screen
 
 
 def credits_():
+    """
+    Page where the creators are credited
+    Sets the cursor as a custom image
+    Sets the resolution of the screen
+    Creates a while loop, which is only exited when the screen is quit or
+    A button is clicked where it calls the menu function from the file mainmenu.py
+    :return: None
+    """
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
