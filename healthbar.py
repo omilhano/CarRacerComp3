@@ -1,4 +1,23 @@
 class Healthbar:
+    """
+        A class that represents the cursor on the screen
+        ...
+
+        Attributes
+        x : int
+            #TODO
+        y : int
+            #TODO
+        width : int
+            #TODO
+        height : int
+            #TODO
+        hp : int
+            #TODO
+        max_hp : int
+            #TODO
+        -------
+        """
 
     def __init__(self, x, y,  max_hp):
         self.x = x

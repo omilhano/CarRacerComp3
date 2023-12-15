@@ -57,6 +57,14 @@ class Hazards(pygame.sprite.Sprite):
         self.rect.center = [self.position_x, self.position_y]
         self.hazard_mask = pygame.mask.from_surface(self.image)
 
+    def object_speed(self, speed):
+        """
+        #TODO alex u do this
+        :param speed:
+        :return:
+        """
+        self.rect.x -= self.speed * speed / 20
+
     def get_score(self):
         """
         :return: score
@@ -91,6 +99,7 @@ class Hazards(pygame.sprite.Sprite):
         """
         self.image = pygame.image.load(hazard_types[self.hazard_type]["image"]).convert_alpha()
         self.speed = 5
+
 
 """
 Dictionary containing the information related to the three types an object from this class
