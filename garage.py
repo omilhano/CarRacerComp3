@@ -8,6 +8,10 @@ from visual_points import draw, display_score, display_money
 
 def garage_screen(playerCar, healthbar, level):
     """
+    Creates a loop that displays a custom screen
+    The custom screen has clickable buttons
+    Player can buy health, exit to mainmenu or proceed to the next level
+    Player can check current health, score and money
 
     :param playerCar: object of class Car
     :param healthbar: object of class Healthbar

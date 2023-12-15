@@ -1,6 +1,5 @@
 import pygame
 import random
-import json
 import sys
 from car import Car
 from config import level1
@@ -149,10 +148,6 @@ def start_level1():
             playerCar.update_powerup()
             # Score testing variable
             if playerCar.score > 1000:
-                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score,
-                          "level_completed": 1}
-                with open("load.json", "w") as outfile:
-                    json.dump(status, outfile)
                 level_end(1, playerCar, healthbar)
 
             # check collision between hazards ( don't spawn same x)

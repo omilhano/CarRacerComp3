@@ -1,3 +1,4 @@
+import json
 import sys
 import pygame
 from config import pause_menu, level1_end, no_save
@@ -42,8 +43,8 @@ def level_end(level, playerCar, healthbar):
     """
     Creates variable "loop" and sets it as True
     Functions blits the end level screen and "pauses" the game
-    If a key is pressed the loop is exited and the player is taken
-    to the garage screen
+    If a key is pressed the loop is exited, the player is taken
+    to the garage screen and the game is saved
 
     :param level: int level the player completed
     :param playerCar: object from class Car
@@ -58,6 +59,10 @@ def level_end(level, playerCar, healthbar):
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
+                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score,
+                          "level_completed": 1}
+                with open("load.json", "w") as outfile:
+                    json.dump(status, outfile)
                 garage_screen(playerCar, healthbar, 1)
         pygame.display.update()
 
