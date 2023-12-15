@@ -15,6 +15,34 @@ class Car(pygame.sprite.Sprite):
         ----------
         vehicle_type : str
             either "car" or "bike", used to identify the sprite used for the player
+        top_lane : int
+            the y value corresponding to the top lane
+        mid_lane : int
+            the y value corresponding to the mid lane
+        bottom_lane : int
+            the y value corresponding to the bottom lane
+        image : Surface
+            sprite of the vehicle
+        rect : Rect
+            creates a rectangle around the image
+        car_mask : Mask
+            creates a mask from the image
+        rect.center : tuple
+            sets the center of the rectangle at those coordinates
+        health : int
+            the health of the player
+        score : int
+            the score of the player
+        money : int
+            the money of the player
+        status_change_time : int
+            #TODO alex what is this
+        can_move : bool
+            to check if the player can move
+        can_collide : bool
+            to check if the player can collide with other objects
+        time_slowed : bool
+            to check if the time is slowed
 
         Methods
         -------
@@ -48,7 +76,6 @@ class Car(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.speed = 70
         self.vehicle_type = vehicle_type
         self.top_lane = vehicles[self.vehicle_type]["top"]
         self.mid_lane = vehicles[self.vehicle_type]["mid"]
