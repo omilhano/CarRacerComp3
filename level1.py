@@ -13,6 +13,10 @@ from death import you_died
 
 
 def start_level1():
+    """
+    The first level of the game
+    :return: None
+    """
     pygame.init()
 
     # defining screen/background
@@ -41,7 +45,7 @@ def start_level1():
     all_hazards.add(level_cone)
     all_hazards.add(hazard_sign)
 
-    # create zombies
+    # create zombies and adjusts their spawn for their rarity
     fastZombie = Zombies("fast", random.randint(1300, 1500), random.choice([605, 682, 760]))
     if not fastZombie.can_spawn():
         fastZombie.zombie_tp()
@@ -133,7 +137,6 @@ def start_level1():
                 level_end(1, playerCar, healthbar)
 
         else:
-            from death import death_screen
             pygame.mixer.stop()
             you_died(1)
 
