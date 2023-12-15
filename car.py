@@ -122,12 +122,29 @@ class Car(pygame.sprite.Sprite):
                 self.rect.x -= 5
 
     def move_left(self):
+        """
+        Checks to see if player is allowed to move
+        Moves the player 5 pixels to the left
+        Checks to see if player is to the left of the screen limit
+        If that's the case, moves the player 5 pixels to the right
+
+        :return: None
+        """
         if self.can_move:
             self.rect.x -= 5
             if self.rect.x < 0:
                 self.rect.x += 5
 
     def move_up(self):
+        """
+        Checks to see if player is allowed to move
+        Checks to see if player is in the middle lane
+        If so, teleports player to top lane
+        Checks to see if player is in the bottom lane
+        If so, teleports player to middle lane
+
+        :return: None
+        """
         if self.can_move:
             if self.rect.y == self.mid_lane:
                 self.rect.y = self.top_lane
@@ -135,6 +152,15 @@ class Car(pygame.sprite.Sprite):
                 self.rect.y = self.mid_lane
 
     def move_down(self):
+        """
+        Checks to see if player is allowed to move
+        Checks to see if player is in the top lane
+        If so, teleports player to middle lane
+        Checks to see if player is in the middle lane
+        If so, teleports player to bottom lane
+
+        :return: None
+        """
         if self.can_move:
             if self.rect.y == self.top_lane:
                 self.rect.y = self.mid_lane
@@ -142,13 +168,34 @@ class Car(pygame.sprite.Sprite):
                 self.rect.y = self.bottom_lane
 
     def get_money(self, zombie) -> None:
+        """
+        Adds money to the player equal to the money value of the zombie
+        Teleports zombie outside the screen region
+        :param zombie: object from the class Zombies
+        :return: None
+        """
         self.money += zombie.get_money()
         zombie.zombie_tp()
 
     def update_score(self, hazard):
+        """
+        Adds score to the player equal to the score value of the hazard
+
+        :param hazard: object from class Hazards
+        :return: None
+        """
         self.score += hazard.get_score()
 
     def change_rand_lane(self):
+        """
+        Checks to see if player is in the top lane
+        If so, teleports player to either the middle lane or the bottom lane, at random
+        Checks to see if player is in the middle lane
+        If so, teleports player to either the top lane or the bottom lane, at random
+        Otherwise, teleports player to either the top lane or the middle lane, at random
+
+        :return: None
+        """
         if self.rect.y == self.top_lane:
             self.rect.y = random.choice([self.mid_lane, self.bottom_lane])
         elif self.rect.y == self.mid_lane:
