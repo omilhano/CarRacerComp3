@@ -69,6 +69,15 @@ def garage_screen(playerCar, healthbar, level):
 
 
 def recover_health(player, healthbar):
+    """
+    Checks if the player has less than 90 health points
+    If True, adds 10 health points to current health points
+    Checks if the player has more than 90 health points
+    If True, sets the current health points equal to the maximum health points
+    :param player: object of class Car
+    :param healthbar: object of lass Healthbar
+    :return: None
+    """
     if player.health <= 90:
         player.health += 10
         healthbar.hp = player.health
@@ -78,6 +87,16 @@ def recover_health(player, healthbar):
 
 
 def buy_health(player, healthbar):
+    """
+    Checks if the current health points are different from maximum health points
+    If True, checks if the player has more than 5 money
+    If True, subtracts 5 from the money the player currently has and
+    calls function recover_health with the parameters player and healthbar so that
+    the player can increase current health points
+    :param player:
+    :param healthbar:
+    :return: None
+    """
     if player.health != 100:  # added this
         if player.money - 5 > -1:
             player.money -= 5
