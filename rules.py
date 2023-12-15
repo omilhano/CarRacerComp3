@@ -12,7 +12,7 @@ def rules_p1():
     # initialize at 720x720
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Settings")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
 
     # interface
     while True:
@@ -22,10 +22,10 @@ def rules_p1():
             if ev.type == pygame.QUIT:
                 sys.exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 23 <= mouse[0] <= 125 and 700 <= mouse[1] <= 780:  # TODO alex please check buttons
+                if 23 <= mouse[0] <= 125 and 700 <= mouse[1] <= 780:
                     from mainmenu import menu
                     menu()
-                if 1180 <= mouse[0] <= 1270 and 750 <= mouse[1] <= 785:  # TODO alex please check buttons
+                if 1180 <= mouse[0] <= 1270 and 750 <= mouse[1] <= 785:
                     rules_p2()
         bg = pygame.image.load(rules_1).convert_alpha()
         screen.blit(bg, (0, 0))
@@ -44,7 +44,7 @@ def rules_p2():
     # initialize at 720x720
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Full Rules")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
 
     # interface
     while True:
@@ -54,7 +54,7 @@ def rules_p2():
             if ev.type == pygame.QUIT:
                 sys.exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 10 <= mouse[0] <= 110 and 755 <= mouse[1] <= 780:  # TODO alex please check buttons
+                if 10 <= mouse[0] <= 110 and 755 <= mouse[1] <= 780:
                     rules_p1()
         bg = pygame.image.load(rules_2).convert_alpha()
         screen.blit(bg, (0, 0))

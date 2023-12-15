@@ -6,42 +6,66 @@ from config import normal_car, normal_bike
 
 
 class Car(pygame.sprite.Sprite):
-    # This class represents a car. It derives from the "Sprite" class in Pygame.
+    """
+        A class that represents the player
+        ...
 
-    # Initialize constants
-    # TODO screen auto adjust
+        Attributes
 
-    def __init__(self, position_x, position_y, speed, vehicle_type):
+        ----------
+        vehicle_type : str
+            either "car" or "bike", used to identify the sprite used for the player
+
+        Methods
+        -------
+        get_damaged(hazard):
+            Affects the player when it hits a hazard
+        collide_spill():
+            Teleports the player to a random lane
+        update_powerup():
+            TODO alex please do this one
+        update_movement():
+            TODO alex please do this one
+        move_right():
+        move_left():
+        move_up():
+        move_down():
+        get_money(zombie)
+        update_score(hazard_type)
+        change_rand_lane():
+        """
+
+    def __init__(self, vehicle_type):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        # Load the car image
-
-        self.time_slowed = False
-        self.can_collide = True
+        self.speed = 70
         self.vehicle_type = vehicle_type
+        self.top_lane = vehicles[self.vehicle_type]["top"]
+        self.mid_lane = vehicles[self.vehicle_type]["mid"]
+        self.bottom_lane = vehicles[self.vehicle_type]["bottom"]
         self.image = pygame.image.load(vehicles[vehicle_type]["image"]).convert_alpha()
         self.rect = self.image.get_rect()
         self.car_mask = pygame.mask.from_surface(self.image)
-        self.rect.center = [position_x, position_y]
-        self.speed = speed
+        self.rect.center = [130, 680]
         self.health = 100
-        self.max_hp = self.health
+        # self.max_hp = self.health i think this isnt used
         self.score = 0
         self.money = 0
-        self.movement = True
         self.status_change_time = 0
-        self.top_lane = vehicles[vehicle_type]["top"]
-        self.mid_lane = vehicles[vehicle_type]["mid"]
-        self.bottom_lane = vehicles[vehicle_type]["bottom"]
+        self.movement = True
+        self.can_collide = True
+        self.time_slowed = False
 
-    # If collide lower hp
-    # Returns true if kill car
     def get_damaged(self, hazard) -> bool:
         """
+        Applies effects to player when it hits the hazard.
+        If the hazard is of type "Spill" calls collide_spill function.
+        Removes health from the player equal to the damage value of the hazard
+        Returns true if after getting damaged, the player's health is equal to or below 0
 
-        :param hazard:
-        :return: true if player health is below 0
+        :param hazard: object from class Hazard
+        :return: true if player health is below or equal to 0
         """
         if hazard.get_type() == "spill":
             self.collide_spill()
@@ -50,29 +74,45 @@ class Car(pygame.sprite.Sprite):
         return self.health <= 0
 
     def collide_spill(self):
+        """
+        Teleports the player to a random lane, calls the change_rand_lane function
+        :return: None
+        """
         self.change_rand_lane()
 
     def update_powerup(self):
+        """
+        TODO alex please do this one
+        :return: None
+        """
         if not self.can_collide and time.time() > self.status_change_time + 5:
             self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
             self.can_collide = True
 
     def update_movement(self):
+        """
+        TODO alex please do this one
+        :return: None
+        """
         if not self.movement and time.time() > self.status_change_time + 5:
             self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
             self.movement = True
 
-    def move_right(self, pixels):
-        self.rect.x += pixels
+    def move_right(self):
+        """
+
+        :return: None
+        """
+        self.rect.x += 5
         if self.movement:
             if self.rect.right > 1270:
-                self.rect.x -= pixels
+                self.rect.x -= 5
 
-    def move_left(self, pixels): #TODO we only use 5 so pixels is a useless param
-        self.rect.x -= pixels
+    def move_left(self):
+        self.rect.x -= 5
         if self.movement:
             if self.rect.x < 0:
-                self.rect.x += pixels
+                self.rect.x += 5
 
     def move_up(self):
         if self.movement:
@@ -88,15 +128,12 @@ class Car(pygame.sprite.Sprite):
             elif self.rect.y == self.mid_lane:
                 self.rect.y = self.bottom_lane
 
-    def change_speed(self, speed): # TODO this isnt used
-        self.speed = speed
-
     def get_money(self, zombie) -> None:
-        self.money += zombie.money
+        self.money += zombie.get_money()
         zombie.zombie_tp()
 
-    def update_score(self, hazard_type):
-        self.score += hazards.hazard_types[hazard_type]["score"]
+    def update_score(self, hazard):
+        self.score += hazard.get_score()
 
     def change_rand_lane(self):
         if self.rect.y == self.top_lane:
@@ -107,6 +144,14 @@ class Car(pygame.sprite.Sprite):
             self.rect.y = random.choice([self.top_lane, self.mid_lane])
 
 
+"""
+Dictionary containing the information related to the two types of sprites an object from this class
+can take
+image: the sprite of a car or a bike
+top: the y value corresponding to the best value for the sprite to appear in the top lane
+mid: the y value corresponding to the best value for the sprite to appear in the middle lane
+bottom: the y value corresponding to the best value for the sprite to appear in the bottom lane
+"""
 vehicles = {
     "bike": {"image": normal_bike, "top": 505, "mid": 580, "bottom": 650},
 

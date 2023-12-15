@@ -1,7 +1,4 @@
 import sys
-import pygame
-from pygame import mixer
-#TODO delete?
 from config import settings_screen
 from cursor import Cursor
 from sounds import *
@@ -9,7 +6,7 @@ from sounds import *
 
 # Creating a function that creates the GUI
 def settings():
-    from mainmenu import menu  # TODO liahh
+    from mainmenu import menu
     # initiating pygame
     pygame.init()
     custom_cursor = Cursor()
@@ -18,7 +15,7 @@ def settings():
     # initialize at 720x720
     res = (974, 974)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Settings")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # interface 
     while True:
         mouse = pygame.mouse.get_pos()

@@ -15,7 +15,7 @@ def game_intro():
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     # name
-    pygame.display.set_caption("Car Racer")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
 
     while True:
         bg = pygame.image.load(intro_game)
@@ -30,7 +30,7 @@ def game_intro():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if 475 <= mouse[0] <= 735 and 595 <= mouse[1] <= 725:
                     # back to menu
-                    from mainmenu import menu  # TODO fix circular import
+                    from mainmenu import menu
                     menu()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # single player

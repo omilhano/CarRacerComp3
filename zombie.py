@@ -26,6 +26,8 @@ class Zombies(pygame.sprite.Sprite):
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
 
+    def get_money(self):
+        return self.money
     def can_spawn(self) -> bool:
         var_rand = random.random()
         # true if spawn

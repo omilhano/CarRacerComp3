@@ -4,7 +4,7 @@ import json
 import sys
 from car import Car
 from config import level1
-from healthbar import *  # TODO cant it be just import healthbar
+from healthbar import *
 from hazards import Hazards
 from powerUps import Invincible
 from utils import pause, level_end
@@ -20,7 +20,7 @@ def start_level1():
     bg = pygame.image.load(level1).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Car Racing")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # to run everything
     carryOn = True
     # to have game state
@@ -28,7 +28,7 @@ def start_level1():
     clock = pygame.time.Clock()
 
     # initialize car
-    playerCar = Car(130, 680, 70, "car")
+    playerCar = Car("car")
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     healthbar = Healthbar(5, 5, playerCar.health)
@@ -95,9 +95,9 @@ def start_level1():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.move_left(5)
+            playerCar.move_left()
         if keys[pygame.K_d]:
-            playerCar.move_right(5)
+            playerCar.move_right()
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -108,12 +108,12 @@ def start_level1():
             display_score(playerCar.score, screen)
             display_money(playerCar.money, screen)
             # create hazards on road
-            for hazards in all_hazards:
-                hazards.object_speed(random.randint(20, 30))
-                if hazards.rect.right < 0:
-                    playerCar.update_score(hazards.hazard_type)
-                    hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
-                    check_if_stacked(hazards)
+            for hazard in all_hazards:
+                hazard.object_speed(random.randint(20, 30))
+                if hazard.rect.right < 0:
+                    playerCar.update_score(hazard.hazard_type)
+                    hazard.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+                    check_if_stacked(hazard)
 
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
@@ -160,7 +160,7 @@ def start_level1():
         else:
             from death import death_screen
             pygame.mixer.stop()
-            you_died()
+            you_died(1)
 
         # Number of frames per second e.g. 60
         clock.tick(60)
@@ -171,5 +171,3 @@ def start_level1():
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-        # this doesn't raise an error when quitting
-    you_died()  # todo make sure this will also work on level 2

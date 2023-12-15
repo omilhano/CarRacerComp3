@@ -13,7 +13,7 @@ def garage_screen(playerCar, healthbar, level):
     bg = pygame.image.load(garage).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Car Racing")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
     cursor_group.add(custom_cursor)

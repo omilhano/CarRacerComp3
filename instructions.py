@@ -16,7 +16,7 @@ def instructions(players):
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
     # name
-    pygame.display.set_caption("Car Racer")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
 
     while True:
         if players == 1:

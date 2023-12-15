@@ -1,8 +1,6 @@
 import pygame
 import random
 import sys
-import json
-#TODO why
 from car import Car
 from config import level1
 from healthbar import *
@@ -14,9 +12,6 @@ from zombie import Zombies
 from death import you_died
 
 
-
-# TODO powerups
-
 def play_multiplayer():
     pygame.init()
 
@@ -24,7 +19,7 @@ def play_multiplayer():
     bg = pygame.image.load(level1).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Car Racing")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # to run everything
     carryOn = True
     # to have game state
@@ -32,13 +27,13 @@ def play_multiplayer():
     clock = pygame.time.Clock()
 
     # initialize car
-    playerCar = Car(130, 680, 70, "car")
-    playerBike = Car(300, 680, 70, "bike")
+    playerCar = Car("car")
+    playerBike = Car("bike")
     player_group = pygame.sprite.Group()
     player_group.add(playerCar)
     player_group.add(playerBike)
     car_healthbar = Healthbar(5, 5, playerCar.health)
-    bike_healthbar = Healthbar(800,5, playerBike.health)
+    bike_healthbar = Healthbar(800, 5, playerBike.health)
     # initialize hazards
     bloodspill = Hazards("spill", random.randint(1300, 1500),
                          random.choice([605, 682, 760]))
@@ -104,13 +99,13 @@ def play_multiplayer():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.move_left(5)
+            playerCar.move_left()
         if keys[pygame.K_LEFT]:
-            playerBike.move_left(5)
+            playerBike.move_left()
         if keys[pygame.K_d]:
-            playerCar.move_right(5)
+            playerCar.move_right()
         if keys[pygame.K_RIGHT]:
-            playerBike.move_right(5)
+            playerBike.move_right()
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -180,7 +175,7 @@ def play_multiplayer():
         else:
             from death import death_screen
             pygame.mixer.stop()
-            you_died()
+            you_died(2)
 
         # Number of frames per second e.g. 60
         clock.tick(60)
@@ -191,5 +186,3 @@ def play_multiplayer():
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-        # this doesn't raise an error when quitting
-    you_died() #todo make sure this will also work on level 2

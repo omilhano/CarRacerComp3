@@ -1,6 +1,8 @@
 import sys
 import time
 import pygame, random
+
+from death import you_died
 from hazards import Hazards
 from config import level2
 from powerUps import BearTrap, Invincible, SlowTime
@@ -16,7 +18,7 @@ def start_level2(playerCar, healthbar):
     bg = pygame.image.load(level2).convert_alpha()
     res = (1282, 800)
     screen = pygame.display.set_mode(res)
-    pygame.display.set_caption("Car Racing")
+    pygame.display.set_caption("Driven to Decay : Byte the Dust")
     # to run everything
     carryOn = True
     # to have game state
@@ -102,9 +104,9 @@ def start_level2(playerCar, healthbar):
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.move_left(5)
+            playerCar.move_left()
         if keys[pygame.K_d]:
-            playerCar.move_right(5)
+            playerCar.move_right()
         if keys[pygame.K_ESCAPE]:
             pass
 
@@ -116,12 +118,12 @@ def start_level2(playerCar, healthbar):
             display_money(playerCar.money, screen)
 
             # create hazards on road
-            for hazards in all_hazards:
-                hazards.object_speed(random.randint(20, 30))
-                if hazards.rect.right < 0:
-                    playerCar.update_score(hazards.hazard_type)
-                    hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
-                    check_if_stacked(hazards)
+            for hazard in all_hazards:
+                hazard.object_speed(random.randint(20, 30))
+                if hazard.rect.right < 0:
+                    playerCar.update_score(hazard)
+                    hazard.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
+                    check_if_stacked(hazard)
             all_hazards.draw(screen)
 
             fastZombie.object_speed(random.randint(30, 40))
@@ -172,9 +174,8 @@ def start_level2(playerCar, healthbar):
 
             playerCar.update_movement()
         else:
-            # TODO GAME OVER MENU
             pygame.mixer.stop()
-            #gameover()
+            you_died(1)
             pass
 
         # Number of frames per second e.g. 60
@@ -185,4 +186,3 @@ def start_level2(playerCar, healthbar):
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
-    sys.exit()  # TODO death

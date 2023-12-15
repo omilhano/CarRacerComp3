@@ -4,7 +4,7 @@ from cursor import Cursor
 from config import death_screen
 
 
-def you_died():
+def you_died(number):
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
@@ -23,8 +23,12 @@ def you_died():
                     from mainmenu import menu
                     menu()
                 if 32 <= mouse[0] <= 275 and 720 <= mouse[1] <= 785:
-                    from level1 import start_level1  # TODO solve circular import
-                    start_level1()
+                    if number == 1:
+                        from level1 import start_level1
+                        start_level1()
+                    else:
+                        from multiplayer import play_multiplayer
+                        play_multiplayer()
 
         bg = pygame.image.load(death_screen).convert_alpha()
         screen.blit(bg, (0, 0))

@@ -3,7 +3,6 @@ import pygame
 from config import road_sign_lv1, cone, blood_spill, oil_spill
 
 
-# TODO oilspill creative for powerup
 class Hazards(pygame.sprite.Sprite):
 
     def __init__(self, hazard_type, position_x, position_y):
@@ -26,6 +25,9 @@ class Hazards(pygame.sprite.Sprite):
 
     def object_speed(self, speed):
         self.rect.x -= self.speed * speed / 20
+
+    def get_score(self):
+        return self.score
 
     def get_type(self):
         return self.hazard_type

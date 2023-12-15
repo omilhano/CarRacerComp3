@@ -19,8 +19,8 @@ def credits_():
                 sys.exit()
             # press on menu button to go back
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 1135 <= mouse[0] <= 1235 and 760 <= mouse[1] <= 790: #TODO check button
-                    from mainmenu import menu #TODO solve circular import
+                if 1135 <= mouse[0] <= 1235 and 760 <= mouse[1] <= 790:
+                    from mainmenu import menu
                     menu()
 
         bg = pygame.image.load(credits_screen).convert_alpha()
