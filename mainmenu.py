@@ -14,6 +14,11 @@ from utils import no_save_file
 
 # Creating a function that creates the GUI
 def menu():
+    """
+    Main menu with various buttons to take you to different screens
+    #TODO alex can this be better?
+    :return: None
+    """
     startingUp()
     # initiating pygames
     pygame.init()
@@ -65,9 +70,6 @@ def menu():
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 1105 <= mouse[0] <= 1275 and 760 <= mouse[1] <= 790:
                     rules_p1()
-            # test position of the mouse
-            # if ev.type == pygame.MOUSEBUTTONDOWN:
-            #     print(pygame.mouse.get_pos())
 
         # setting background
         bg = pygame.image.load(main_menu)
@@ -77,6 +79,5 @@ def menu():
         cursor_group.update()
         # PYGAME BUILT-IN FUNCTION that updates the screen at every iteration of the loop
         pygame.display.flip()
-
         # frames
         clock.tick(60)
