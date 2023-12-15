@@ -6,6 +6,13 @@ from cursor import Cursor
 
 
 def game_intro():
+    """
+    Creates a loop that displays an image with the game mode,
+    single player or multiplayer
+    If single player is chosen, the player will be directed to the single player mode
+    If multiplayer is chosen, the player will be directed to the multiplayer mode
+    :return: None
+    """
     pygame.init()
     # custom cursor image
     custom_cursor = Cursor()

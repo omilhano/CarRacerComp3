@@ -5,6 +5,15 @@ from config import death_screen
 
 
 def you_died(number):
+    """
+    Creates a loop that displays a custom background letting the player know
+    they lost the game
+    Mouse position is checked to give buttons a function leading the player to
+    the mainmenu or starting over from level 1
+
+    :param number: int used to check if singleplayer or multiplayer
+    :return: None
+    """
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
