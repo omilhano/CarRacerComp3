@@ -8,7 +8,7 @@ pygame.init()
 # defining screen
 res = (1282, 800)
 screen = pygame.display.set_mode(res)
-pygame.display.set_caption("Car Racing")
+pygame.display.set_caption("Driven to Decay: Byte the Dust")
 # font
 corbelfont = pygame.font.SysFont('Corbel', 50)  # Select font and size
 clock = pygame.time.Clock()
@@ -63,6 +63,13 @@ def level_end(level, playerCar, healthbar):
 
 
 def no_save_file():
+    """
+    Creates variable "loop" and sets it as True
+    Functions blits screen showing user there is no saved file created
+    If a key is pressed the loop is exited and the player goes to mainmenu
+
+    :return: None
+    """
     loop = True
     end_screen = pygame.image.load(no_save).convert_alpha()
     screen.blit(end_screen, [0, 0])
@@ -76,10 +83,13 @@ def no_save_file():
         pygame.display.update()
 
 
+"""
+Dictionary created for organization of level end screens
+Ready for future implementation
+"""
 end_screens = {
     1: {"image": level1_end},
 
     # 2: {"image": level2_end},
-    #
     # 3: {"image": level3_end}
 }
