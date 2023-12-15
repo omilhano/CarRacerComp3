@@ -7,6 +7,13 @@ from multiplayer import play_multiplayer
 
 
 def instructions(players):
+    """
+    Creates a screen with simplified instructions, displays a different screen if
+    one or two people are playing
+    Will proceed to corresponding gamemode when any key is pressed
+    :param players: number of players, used to see if its multiplayer
+    :return: None
+    """
     pygame.init()
     # custom cursor image
     custom_cursor = Cursor()
