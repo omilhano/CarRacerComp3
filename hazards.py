@@ -22,7 +22,6 @@ class Hazards(pygame.sprite.Sprite):
             damage the hazard gives the player
         score: int
             score which the hazard gives, after passing the left of the screen
-            #TODO alex fact chreck this
         image : Surface
             sprite of the hazard
         rect : Rect
@@ -59,9 +58,10 @@ class Hazards(pygame.sprite.Sprite):
 
     def object_speed(self, speed):
         """
-        #TODO alex u do this
-        :param speed:
-        :return:
+        Functions that dictates how fast
+        the objects move to the left of the screen
+        :param speed: int 
+        :return: None
         """
         self.rect.x -= self.speed * speed / 20
 
