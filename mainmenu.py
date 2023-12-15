@@ -15,8 +15,8 @@ from utils import no_save_file
 # Creating a function that creates the GUI
 def menu():
     """
+    Creates a loop that displays a custom screen
     Main menu with various buttons to take you to different screens
-    #TODO alex can this be better?
     :return: None
     """
     startingUp()

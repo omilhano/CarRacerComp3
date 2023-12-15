@@ -12,6 +12,12 @@ from zombie import Zombies
 
 
 def start_level2(playerCar, healthbar):
+    """
+    The first level of the game
+    :param playerCar: object of class Car
+    :param healthbar: object of class Healthbar
+    :return: None
+    """
     pygame.init()
 
     # defining screen/background
@@ -65,7 +71,13 @@ def start_level2(playerCar, healthbar):
     all_zombies.add(staticZombie)
 
     def check_collisions(playerCar, all_sprites):
-        # returns None or object from Class
+        """
+        Checks if player collided with a sprite
+        If True, returns what it collided with
+        :param playerCar: object of class Car
+        :param all_sprites: Group of Sprites from class Hazards, Zombies or PowerUp
+        :return: None or object from class Hazards, Zombies or PowerUp
+        """
         object_sprite = None
         for sprite in all_sprites:
             if pygame.sprite.collide_mask(playerCar, sprite) is None:
@@ -74,7 +86,14 @@ def start_level2(playerCar, healthbar):
                 object_sprite = sprite
         return object_sprite
 
-    def check_if_stacked(hazard):
+    def check_if_stacked(hazard, all_hazards):
+        """
+        Checks if there is a hazard object on top of another hazard object
+        If True, teleports the first hazard
+        :param hazard: object of class Hazard
+        :param all_hazards: Group of sprites with all the hazards
+        :return: None
+        """
         for other_hazard in all_hazards:
             if pygame.sprite.collide_mask(hazard, other_hazard) is None:
                 pass
@@ -82,7 +101,13 @@ def start_level2(playerCar, healthbar):
                 hazard.hazard_tp()
 
     def update_traffic():
-        pass
+        """
+        Checks if time is not affected and if
+        Checks if 5 seconds have passed since the player collided
+        with the powerup SlowTime
+        Revers the change done to sprites
+        :return: None
+        """
         if not time_slowed and time.time() > status_change_time + 5:
             for zombie in all_zombies:
                 zombie.return_normal()
@@ -92,6 +117,7 @@ def start_level2(playerCar, healthbar):
                 power.return_normal()
 
     while carryOn:
+        # check for inputs
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -123,12 +149,14 @@ def start_level2(playerCar, healthbar):
                 if hazard.rect.right < 0:
                     playerCar.update_score(hazard)
                     hazard.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
-                    check_if_stacked(hazard)
+                    check_if_stacked(hazard, all_hazards)
             all_hazards.draw(screen)
 
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
             staticZombie.object_speed(random.randint(20, 30))
+
+            # zombie spawn logic
             for zombies in all_zombies:
                 if zombies.can_spawn():
                     if zombies.rect.right < 0:
@@ -143,6 +171,8 @@ def start_level2(playerCar, healthbar):
             invincibility.object_speed(random.randint(20, 30))
             beartrap.object_speed(random.randint(20, 30))
             slow_time.object_speed(random.randint(15, 20))
+
+            # powerup spawn logic
             for powers in all_powers:
                 if powers.can_spawn():
                     if powers.rect.right < 0:
