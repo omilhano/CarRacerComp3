@@ -15,6 +15,14 @@ clock = pygame.time.Clock()
 
 
 def pause():
+    """
+    Creates variable "loop" and sets it as True
+    Checks if pause is still activated with the while loop
+    Functions blits the pause screen and pauses the game
+    If space key is pressed the loop is exited and the game resumed
+
+    :return: None
+    """
     loop = True
     pause_screen = pygame.image.load(pause_menu).convert_alpha()
     screen.blit(pause_screen, [0, 0])
@@ -31,6 +39,17 @@ def pause():
 
 
 def level_end(level, playerCar, healthbar):
+    """
+    Creates variable "loop" and sets it as True
+    Functions blits the end level screen and "pauses" the game
+    If a key is pressed the loop is exited and the player is taken
+    to the garage screen
+
+    :param level: int level the player completed
+    :param playerCar: object from class Car
+    :param healthbar: object from class Healthbar
+    :return: None
+    """
     loop = True
     end_screen = pygame.image.load(end_screens[level]["image"]).convert_alpha()
     screen.blit(end_screen, [0, 0])
