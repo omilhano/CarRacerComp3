@@ -24,25 +24,57 @@ class Zombies(pygame.sprite.Sprite):
         self.zombie_mask = pygame.mask.from_surface(self.image)
 
     def object_speed(self, speed):
+        """
+
+        :param speed: int speed objects move to left of the screen
+        :return: None
+        """
         self.rect.x -= self.speed * speed / 20
 
     def get_money(self):
+        """
+        :return: money
+        """
         return self.money
+
     def can_spawn(self) -> bool:
+        """
+        :return: bool if it can spawn
+        """
         var_rand = random.random()
         # true if spawn
         return var_rand <= self.probability
 
     def zombie_tp(self) -> None:
+        """
+        Checks if zombie can spawn
+        If True, allocates to a random lane off screen
+        If False, puts them on a coordinates that forces a spawn
+        :return: None
+        """
         if self.can_spawn():
             self.rect.center = [1400, random.choice([605, 682, 760])]
         else:
             self.rect.center = [-10, 0]
 
     def return_normal(self):
+        """
+        Reverts the changes from the power
+        Changes speed to normal and image to normal
+        :return: None
+        """
         self.speed = zombie_types[self.type_zombie]["speed"]
         self.image = pygame.image.load(zombie_types[self.type_zombie]["image"]).convert_alpha()
 
+
+"""
+Dictionary containing the information related to the three types an object from this class
+can be
+speed: speed at which they move to the left of screen
+image: the sprite of the different zombies
+money: the money the zombie give as it exits the screen
+Ready for future implementation
+"""
 zombie_types = {
     "fast": {"speed": 10, "money": 5, "probability": 0.0005, "image": fast_zombie},
 
