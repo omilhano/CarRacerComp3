@@ -27,12 +27,21 @@ class Car(pygame.sprite.Sprite):
         update_movement():
             TODO alex please do this one
         move_right():
+            moves the sprite 5 pixels to the right
         move_left():
+            moves the sprite 5 pixels to the right
         move_up():
+            moves the sprite up one lane
+            doesnt do anything if the player is already in the top most lane
         move_down():
+            moves the sprite down one lane
+            doesnt do anything if the player is already in the bottom most lane
         get_money(zombie)
+            Affects the player when it hits a zombie
         update_score(hazard_type)
+            Updates the score of the player
         change_rand_lane():
+            Teleports the player to a random lane
         """
 
     def __init__(self, vehicle_type):
@@ -53,7 +62,7 @@ class Car(pygame.sprite.Sprite):
         self.score = 0
         self.money = 0
         self.status_change_time = 0
-        self.movement = True
+        self.can_move = True
         self.can_collide = True
         self.time_slowed = False
 
@@ -75,7 +84,7 @@ class Car(pygame.sprite.Sprite):
 
     def collide_spill(self):
         """
-        Teleports the player to a random lane, calls the change_rand_lane function
+        Calls a function to teleport the player
         :return: None
         """
         self.change_rand_lane()
@@ -94,35 +103,39 @@ class Car(pygame.sprite.Sprite):
         TODO alex please do this one
         :return: None
         """
-        if not self.movement and time.time() > self.status_change_time + 5:
+        if not self.can_move and time.time() > self.status_change_time + 5:
             self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
-            self.movement = True
+            self.can_move = True
 
     def move_right(self):
         """
+        Checks to see if player is allowed to move
+        Moves the player 5 pixels to the right
+        Checks to see if player is to the right of the screen limit
+        If that's the case, moves the player 5 pixels to the left
 
         :return: None
         """
-        self.rect.x += 5
-        if self.movement:
+        if self.can_move:
+            self.rect.x += 5
             if self.rect.right > 1270:
                 self.rect.x -= 5
 
     def move_left(self):
-        self.rect.x -= 5
-        if self.movement:
+        if self.can_move:
+            self.rect.x -= 5
             if self.rect.x < 0:
                 self.rect.x += 5
 
     def move_up(self):
-        if self.movement:
+        if self.can_move:
             if self.rect.y == self.mid_lane:
                 self.rect.y = self.top_lane
             elif self.rect.y == self.bottom_lane:
                 self.rect.y = self.mid_lane
 
     def move_down(self):
-        if self.movement:
+        if self.can_move:
             if self.rect.y == self.top_lane:
                 self.rect.y = self.mid_lane
             elif self.rect.y == self.mid_lane:

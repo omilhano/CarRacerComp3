@@ -96,9 +96,9 @@ class BearTrap(PowerUp):
         self.score = 25
 
     def affect_player(self, player):
-        if player.movement:
+        if player.can_move:
             player.image = pygame.image.load(stuck_car).convert_alpha()
-            player.movement = False
+            player.can_move = False
             player.status_change_time = time.time()
             player.health -= self.get_damage()
             self.powerup_tp()
