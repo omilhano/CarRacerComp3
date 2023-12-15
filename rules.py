@@ -5,6 +5,10 @@ from cursor import Cursor
 
 
 def rules_p1():
+    """
+    First set of rules of the game
+    :return: None
+    """
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
@@ -37,6 +41,10 @@ def rules_p1():
 
 
 def rules_p2():
+    """
+    Second set of rules of the game
+    :return: None
+    """
     pygame.init()
     custom_cursor = Cursor()
     cursor_group = pygame.sprite.Group()
