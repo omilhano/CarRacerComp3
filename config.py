@@ -55,6 +55,3 @@ stuck_car = "images/sprites/spill_car.png"
 normal_bike = "images/sprites/motor_bike.png"
 invincible_bike = "images/sprites/invincible_bike.png"
 stuck_bike = "images/sprites/spill_bike.png"
-
-# TODO UML diagram ALEX E ELI
-# TODO screen auto adjust
