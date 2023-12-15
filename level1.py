@@ -111,7 +111,7 @@ def start_level1():
             for hazard in all_hazards:
                 hazard.object_speed(random.randint(20, 30))
                 if hazard.rect.right < 0:
-                    playerCar.update_score(hazard.hazard_type)
+                    playerCar.update_score(hazard)
                     hazard.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazard)
 

@@ -7,6 +7,13 @@ from visual_points import draw, display_score, display_money
 
 
 def garage_screen(playerCar, healthbar, level):
+    """
+
+    :param playerCar: object of class Car
+    :param healthbar: object of class Healthbar
+    :param level: int level the player completed
+    :return: None
+    """
     pygame.init()
 
     # defining screen/background
@@ -18,20 +25,6 @@ def garage_screen(playerCar, healthbar, level):
     cursor_group = pygame.sprite.Group()
     cursor_group.add(custom_cursor)
     clock = pygame.time.Clock()
-
-    def recover_health():
-        if playerCar.health <= 90:
-            playerCar.health += 10
-            healthbar.hp = playerCar.health
-        elif playerCar.health + 10 > 100:
-            playerCar.health = 100
-            healthbar.hp = playerCar.health
-
-    def buy_health():
-        if playerCar.health != 100:  # added this
-            if playerCar.money - 5 > -1:
-                playerCar.money -= 5
-                recover_health()
 
     while True:
         mouse = pygame.mouse.get_pos()
@@ -50,7 +43,7 @@ def garage_screen(playerCar, healthbar, level):
             # pressing the buying button
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 219 <= mouse[0] <= 365 and 338 <= mouse[1] <= 396:
-                    buy_health()
+                    buy_health(playerCar, healthbar)
                 if 32 <= mouse[0] <= 315 and 727 <= mouse[1] <= 765:
                     from mainmenu import menu
                     menu()
@@ -69,3 +62,19 @@ def garage_screen(playerCar, healthbar, level):
 
         # frames
         clock.tick(60)
+
+
+def recover_health(player, healthbar):
+    if player.health <= 90:
+        player.health += 10
+        healthbar.hp = player.health
+    elif player.health + 10 > 100:
+        player.health = 100
+        healthbar.hp = player.health
+
+
+def buy_health(player, healthbar):
+    if player.health != 100:  # added this
+        if player.money - 5 > -1:
+            player.money -= 5
+            recover_health(player, healthbar)
