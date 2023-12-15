@@ -4,6 +4,40 @@ from config import normal_zombie, fast_zombie, static_zombie
 
 
 class Zombies(pygame.sprite.Sprite):
+    """
+        A class that represents the zombies
+        ...
+
+        Attributes
+        hazard_type : str
+            either "tall", "small" or "spill" used to attribute correct values to different types
+            of hazard using the zombie_types dictionary
+        position_x : int
+            value of the x coordinate where the zombie spawns
+        position_y : int
+            value of the y coordinate where the zombie spawns
+        speed: int
+            speed at which the zombie moves
+        money : int
+            money the zombie gives the player
+        probability: int
+            probability of zombie appearing on screen
+        image : Surface
+            sprite of the zombie
+        rect : Rect
+            creates a rectangle around the image
+        rect.center : tuple
+            sets the center of the rectangle at those coordinates
+        zombie_mask : Mask
+            creates a mask from the image
+        ----------
+        Methods
+            get_money():
+                gives player money
+            can_spawn():
+
+        -------
+        """
 
     def __init__(self, type_zombie, position_x, position_y):
         super().__init__()
