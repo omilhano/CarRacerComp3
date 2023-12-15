@@ -1,9 +1,6 @@
 import random
-from abc import ABC
-
 import pygame
-
-from config import road_sign_lv1, cone, blood_spill, bear_trap, oil_spill
+from config import road_sign_lv1, cone, blood_spill, oil_spill
 
 
 # TODO oilspill creative for powerup

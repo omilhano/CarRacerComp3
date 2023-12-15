@@ -1,9 +1,8 @@
 import sys
-
 import pygame
 from pygame import mixer
+#TODO delete?
 from config import settings_screen
-
 from cursor import Cursor
 from sounds import *
 

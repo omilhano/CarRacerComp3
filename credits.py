@@ -1,7 +1,5 @@
 import sys
-
 import pygame
-
 from cursor import Cursor
 from config import credits_screen
 

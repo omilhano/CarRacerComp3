@@ -1,5 +1,4 @@
 import sys
-
 import pygame
 from config import end_screen
 from cursor import Cursor

@@ -5,9 +5,7 @@ from gameOver import gameover
 from config import pause_menu
 
 
-# TODO powerups
-# TODO zombies
-
+# TODO maybe delete this for now?
 def start_level3(playerCar, healthbar):
     pygame.init()
 
@@ -83,15 +81,15 @@ def start_level3(playerCar, healthbar):
             elif event.type == pygame.KEYDOWN:
                 # damage taker test
                 if event.key == pygame.K_w:
-                    playerCar.moveUp()
+                    playerCar.move_up()
                 if event.key == pygame.K_s:
-                    playerCar.moveDown()
+                    playerCar.move_down()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.moveLeft(5)
+            playerCar.move_left(5)
         if keys[pygame.K_d]:
-            playerCar.moveRight(5)
+            playerCar.move_right(5)
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -105,7 +103,7 @@ def start_level3(playerCar, healthbar):
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(50)
+                    playerCar.update_score(50)
                     roadLane = random.randint(1, 3)
                     if roadLane == 1:
                         hazards.rect.center = [1300, 605]

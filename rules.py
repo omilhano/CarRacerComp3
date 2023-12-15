@@ -1,7 +1,5 @@
 import sys
-
 import pygame
-
 from config import rules_1, rules_2
 from cursor import Cursor
 

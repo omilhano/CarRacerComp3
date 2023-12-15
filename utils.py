@@ -1,7 +1,5 @@
 import sys
-
 import pygame
-
 from config import pause_menu, level1_end, no_save
 from garage import garage_screen
 

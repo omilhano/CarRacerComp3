@@ -1,16 +1,13 @@
 import sys
 import time
-
 import pygame, random
 from hazards import Hazards
-from config import level2, oil_spill, bear_trap, road_sign_lv2, pause_menu, level1,road_sign_lv1
+from config import level2
 from powerUps import BearTrap, Invincible, SlowTime
 from theend import game_end
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
 
-
-# TODO powerups
 
 def start_level2(playerCar, healthbar):
     pygame.init()
@@ -99,15 +96,15 @@ def start_level2(playerCar, healthbar):
             elif event.type == pygame.KEYDOWN:
                 # damage taker test
                 if event.key == pygame.K_w:
-                    playerCar.moveUp()
+                    playerCar.move_up()
                 if event.key == pygame.K_s:
-                    playerCar.moveDown()
+                    playerCar.move_down()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.moveLeft(5)
+            playerCar.move_left(5)
         if keys[pygame.K_d]:
-            playerCar.moveRight(5)
+            playerCar.move_right(5)
         if keys[pygame.K_ESCAPE]:
             pass
 
@@ -122,7 +119,7 @@ def start_level2(playerCar, healthbar):
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(hazards.hazard_type)
+                    playerCar.update_score(hazards.hazard_type)
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazards)
             all_hazards.draw(screen)

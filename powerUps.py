@@ -1,9 +1,7 @@
 import random
 import time
-
 import pygame
 from abc import ABC, abstractmethod
-
 from config import invincibility, bear_trap, invincible_car, slow, fast_zombieBW, normal_zombieBW, \
     static_zombieBW, road_sign_lv1BW, blood_spillBW, invincibilityBW, slowBW, bear_trapBW, invincible_bike, stuck_car, \
     stuck_bike
@@ -127,7 +125,7 @@ class BearTrap(PowerUp):
 
 class SlowTime(PowerUp):
     def __init__(self, position_x, position_y):
-        super().__init__(position_x, position_y, 9, "slow_time", 0.002)
+        super().__init__(position_x, position_y, 9, "slow_time", 0.0002)
         self.power_up_type = "slow_time"  # Test
         self.image = pygame.image.load(slow).convert_alpha()
         self.rect = self.image.get_rect()

@@ -1,10 +1,8 @@
 import time
-
 import pygame
 import hazards
 import random
 from config import normal_car, normal_bike
-from powerUps import Invincible
 
 
 class Car(pygame.sprite.Sprite):
@@ -40,6 +38,11 @@ class Car(pygame.sprite.Sprite):
     # If collide lower hp
     # Returns true if kill car
     def get_damaged(self, hazard) -> bool:
+        """
+
+        :param hazard:
+        :return: true if player health is below 0
+        """
         if hazard.get_type() == "spill":
             self.collide_spill()
         self.health -= hazard.get_damage()
@@ -59,40 +62,40 @@ class Car(pygame.sprite.Sprite):
             self.image = pygame.image.load(vehicles[self.vehicle_type]["image"]).convert_alpha()
             self.movement = True
 
-    def moveRight(self, pixels):
+    def move_right(self, pixels):
         self.rect.x += pixels
         if self.movement:
             if self.rect.right > 1270:
                 self.rect.x -= pixels
 
-    def moveLeft(self, pixels):
+    def move_left(self, pixels): #TODO we only use 5 so pixels is a useless param
         self.rect.x -= pixels
         if self.movement:
             if self.rect.x < 0:
                 self.rect.x += pixels
 
-    def moveUp(self):
+    def move_up(self):
         if self.movement:
             if self.rect.y == self.mid_lane:
                 self.rect.y = self.top_lane
             elif self.rect.y == self.bottom_lane:
                 self.rect.y = self.mid_lane
 
-    def moveDown(self):
+    def move_down(self):
         if self.movement:
             if self.rect.y == self.top_lane:
                 self.rect.y = self.mid_lane
             elif self.rect.y == self.mid_lane:
                 self.rect.y = self.bottom_lane
 
-    def changeSpeed(self, speed):
+    def change_speed(self, speed): # TODO this isnt used
         self.speed = speed
 
     def get_money(self, zombie) -> None:
         self.money += zombie.money
         zombie.zombie_tp()
 
-    def updateScore(self, hazard_type):
+    def update_score(self, hazard_type):
         self.score += hazards.hazard_types[hazard_type]["score"]
 
     def change_rand_lane(self):

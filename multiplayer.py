@@ -1,6 +1,8 @@
 import pygame
 import random
+import sys
 import json
+#TODO why
 from car import Car
 from config import level1
 from healthbar import *
@@ -10,7 +12,7 @@ from utils import pause
 from visual_points import draw, display_time
 from zombie import Zombies
 from death import you_died
-import sys
+
 
 
 # TODO powerups
@@ -92,23 +94,23 @@ def play_multiplayer():
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    playerCar.moveUp()
+                    playerCar.move_up()
                 if event.key == pygame.K_UP:
-                    playerBike.moveUp()
+                    playerBike.move_up()
                 if event.key == pygame.K_s:
-                    playerCar.moveDown()
+                    playerCar.move_down()
                 if event.key == pygame.K_DOWN:
-                    playerBike.moveDown()
+                    playerBike.move_down()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.moveLeft(5)
+            playerCar.move_left(5)
         if keys[pygame.K_LEFT]:
-            playerBike.moveLeft(5)
+            playerBike.move_left(5)
         if keys[pygame.K_d]:
-            playerCar.moveRight(5)
+            playerCar.move_right(5)
         if keys[pygame.K_RIGHT]:
-            playerBike.moveRight(5)
+            playerBike.move_right(5)
         if keys[pygame.K_ESCAPE]:
             pause()
 

@@ -3,7 +3,7 @@ import pygame
 from pygame import mixer
 from cursor import Cursor
 from mainmenu import menu
-from config import icon_image, titlemenu, main_sound
+from config import icon_image, title_menu, main_sound
 
 # starting music
 mixer.init()
@@ -44,7 +44,7 @@ def interface():
                     pygame.time.delay(1000)
                     menu()
         # setting the background as image
-        bg = pygame.image.load(titlemenu)
+        bg = pygame.image.load(title_menu)
         # startmenu = pygame.image.load("pressthis.png").convert_alpha()
         # INSIDE OF THE GAME LOOP
         screen.blit(bg, (0, 0))

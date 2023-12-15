@@ -1,19 +1,17 @@
 import pygame
 import random
 import json
+import sys
 from car import Car
-from config import level1, blood_spill, cone, road_sign_lv1, pause_menu, level1_end
-from healthbar import *
+from config import level1
+from healthbar import *  # TODO cant it be just import healthbar
 from hazards import Hazards
 from powerUps import Invincible
 from utils import pause, level_end
 from visual_points import draw, display_score, display_money
 from zombie import Zombies
 from death import you_died
-import sys
 
-
-# TODO powerups
 
 def start_level1():
     pygame.init()
@@ -91,15 +89,15 @@ def start_level1():
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    playerCar.moveUp()
+                    playerCar.move_up()
                 if event.key == pygame.K_s:
-                    playerCar.moveDown()
+                    playerCar.move_down()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            playerCar.moveLeft(5)
+            playerCar.move_left(5)
         if keys[pygame.K_d]:
-            playerCar.moveRight(5)
+            playerCar.move_right(5)
         if keys[pygame.K_ESCAPE]:
             pause()
 
@@ -113,7 +111,7 @@ def start_level1():
             for hazards in all_hazards:
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
-                    playerCar.updateScore(hazards.hazard_type)
+                    playerCar.update_score(hazards.hazard_type)
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
                     check_if_stacked(hazards)
 
@@ -151,7 +149,8 @@ def start_level1():
             playerCar.update_powerup()
             # Score testing variable
             if playerCar.score > 1000:
-                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score, "level_completed": 1}
+                status = {"health": playerCar.health, "money": playerCar.money, "score": playerCar.score,
+                          "level_completed": 1}
                 with open("load.json", "w") as outfile:
                     json.dump(status, outfile)
                 level_end(1, playerCar, healthbar)
@@ -173,4 +172,4 @@ def start_level1():
         # Refresh Screen
         pygame.display.flip()
         # this doesn't raise an error when quitting
-    you_died() #todo make sure this will also work on level 2
+    you_died()  # todo make sure this will also work on level 2

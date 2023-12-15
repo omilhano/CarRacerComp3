@@ -1,7 +1,6 @@
 import sys
-
-from instructions import instructions
 import pygame
+from instructions import instructions
 from config import intro_game
 from cursor import Cursor
 

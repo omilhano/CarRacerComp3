@@ -2,13 +2,14 @@ import sys
 import os
 
 import pygame
+#TODO not used?
 
 from game_mode import game_intro
 from load import continue_game
 from rules import rules_p1
 from settings import settings
 from credits import credits_
-from sounds import *
+from sounds import * #TODO import sounds
 from cursor import Cursor
 from config import main_menu
 from utils import no_save_file
