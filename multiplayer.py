@@ -13,6 +13,11 @@ from death import you_died
 
 
 def play_multiplayer():
+    """
+    the multiplayer gamemode
+    end if any person dies
+    :return: None
+    """
     pygame.init()
 
     # defining screen/background
@@ -67,22 +72,6 @@ def play_multiplayer():
     all_powers = pygame.sprite.Group()
     all_powers.add(invincibility)
 
-    def check_collisions(player, all_sprites):
-        object_sprite = None
-        for sprite in all_sprites:
-            if pygame.sprite.collide_mask(player, sprite) is None:
-                pass
-            else:
-                object_sprite = sprite
-        return object_sprite
-
-    def check_if_stacked(hazard):
-        for other_hazard in all_hazards:
-            if pygame.sprite.collide_mask(hazard, other_hazard) is None:
-                pass
-            else:
-                hazard.hazard_tp()
-
     while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -120,7 +109,7 @@ def play_multiplayer():
                 hazards.object_speed(random.randint(20, 30))
                 if hazards.rect.right < 0:
                     hazards.rect.center = [random.randint(1300, 1400), random.choice([605, 682, 760])]
-                    check_if_stacked(hazards)
+                    check_if_stacked(hazards, all_hazards)
 
             fastZombie.object_speed(random.randint(30, 40))
             normalZombie.object_speed(random.randint(20, 30))
@@ -186,3 +175,35 @@ def play_multiplayer():
         player_group.draw(screen)
         # Refresh Screen
         pygame.display.flip()
+
+
+def check_collisions(player, all_sprites):
+    """
+        checks if the player collided with anything
+        If so, returns what it collided with
+        :param playerCar: object from class Car
+        :param all_sprites: Group of Sprites from class Hazards, Zombies or PowerUp
+        :return: None or object from class Hazards, Zombies or PowerUp
+        """
+    object_sprite = None
+    for sprite in all_sprites:
+        if pygame.sprite.collide_mask(player, sprite) is None:
+            pass
+        else:
+            object_sprite = sprite
+    return object_sprite
+
+
+def check_if_stacked(hazard, all_hazards):
+    """
+        Checks if there's a hazard object on top of another hazard object
+        if so, teleports the first hazard
+        :param hazard: object from class Hazards
+        :param all_hazards: Group of Sprites with all the hazards
+        :return: None
+        """
+    for other_hazard in all_hazards:
+        if pygame.sprite.collide_mask(hazard, other_hazard) is None:
+            pass
+        else:
+            hazard.hazard_tp()
