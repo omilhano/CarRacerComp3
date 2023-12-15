@@ -4,6 +4,32 @@ from config import road_sign_lv1, cone, blood_spill, oil_spill
 
 
 class Hazards(pygame.sprite.Sprite):
+    """
+        A class that represents the hazards
+        ...
+
+        Attributes
+        hazard_type = hazard_type
+        position_x = position_x
+        position_y = position_y
+        speed = 5
+        damage = hazard_types[hazard_type]["damage"]
+        score = hazard_types[hazard_type]["score"]
+        image = pygame.image.load(hazard_types[hazard_type]["image"]).convert_alpha()
+
+        # Defining rectangle and positions
+        rect = self.image.get_rect()
+        rect.center = [self.position_x, self.position_y]
+        hazard_mask = pygame.mask.from_surface(self.image)
+
+        image : Surface
+            sprite of the cursor
+        ----------
+        Methods
+            update():
+                updates the position of the cursor to the position of the mouse
+        -------
+        """
 
     def __init__(self, hazard_type, position_x, position_y):
         # Call the parent class (Sprite) constructor
@@ -13,6 +39,7 @@ class Hazards(pygame.sprite.Sprite):
         self.position_x = position_x
         self.position_y = position_y
         self.speed = 5
+
         # options for hazards
         self.damage = hazard_types[hazard_type]["damage"]
         self.score = hazard_types[hazard_type]["score"]
